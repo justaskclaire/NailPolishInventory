@@ -1,0 +1,60 @@
+================================================================================
+                         PRODUCT PLANNING QUESTIONS
+================================================================================
+
+Who will mainly use the app?
+────────────────────────────────────────────────────────────────────────────────
+    D) Both friends and clients
+
+
+What's the main goal for users?
+────────────────────────────────────────────────────────────────────────────────
+    A) Browsing colors/styles
+    B) Booking appointments -- maybe one day
+    C) Tracking personal polish usage -- maybe one day
+
+
+How should users access it?
+────────────────────────────────────────────────────────────────────────────────
+    A) Mobile-first web
+
+
+How do you want to showcase polishes?
+────────────────────────────────────────────────────────────────────────────────
+    B) Gallery with swatches/photos
+    C) Filterable grid (color, finish, brand)
+
+
+Any personalization you want?
+────────────────────────────────────────────────────────────────────────────────
+    B) Save favorite colors/looks
+    C) "On-hand vs. wishlist" tracking
+    D) Seasonal recommendations
+
+
+Appointment/booking needs?
+────────────────────────────────────────────────────────────────────────────────
+    None of the above - TODO for later, very high level
+
+
+Inventory depth to show clients?
+────────────────────────────────────────────────────────────────────────────────
+    A) Only available shades
+
+
+Content extras you'd value?
+────────────────────────────────────────────────────────────────────────────────
+- place to also show photos of charms, stickers, etc that I have on hand
+
+
+How polished should the design be initially?
+────────────────────────────────────────────────────────────────────────────────
+    A) Minimal MVP -- I care more about functionality than "fashion" right now. 
+
+
+What success looks like in 3 months?
+────────────────────────────────────────────────────────────────────────────────
+ - Just have something cool to offer clients as a meaningful resource
+
+
+================================================================================
