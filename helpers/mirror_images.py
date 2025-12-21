@@ -1,10 +1,10 @@
-r"""
+"""
 mirror_images.py
 
-Reads a CSV containing an image URL column, downloads each image, and saves it to ./images.
-Outputs a new CSV with an added 'LocalImage' column pointing to the downloaded file path.
+Downloads product images from URLs in a CSV file and saves them locally.
+Outputs a new CSV with an added 'LocalImage' column.
 
-Designed for: C:\PersonalProjects\NailPolishInventory
+Usage: python helpers/mirror_images.py (from project root)
 """
 
 import csv
@@ -100,7 +100,8 @@ def main() -> None:
     - Downloads each image
     - Writes updated CSV with LocalImage paths
     """
-    base_dir = Path(__file__).resolve().parent
+    # Support running from either project root or helpers/ folder
+    base_dir = Path(__file__).resolve().parent.parent
     csv_path = base_dir / CSV_FILENAME
     images_dir = base_dir / IMAGES_DIRNAME
     output_csv_path = base_dir / OUTPUT_CSV_FILENAME
