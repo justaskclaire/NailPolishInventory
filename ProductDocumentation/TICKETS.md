@@ -92,9 +92,7 @@ Initialize Git repo and configure hosting on Vercel or Netlify
 
 ### ✅ Status Notes
 ✅ Git initialized, GitHub remote configured (justaskclaire/NailPolishInventory)
-
-### 📖 Implementation Guide
-[NPI-001-implementation.md](guides/NPI-001-implementation.md)
+✅ Deployed to GitHub Pages (see NPI-013)
 </details>
 
 <details id="npi-002">
@@ -719,9 +717,9 @@ _Full ticket list available - expand sections as needed_
 
 ## 🔄 Quick Access
 
-- [📊 Executive Summary](#-executive-summary) - Current status, priorities, and category breakdown
-- [🚀 Milestone 1: MVP Gallery](#-milestone-1-mvp-gallery--inventory-weeks-1-3) - 19% complete
-- [💎 Milestone 2: Personalization](#-milestone-2-personalization-basics-weeks-4-6) - Not started
-- [✨ Milestone 3: Enhanced Browsing](#-milestone-3-recommendations--enhanced-browsing-weeks-7-9) - Not started  
-- [📅 Milestone 4: Booking](#-milestone-4-future-booking-foundation-placeholder) - Planning phase
-- [🚀 Sprint Plan](#-recommended-sprint-plan) - Recommended sprint breakdown
+- [📊 Executive Summary](#executive-summary) - Current status, priorities, and category breakdown
+- [🚀 Milestone 1: MVP Gallery](#milestone-1-mvp-gallery--inventory-weeks-1-3) - 20% complete
+- [💎 Milestone 2: Personalization](#milestone-2-personalization-basics-weeks-4-6) - Not started
+- [✨ Milestone 3: Enhanced Browsing](#milestone-3-recommendations--enhanced-browsing-weeks-7-9) - Not started  
+- [📅 Milestone 4: Booking](#milestone-4-future-booking-foundation-placeholder) - Planning phase
+- [🚀 Sprint Plan](#recommended-sprint-plan) - Recommended sprint breakdown
