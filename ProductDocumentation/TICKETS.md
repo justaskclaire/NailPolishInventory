@@ -147,10 +147,7 @@ Create dropdown or chip-based color family filter that allows users to filter na
 NPI-002, NPI-003
 
 ### ✅ Status Notes
-✅ Implemented dropdown color filter with 11 color families (Red, Pink, Orange, Yellow, Green, Blue, Purple, Brown, Neutral, Black, White). All 33 polishes categorized with data-color attributes. Real-time filtering with JavaScript. Mobile-responsive design.
-
-### 📖 Implementation Guide
-[NPI-005-implementation.md](guides/NPI-005-implementation.md)
+✅ Implemented dropdown color filter with 11 color families (Red, Pink, Orange, Yellow, Green, Blue, Purple, Brown, Neutral, Black, White). All 33 polishes categorized with data-color attributes verified from official product pages. Real-time filtering with JavaScript. Mobile-responsive design.
 </details>
 
 <details id="npi-006">
