@@ -181,8 +181,9 @@
       const color = polish.Color || '';
       const finish = polish.Finish || '';
       
-      // Generate image filename from name (replacing spaces with underscores)
-      const imageFileName = name.replace(/'/g, '_').replace(/\s+/g, '_');
+      // Generate image filename from name
+      // Remove apostrophes and replace spaces with underscores, preserve hyphens
+      const imageFileName = name.replace(/'/g, '').replace(/\s+/g, '_');
       const imageExt = polish['Image Address'] && polish['Image Address'].includes('.png') ? 'png' : 'jpg';
       const imagePath = `images/${number}-${imageFileName}.${imageExt}`;
       
@@ -301,10 +302,10 @@
       } catch (error) {
         console.error('Error loading polish data:', error);
         
-        // Display error message to user
+        // Display user-friendly error message without exposing system details
         const errorDiv = document.createElement('div');
         errorDiv.className = 'error-message';
-        errorDiv.textContent = `Failed to load polish inventory: ${error.message}. Please refresh the page or contact support.`;
+        errorDiv.textContent = 'Failed to load polish inventory. Please refresh the page or contact support if the problem persists.';
         grid.parentElement.insertBefore(errorDiv, grid);
       }
     }
