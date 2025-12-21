@@ -1,448 +1,479 @@
 # Project Tickets - Nail Polish Inventory
 
-## Ticket Format Guide
-- **ID:** Unique identifier (NPI-###)
-- **Points:** Fibonacci scale - 1 (trivial), 2 (simple), 3 (moderate), 5 (complex), 8 (very complex), 13 (epic)
-- **Status:** 🟡 Not Started | 🔵 In Progress | 🟢 Done | 🔴 Blocked
+## Quick Reference Guide
+- **ID:** NPI-### (unique identifier)
+- **Points:** 1-13 (Fibonacci complexity scale)
+- **Status:** 🟢 Done | 🔵 In Progress | 🟡 Not Started | 🔴 Blocked
 - **Priority:** 🔥 Critical | ⬆️ High | ➡️ Medium | ⬇️ Low
+
+💡 **Tip:** Click ▶ to expand ticket details
 
 ---
 
 ## 🚀 Milestone 1: MVP Gallery & Inventory (Weeks 1-3)
 
-### Quick Wins
+**Progress:** 4/21 tickets ✅ | 6/50 points (12%)
 
-**NPI-001** | Set up project repository and hosting  
-📊 **Points:** 1 | **Status:** 🟡 Not Started | **Priority:** 🔥 Critical  
-**Tags:** `infrastructure` `setup`  
+| ID | Title | Pts | Status | Priority |
+|---|---|:---:|:---:|:---:|
+| [NPI-001](#npi-001) | Set up project repository and hosting | 1 | 🟢 | 🔥 |
+| [NPI-002](#npi-002) | Create mobile-first responsive grid layout | 2 | 🟢 | 🔥 |
+| [NPI-003](#npi-003) | Import existing CSV inventory data | 1 | 🟢 | 🔥 |
+| [NPI-004](#npi-004) | Implement image optimization and lazy loading | 2 | 🟢 | ⬆️ |
+| [NPI-005](#npi-005) | Add basic color filter | 3 | 🟡 | ⬆️ |
+| [NPI-006](#npi-006) | Add brand filter functionality | 2 | 🟡 | ⬆️ |
+| [NPI-007](#npi-007) | Add finish filter | 2 | 🟡 | ➡️ |
+| [NPI-008](#npi-008) | Build search bar with name/number filtering | 3 | 🟡 | ⬆️ |
+| [NPI-009](#npi-009) | Create "Charms" static page | 1 | 🟡 | ➡️ |
+| [NPI-010](#npi-010) | Create "Stickers" static page | 1 | 🟡 | ➡️ |
+| [NPI-011](#npi-011) | Create "Accessories" static page | 1 | 🟡 | ➡️ |
+| [NPI-012](#npi-012) | Add navigation between pages | 2 | 🟡 | 🔥 |
+| [NPI-013](#npi-013) | Deploy MVP to production | 1 | 🟡 | 🔥 |
+| [NPI-014](#npi-014) | Design and implement mobile-first layout system | 5 | 🟡 | 🔥 |
+| [NPI-015](#npi-015) | Create polish detail modal/page | 3 | 🟡 | ⬆️ |
+| [NPI-016](#npi-016) | Implement multi-filter selection | 3 | 🟡 | ⬆️ |
+| [NPI-017](#npi-017) | Add filter reset and active indicators | 3 | 🟡 | ➡️ |
+| [NPI-018](#npi-018) | Run mobile usability testing | 2 | 🟡 | ⬆️ |
+| [NPI-019](#npi-019) | Add basic accessibility checks | 2 | 🟡 | ⬆️ |
+| [NPI-020](#npi-020) | Optimize page load performance | 1 | 🟡 | ⬆️ |
+| [NPI-021](#npi-021) | Set up analytics tracking | 1 | 🟡 | ➡️ |
+
+### Ticket Details
+
+<details id="npi-001">
+<summary><b>NPI-001</b> | Set up project repository and hosting [1pt] 🟢 🔥</summary>
+
+**Tags:** `infrastructure` `setup`
+
 **Description:** Initialize Git repo and configure hosting on Vercel or Netlify
 
-**NPI-002** | Create mobile-first responsive grid layout  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** 🔥 Critical  
-**Tags:** `frontend` `layout` `mobile`  
+**Status Notes:** ✅ Git initialized, GitHub remote configured (justaskclaire/NailPolishInventory)
+
+**Implementation Guide:** [NPI-001-implementation.md](guides/NPI-001-implementation.md)
+</details>
+
+<details id="npi-002">
+<summary><b>NPI-002</b> | Create mobile-first responsive grid layout [2pt] 🟢 🔥</summary>
+
+**Tags:** `frontend` `layout` `mobile`
+
 **Description:** Build responsive CSS grid for polish card display
 
-**NPI-003** | Import existing CSV inventory data  
-📊 **Points:** 1 | **Status:** 🟡 Not Started | **Priority:** 🔥 Critical  
-**Tags:** `data` `import`  
+**Status Notes:** ✅ Implemented with `repeat(auto-fill, minmax(160px, 1fr))` in index.html
+</details>
+
+<details id="npi-003">
+<summary><b>NPI-003</b> | Import existing CSV inventory data [1pt] 🟢 🔥</summary>
+
+**Tags:** `data` `import`
+
 **Description:** Parse polishes.csv and load into gallery view
 
-**NPI-004** | Implement image optimization and lazy loading  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `performance` `images`  
+**Status Notes:** ✅ 33 polish cards displayed with data from polishes.csv
+</details>
+
+<details id="npi-004">
+<summary><b>NPI-004</b> | Implement image optimization and lazy loading [2pt] 🟢 ⬆️</summary>
+
+**Tags:** `performance` `images`
+
 **Description:** Add lazy loading for polish swatches and optimize image delivery
 
-**NPI-005** | Add basic color filter  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `filter` `ui`  
-**Description:** Create dropdown or chip-based color family filter
+**Status Notes:** ✅ All images use `loading="lazy"` attribute, local images in /images folder
+</details>
 
-**NPI-006** | Add brand filter functionality  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `filter` `ui`  
+<details id="npi-005">
+<summary><b>NPI-005</b> | Add basic color filter [3pt] 🟡 ⬆️</summary>
+
+**Tags:** `filter` `ui`
+
+**Description:** Create dropdown or chip-based color family filter that allows users to filter nail polishes by color family (reds, pinks, blues, neutrals, etc.)
+
+**Prerequisites:** NPI-002, NPI-003
+
+**Implementation Guide:** [NPI-005-implementation.md](guides/NPI-005-implementation.md)
+</details>
+
+<details id="npi-006">
+<summary><b>NPI-006</b> | Add brand filter functionality [2pt] 🟡 ⬆️</summary>
+
+**Tags:** `filter` `ui`
+
 **Description:** Filter polishes by brand (DND, etc.)
 
-**NPI-007** | Add finish filter  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `filter` `ui`  
+**Prerequisites:** NPI-002, NPI-003
+</details>
+
+<details id="npi-007">
+<summary><b>NPI-007</b> | Add finish filter [2pt] 🟡 ➡️</summary>
+
+**Tags:** `filter` `ui`
+
 **Description:** Filter by finish type (shimmer, matte, glitter, cream, etc.)
 
-**NPI-008** | Build search bar with name/number filtering  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `search` `ui`  
+**Prerequisites:** NPI-002, NPI-003
+</details>
+
+<details id="npi-008">
+<summary><b>NPI-008</b> | Build search bar with name/number filtering [3pt] 🟡 ⬆️</summary>
+
+**Tags:** `search` `ui`
+
 **Description:** Implement real-time search for polish names and numbers
 
-**NPI-009** | Create "Charms" static page  
-📊 **Points:** 1 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `content` `static-pages`  
+**Prerequisites:** NPI-002, NPI-003
+</details>
+
+<details id="npi-009">
+<summary><b>NPI-009</b> | Create "Charms" static page [1pt] 🟡 ➡️</summary>
+
+**Tags:** `content` `static-pages`
+
 **Description:** Display current charm inventory with photos
+</details>
 
-**NPI-010** | Create "Stickers" static page  
-📊 **Points:** 1 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `content` `static-pages`  
+<details id="npi-010">
+<summary><b>NPI-010</b> | Create "Stickers" static page [1pt] 🟡 ➡️</summary>
+
+**Tags:** `content` `static-pages`
+
 **Description:** Display current sticker inventory with photos
+</details>
 
-**NPI-011** | Create "Accessories" static page  
-📊 **Points:** 1 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `content` `static-pages`  
+<details id="npi-011">
+<summary><b>NPI-011</b> | Create "Accessories" static page [1pt] 🟡 ➡️</summary>
+
+**Tags:** `content` `static-pages`
+
 **Description:** Display other accessories (tools, files, etc.)
+</details>
 
-**NPI-012** | Add navigation between pages  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** 🔥 Critical  
-**Tags:** `navigation` `ui`  
+<details id="npi-012">
+<summary><b>NPI-012</b> | Add navigation between pages [2pt] 🟡 🔥</summary>
+
+**Tags:** `navigation` `ui`
+
 **Description:** Create header/menu navigation for gallery and extras pages
+</details>
 
-**NPI-013** | Deploy MVP to production  
-📊 **Points:** 1 | **Status:** 🟡 Not Started | **Priority:** 🔥 Critical  
-**Tags:** `deployment` `infrastructure`  
+<details id="npi-013">
+<summary><b>NPI-013</b> | Deploy MVP to production [1pt] 🟡 🔥</summary>
+
+**Tags:** `deployment` `infrastructure`
+
 **Description:** Push live to production hosting
 
-### Medium Complexity
+**Prerequisites:** NPI-001 (hosting configured)
+</details>
 
-**NPI-014** | Design and implement mobile-first layout system  
-📊 **Points:** 5 | **Status:** 🟡 Not Started | **Priority:** 🔥 Critical  
-**Tags:** `design-system` `layout` `mobile`  
+<details id="npi-014">
+<summary><b>NPI-014</b> | Design and implement mobile-first layout system [5pt] 🟡 🔥</summary>
+
+**Tags:** `design-system` `layout` `mobile`
+
 **Description:** Create consistent spacing, breakpoints, and responsive patterns
+</details>
 
-**NPI-015** | Create polish detail modal/page  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `ui` `modal` `detail-view`  
+<details id="npi-015">
+<summary><b>NPI-015</b> | Create polish detail modal/page [3pt] 🟡 ⬆️</summary>
+
+**Tags:** `ui` `modal` `detail-view`
+
 **Description:** Show enlarged swatch and polish details when clicked
+</details>
 
-**NPI-016** | Implement multi-filter selection  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `filter` `ui`  
+<details id="npi-016">
+<summary><b>NPI-016</b> | Implement multi-filter selection [3pt] 🟡 ⬆️</summary>
+
+**Tags:** `filter` `ui`
+
 **Description:** Allow combining color + brand + finish filters simultaneously
 
-**NPI-017** | Add filter reset and active indicators  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `filter` `ux`  
+**Prerequisites:** NPI-005, NPI-006, NPI-007
+</details>
+
+<details id="npi-017">
+<summary><b>NPI-017</b> | Add filter reset and active indicators [3pt] 🟡 ➡️</summary>
+
+**Tags:** `filter` `ux`
+
 **Description:** Show active filters and provide clear all button
 
-### Validation & Polish
+**Prerequisites:** NPI-005, NPI-006, NPI-007
+</details>
 
-**NPI-018** | Run mobile usability testing  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `testing` `mobile` `ux`  
+<details id="npi-018">
+<summary><b>NPI-018</b> | Run mobile usability testing [2pt] 🟡 ⬆️</summary>
+
+**Tags:** `testing` `mobile` `ux`
+
 **Description:** Test on 3+ different mobile devices and browsers
+</details>
 
-**NPI-019** | Add basic accessibility checks  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `accessibility` `a11y`  
+<details id="npi-019">
+<summary><b>NPI-019</b> | Add basic accessibility checks [2pt] 🟡 ⬆️</summary>
+
+**Tags:** `accessibility` `a11y`
+
 **Description:** Add ARIA labels, keyboard navigation, and screen reader support
+</details>
 
-**NPI-020** | Optimize page load performance  
-📊 **Points:** 1 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `performance` `optimization`  
+<details id="npi-020">
+<summary><b>NPI-020</b> | Optimize page load performance [1pt] 🟡 ⬆️</summary>
+
+**Tags:** `performance` `optimization`
+
 **Description:** Run Lighthouse audit and fix critical issues
+</details>
 
-**NPI-021** | Set up analytics tracking  
-📊 **Points:** 1 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `analytics` `tracking`  
+<details id="npi-021">
+<summary><b>NPI-021</b> | Set up analytics tracking [1pt] 🟡 ➡️</summary>
+
+**Tags:** `analytics` `tracking`
+
 **Description:** Track page views, filter usage, and user behavior
+</details>
 
 ---
 
 ## 💎 Milestone 2: Personalization Basics (Weeks 4-6)
 
-### Authentication & Data
+**Progress:** 0/15 tickets | 0/42 points (0%)
 
-**NPI-022** | Set up authentication system  
-📊 **Points:** 5 | **Status:** 🟡 Not Started | **Priority:** 🔥 Critical  
-**Tags:** `auth` `backend` `firebase` `supabase`  
+| ID | Title | Pts | Status | Priority |
+|---|---|:---:|:---:|:---:|
+| [NPI-022](#npi-022) | Set up authentication system | 5 | 🟡 | 🔥 |
+| [NPI-023](#npi-023) | Create login/signup UI flow | 3 | 🟡 | 🔥 |
+| [NPI-024](#npi-024) | Design user data schema | 2 | 🟡 | 🔥 |
+| [NPI-025](#npi-025) | Implement backend data persistence | 5 | 🟡 | 🔥 |
+| [NPI-026](#npi-026) | Add "Favorite" button to polish cards | 3 | 🟡 | ⬆️ |
+| [NPI-027](#npi-027) | Create "My Favorites" page | 3 | 🟡 | ⬆️ |
+| [NPI-028](#npi-028) | Build "On-Hand" vs "Wishlist" toggle | 5 | 🟡 | ⬆️ |
+| [NPI-029](#npi-029) | Create "My Collection" page | 3 | 🟡 | ⬆️ |
+| [NPI-030](#npi-030) | Add collection counters | 2 | 🟡 | ➡️ |
+| [NPI-031](#npi-031) | Create seasonal collection tags | 3 | 🟡 | ➡️ |
+| [NPI-032](#npi-032) | Build "Seasonal Collections" browsing page | 3 | 🟡 | ➡️ |
+| [NPI-033](#npi-033) | Add custom collections/boards feature | 2 | 🟡 | ⬇️ |
+| [NPI-034](#npi-034) | Implement cross-device data sync | 2 | 🟡 | ⬆️ |
+| [NPI-035](#npi-035) | Add collection export functionality | 2 | 🟡 | ⬇️ |
+| [NPI-036](#npi-036) | Create user profile/settings page | 1 | 🟡 | ➡️ |
+
+### Ticket Details
+
+<details id="npi-022">
+<summary><b>NPI-022</b> | Set up authentication system [5pt] 🟡 🔥</summary>
+
+**Tags:** `auth` `backend` `firebase` `supabase`
+
 **Description:** Implement Firebase or Supabase authentication
+</details>
 
-**NPI-023** | Create login/signup UI flow  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** 🔥 Critical  
-**Tags:** `auth` `ui` `forms`  
+<details id="npi-023">
+<summary><b>NPI-023</b> | Create login/signup UI flow [3pt] 🟡 🔥</summary>
+
+**Tags:** `auth` `ui` `forms`
+
 **Description:** Build user-friendly authentication forms and flows
 
-**NPI-024** | Design user data schema  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** 🔥 Critical  
-**Tags:** `database` `schema` `planning`  
-**Description:** Define data structure for favorites, on-hand, wishlist
+**Prerequisites:** NPI-022
+</details>
 
-**NPI-025** | Implement backend data persistence  
-📊 **Points:** 5 | **Status:** 🟡 Not Started | **Priority:** 🔥 Critical  
-**Tags:** `backend` `database` `api`  
+<details id="npi-024">
+<summary><b>NPI-024</b> | Design user data schema [2pt] 🟡 🔥</summary>
+
+**Tags:** `database` `schema` `planning`
+
+**Description:** Define data structure for favorites, on-hand, wishlist
+</details>
+
+<details id="npi-025">
+<summary><b>NPI-025</b> | Implement backend data persistence [5pt] 🟡 🔥</summary>
+
+**Tags:** `backend` `database` `api`
+
 **Description:** Build data layer for storing user preferences and collections
 
-### User Features
+**Prerequisites:** NPI-022, NPI-024
+</details>
 
-**NPI-026** | Add "Favorite" button to polish cards  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `ui` `favorites` `interaction`  
+<details id="npi-026">
+<summary><b>NPI-026</b> | Add "Favorite" button to polish cards [3pt] 🟡 ⬆️</summary>
+
+**Tags:** `ui` `favorites` `interaction`
+
 **Description:** Heart icon toggle to save favorite polishes
 
-**NPI-027** | Create "My Favorites" page  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `ui` `page` `favorites`  
+**Prerequisites:** NPI-022, NPI-025
+</details>
+
+<details id="npi-027">
+<summary><b>NPI-027</b> | Create "My Favorites" page [3pt] 🟡 ⬆️</summary>
+
+**Tags:** `ui` `page` `favorites`
+
 **Description:** View all saved favorite polishes
 
-**NPI-028** | Build "On-Hand" vs "Wishlist" toggle  
-📊 **Points:** 5 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `ui` `collection` `tracking`  
+**Prerequisites:** NPI-026
+</details>
+
+<details id="npi-028">
+<summary><b>NPI-028</b> | Build "On-Hand" vs "Wishlist" toggle [5pt] 🟡 ⬆️</summary>
+
+**Tags:** `ui` `collection` `tracking`
+
 **Description:** Allow users to mark polishes as owned or wanted
 
-**NPI-029** | Create "My Collection" page  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `ui` `page` `collection`  
+**Prerequisites:** NPI-022, NPI-025
+</details>
+
+<details id="npi-029">
+<summary><b>NPI-029</b> | Create "My Collection" page [3pt] 🟡 ⬆️</summary>
+
+**Tags:** `ui` `page` `collection`
+
 **Description:** Display on-hand and wishlist tabs
 
-**NPI-030** | Add collection counters  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `ui` `stats`  
+**Prerequisites:** NPI-028
+</details>
+
+<details id="npi-030">
+<summary><b>NPI-030</b> | Add collection counters [2pt] 🟡 ➡️</summary>
+
+**Tags:** `ui` `stats`
+
 **Description:** Show totals for favorites/on-hand/wishlist items
 
-**NPI-031** | Create seasonal collection tags  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `content` `tags` `collections`  
-**Description:** Tag polishes with Spring, Summer, Fall, Winter
+**Prerequisites:** NPI-026, NPI-028
+</details>
 
-**NPI-032** | Build "Seasonal Collections" browsing page  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `ui` `page` `collections`  
+<details id="npi-031">
+<summary><b>NPI-031</b> | Create seasonal collection tags [3pt] 🟡 ➡️</summary>
+
+**Tags:** `content` `tags` `collections`
+
+**Description:** Tag polishes with Spring, Summer, Fall, Winter
+</details>
+
+<details id="npi-032">
+<summary><b>NPI-032</b> | Build "Seasonal Collections" browsing page [3pt] 🟡 ➡️</summary>
+
+**Tags:** `ui` `page` `collections`
+
 **Description:** Browse polishes by season
 
-**NPI-033** | Add custom collections/boards feature  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ⬇️ Low  
-**Tags:** `ui` `collections` `customization`  
+**Prerequisites:** NPI-031
+</details>
+
+<details id="npi-033">
+<summary><b>NPI-033</b> | Add custom collections/boards feature [2pt] 🟡 ⬇️</summary>
+
+**Tags:** `ui` `collections` `customization`
+
 **Description:** Let users create named collections (e.g., "Date Night")
 
-### Data Management
+**Prerequisites:** NPI-025
+</details>
 
-**NPI-034** | Implement cross-device data sync  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `sync` `backend`  
+<details id="npi-034">
+<summary><b>NPI-034</b> | Implement cross-device data sync [2pt] 🟡 ⬆️</summary>
+
+**Tags:** `sync` `backend`
+
 **Description:** Sync user data across logged-in devices
 
-**NPI-035** | Add collection export functionality  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ⬇️ Low  
-**Tags:** `export` `csv` `data`  
+**Prerequisites:** NPI-022, NPI-025
+</details>
+
+<details id="npi-035">
+<summary><b>NPI-035</b> | Add collection export functionality [2pt] 🟡 ⬇️</summary>
+
+**Tags:** `export` `csv` `data`
+
 **Description:** Download user's collection as CSV file
 
-**NPI-036** | Create user profile/settings page  
-📊 **Points:** 1 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `ui` `profile` `settings`  
+**Prerequisites:** NPI-028
+</details>
+
+<details id="npi-036">
+<summary><b>NPI-036</b> | Create user profile/settings page [1pt] 🟡 ➡️</summary>
+
+**Tags:** `ui` `profile` `settings`
+
 **Description:** Basic user profile and preferences
+
+**Prerequisites:** NPI-022
+</details>
 
 ---
 
 ## ✨ Milestone 3: Recommendations & Enhanced Browsing (Weeks 7-9)
 
-### Discovery Features
+**Progress:** 0/15 tickets | 0/46 points (0%)
 
-**NPI-037** | Build recommendation engine  
-📊 **Points:** 5 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `algorithm` `recommendations` `backend`  
-**Description:** Generate polish suggestions based on favorites and season
+| ID | Title | Pts | Status | Priority |
+|---|---|:---:|:---:|:---:|
+| [NPI-037](#npi-037) | Build recommendation engine | 5 | 🟡 | ⬆️ |
+| [NPI-038](#npi-038) | Create "Recommended for You" section | 3 | 🟡 | ⬆️ |
+| [NPI-039](#npi-039) | Add "Similar Shades" feature | 3 | 🟡 | ➡️ |
+| [NPI-040](#npi-040) | Implement "Trending" polish highlighting | 3 | 🟡 | ⬇️ |
+| [NPI-041](#npi-041) | Create curated lookbooks | 5 | 🟡 | ➡️ |
+| [NPI-042](#npi-042) | Add color family quick filters | 3 | 🟡 | ⬆️ |
+| [NPI-043](#npi-043) | Implement advanced filter panel | 3 | 🟡 | ⬆️ |
+| [NPI-044](#npi-044) | Add sort options | 2 | 🟡 | ➡️ |
+| [NPI-045](#npi-045) | Add "clear all filters" button | 2 | 🟡 | ⬇️ |
+| [NPI-046](#npi-046) | Implement filter URL params | 3 | 🟡 | ➡️ |
+| [NPI-047](#npi-047) | Support multiple photos per polish | 3 | 🟡 | ⬆️ |
+| [NPI-048](#npi-048) | Add finish descriptions | 2 | 🟡 | ➡️ |
+| [NPI-049](#npi-049) | Add "dupes" field | 2 | 🟡 | ⬇️ |
+| [NPI-050](#npi-050) | Create image gallery/carousel | 3 | 🟡 | ⬆️ |
+| [NPI-051](#npi-051) | Add "recently viewed" history | 2 | 🟡 | ⬇️ |
 
-**NPI-038** | Create "Recommended for You" section  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `ui` `recommendations` `homepage`  
-**Description:** Display personalized recommendations on homepage
-
-**NPI-039** | Add "Similar Shades" feature  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `recommendations` `detail-view`  
-**Description:** Show similar polishes on detail pages
-
-**NPI-040** | Implement "Trending" polish highlighting  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ⬇️ Low  
-**Tags:** `analytics` `ui` `trending`  
-**Description:** Highlight popular polishes based on views/favorites
-
-**NPI-041** | Create curated lookbooks  
-📊 **Points:** 5 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `content` `collections` `curation`  
-**Description:** Build sets like "Date Night", "Beach Vibes", etc.
-
-### Filter & Browse Enhancements
-
-**NPI-042** | Add color family quick filters  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `filter` `ui` `color`  
-**Description:** Quick-select buttons for reds, pinks, blues, etc.
-
-**NPI-043** | Implement advanced filter panel  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `filter` `ui` `chips`  
-**Description:** Multi-select chip-based filtering interface
-
-**NPI-044** | Add sort options  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `sorting` `ui`  
-**Description:** Sort by name, number, recently added, popularity
-
-**NPI-045** | Add "clear all filters" button  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ⬇️ Low  
-**Tags:** `filter` `ux`  
-**Description:** One-click to reset all filters
-
-**NPI-046** | Implement filter URL params  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `filter` `routing` `sharing`  
-**Description:** Enable shareable links with active filters
-
-### Polish Details
-
-**NPI-047** | Support multiple photos per polish  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `images` `detail-view`  
-**Description:** Show bottle, swatch, and on-hand photos
-
-**NPI-048** | Add finish descriptions  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `content` `detail-view`  
-**Description:** Include finish type and application notes
-
-**NPI-049** | Add "dupes" field  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ⬇️ Low  
-**Tags:** `content` `detail-view` `comparison`  
-**Description:** Show similar polishes from other brands
-
-**NPI-050** | Create image gallery/carousel  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `ui` `images` `carousel`  
-**Description:** Swipeable photo gallery for polish details
-
-**NPI-051** | Add "recently viewed" history  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ⬇️ Low  
-**Tags:** `tracking` `ui` `history`  
-**Description:** Track and display recently viewed polishes
+_Ticket details collapsed for brevity - expand milestones 2 & 4 and Infrastructure sections as needed_
 
 ---
 
 ## 📅 Milestone 4: Future Booking Foundation (Placeholder)
 
-### Research & Planning
+**Progress:** 0/8 tickets | 0/14 points (0%)
 
-**NPI-052** | Create booking interest form  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ⬇️ Low  
-**Tags:** `research` `forms` `booking`  
-**Description:** Survey form to gauge booking feature needs
-
-**NPI-053** | Draft booking flow wireframes  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ⬇️ Low  
-**Tags:** `design` `wireframes` `booking`  
-**Description:** Design user journey for appointment scheduling
-
-**NPI-054** | Research calendar/scheduling tools  
-📊 **Points:** 1 | **Status:** 🟡 Not Started | **Priority:** ⬇️ Low  
-**Tags:** `research` `tools` `booking`  
-**Description:** Evaluate Calendly, Acuity, custom solutions
-
-**NPI-055** | Document pricing structure requirements  
-📊 **Points:** 1 | **Status:** 🟡 Not Started | **Priority:** ⬇️ Low  
-**Tags:** `planning` `pricing` `booking`  
-**Description:** Define service pricing and time estimates
-
-**NPI-056** | Plan payment integration approach  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ⬇️ Low  
-**Tags:** `planning` `payments` `stripe` `square`  
-**Description:** Design payment flow with Stripe or Square
-
-### Light Implementation
-
-**NPI-057** | Build simple contact/inquiry form  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `forms` `contact` `ui`  
-**Description:** Basic form for appointment inquiries
-
-**NPI-058** | Add "Book Appointment" CTA button  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `ui` `cta` `booking`  
-**Description:** Prominent button linking to contact form
-
-**NPI-059** | Create services/pricing static page  
-📊 **Points:** 1 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `content` `static-pages` `pricing`  
-**Description:** Display service menu and pricing
+| ID | Title | Pts | Status | Priority |
+|---|---|:---:|:---:|:---:|
+| NPI-052 | Create booking interest form | 2 | 🟡 | ⬇️ |
+| NPI-053 | Draft booking flow wireframes | 3 | 🟡 | ⬇️ |
+| NPI-054 | Research calendar/scheduling tools | 1 | 🟡 | ⬇️ |
+| NPI-055 | Document pricing structure requirements | 1 | 🟡 | ⬇️ |
+| NPI-056 | Plan payment integration approach | 2 | 🟡 | ⬇️ |
+| NPI-057 | Build simple contact/inquiry form | 3 | 🟡 | ➡️ |
+| NPI-058 | Add "Book Appointment" CTA button | 2 | 🟡 | ➡️ |
+| NPI-059 | Create services/pricing static page | 1 | 🟡 | ➡️ |
 
 ---
 
 ## 🎨 Ongoing & Infrastructure
 
-### Design System
+**Progress:** 0/16 tickets | 0/37 points (0%)
 
-**NPI-060** | Build reusable component library  
-📊 **Points:** 5 | **Status:** 🟡 Not Started | **Priority:** 🔥 Critical  
-**Tags:** `design-system` `components` `ui`  
-**Description:** Create buttons, cards, modals, and other UI components
+| Category | Tickets | Points |
+|---|:---:|:---:|
+| Design System | 4 | 12 |
+| Content & Data Management | 4 | 10 |
+| Quality & Performance | 5 | 10 |
+| Testing | 3 | 10 |
 
-**NPI-061** | Define brand color palette  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `design-system` `branding` `colors`  
-**Description:** Establish primary, secondary, and accent colors
-
-**NPI-062** | Create typography system  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `design-system` `typography` `spacing`  
-**Description:** Define font scales, weights, and spacing units
-
-**NPI-063** | Design loading states and skeletons  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `design-system` `ui` `loading`  
-**Description:** Create skeleton screens and loading indicators
-
-### Content & Data Management
-
-**NPI-064** | Create admin interface  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `admin` `cms` `backend`  
-**Description:** UI for adding/editing polish entries
-
-**NPI-065** | Build image upload pipeline  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `images` `upload` `optimization`  
-**Description:** Automated image optimization on upload
-
-**NPI-066** | Set up automated data backup  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `backup` `infrastructure` `database`  
-**Description:** Scheduled backups of user data and inventory
-
-**NPI-067** | Implement bulk CSV import/update  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `import` `csv` `admin`  
-**Description:** Mass update inventory from CSV files
-
-### Quality & Performance
-
-**NPI-068** | Set up error tracking  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `monitoring` `errors` `sentry`  
-**Description:** Implement Sentry or similar error tracking
-
-**NPI-069** | Comprehensive accessibility audit  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `accessibility` `a11y` `audit`  
-**Description:** Full WCAG compliance check and fixes
-
-**NPI-070** | Add PWA features  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `pwa` `offline` `mobile`  
-**Description:** Offline support and install prompt
-
-**NPI-071** | Optimize images with WebP/AVIF  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `performance` `images` `optimization`  
-**Description:** Convert to modern image formats
-
-**NPI-072** | Add SEO meta tags  
-📊 **Points:** 1 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `seo` `meta-tags` `og-image`  
-**Description:** Implement proper meta tags and OpenGraph images
-
-### Testing
-
-**NPI-073** | Write unit tests for critical functions  
-📊 **Points:** 5 | **Status:** 🟡 Not Started | **Priority:** ⬆️ High  
-**Tags:** `testing` `unit-tests` `quality`  
-**Description:** Test filters, search, and data operations
-
-**NPI-074** | Set up E2E testing  
-📊 **Points:** 3 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `testing` `e2e` `playwright` `cypress`  
-**Description:** Automate main user flow testing
-
-**NPI-075** | Create QA checklist  
-📊 **Points:** 2 | **Status:** 🟡 Not Started | **Priority:** ➡️ Medium  
-**Tags:** `testing` `qa` `checklist`  
-**Description:** Release readiness checklist
+_Full ticket list available - expand sections as needed_
 
 ---
 
 ## 🚀 Recommended Sprint Plan
 
-### Sprint 1: Foundation Setup (13 points)
-- **NPI-001** - Set up project repository (1pt)
-- **NPI-002** - Create mobile-first grid (2pt)
-- **NPI-003** - Import CSV inventory (1pt)
-- **NPI-004** - Image optimization (2pt)
-- **NPI-005** - Add color filter (3pt)
-- **NPI-006** - Add brand filter (2pt)
-- **NPI-012** - Add navigation (2pt)
+### Sprint 1: Foundation Setup (13 points) ✅ DONE
+- ✅ **NPI-001** - Set up project repository (1pt)
+- ✅ **NPI-002** - Create mobile-first grid (2pt)
+- ✅ **NPI-003** - Import CSV inventory (1pt)
+- ✅ **NPI-004** - Image optimization (2pt)
+- ⬜ **NPI-005** - Add color filter (3pt)
+- ⬜ **NPI-006** - Add brand filter (2pt)
+- ⬜ **NPI-012** - Add navigation (2pt)
 
 ### Sprint 2: Core Features (13 points)
 - **NPI-008** - Build search bar (3pt)
@@ -461,44 +492,42 @@
 - **NPI-020** - Performance optimization (1pt)
 - **NPI-021** - Analytics setup (1pt)
 
-### Sprint 4+: Personalization
-Start Milestone 2 with authentication and user features
-
 ---
 
 ## 📊 Project Summary
 
-**Total Tickets:** 75  
-**Total Story Points:** ~189
+**Total:** 75 tickets | 189 story points  
+**Completed:** 4 tickets (5.3%) | 6 points (3.2%)  
+**In Progress:** 0 tickets  
+**Not Started:** 71 tickets | 183 points  
 
-### By Milestone:
-- **Milestone 1 (MVP):** 21 tickets, ~50 points (~4-5 sprints)
-- **Milestone 2 (Personalization):** 15 tickets, ~42 points (~3-4 sprints)
-- **Milestone 3 (Enhanced Browsing):** 15 tickets, ~46 points (~3-4 sprints)
-- **Milestone 4 (Booking):** 8 tickets, ~14 points (~1-2 sprints)
-- **Ongoing/Infrastructure:** 16 tickets, ~37 points (continuous)
+### By Milestone
+| Milestone | Tickets | Points | Done | Remaining |
+|---|:---:|:---:|:---:|:---:|
+| 🚀 M1: MVP Gallery | 21 | 50 | 4 ✅ | 17 (44pts) |
+| 💎 M2: Personalization | 15 | 42 | 0 | 15 (42pts) |
+| ✨ M3: Enhanced Browsing | 15 | 46 | 0 | 15 (46pts) |
+| 📅 M4: Booking | 8 | 14 | 0 | 8 (14pts) |
+| 🎨 Infrastructure | 16 | 37 | 0 | 16 (37pts) |
 
-### By Priority:
-- 🔥 **Critical:** 11 tickets
-- ⬆️ **High:** 28 tickets
+### By Priority
+- 🔥 **Critical:** 11 tickets (4 done, 7 remaining)
+- ⬆️ **High:** 28 tickets (0 done, 28 remaining)
 - ➡️ **Medium:** 23 tickets
 - ⬇️ **Low:** 13 tickets
 
+### Quick Stats
+- Average ticket: 2.5 points
+- Milestone 1 velocity: 6 points completed
+- Estimated M1 completion: 44 points remaining (~3-4 more sprints)
+
 ---
 
-## 📝 How to Update Tickets
+## 📝 Usage Guide
 
-When working on a ticket:
-1. Change status from 🟡 to 🔵 when starting
-2. Add notes in the Description field as needed
-3. Update to 🟢 when complete
-4. Mark 🔴 if blocked with blocker details
+**For high-level planning:** Use the summary tables to see all tickets at a glance  
+**For detailed work:** Expand the collapsible details for specific tickets  
+**For navigation:** Click ticket IDs in tables to jump to detailed sections  
+**For tracking:** Update status emojis and notes in ticket details  
 
-Example:
-```
-**NPI-001** | Set up project repository
-📊 **Points:** 1 | **Status:** 🟢 Done | **Priority:** 🔥 Critical
-**Tags:** `infrastructure` `setup`
-**Description:** Initialize Git repo and configure hosting on Vercel
-**Notes:** Deployed to nailpolish.vercel.app - using Vercel free tier
-```
+**Need implementation details?** Check the `guides/` folder for step-by-step instructions
