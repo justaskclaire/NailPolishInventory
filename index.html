@@ -184,18 +184,26 @@
     }
 
     /**
-     * Validate string contains only safe characters for file paths
+     * Validate string contains only safe characters for filenames
+     * Removes apostrophes, allows alphanumeric, hyphens, underscores, and spaces
      */
     function sanitizeFilename(str) {
-      // Allow only alphanumeric, hyphens, underscores, and spaces
-      return str.replace(/[^a-zA-Z0-9\-_\s]/g, '');
+      // Remove apostrophes and keep only alphanumeric, hyphens, underscores, and spaces
+      return str.replace(/'/g, '').replace(/[^a-zA-Z0-9\-_\s]/g, '');
+    }
+
+    /**
+     * Check if a string contains only letters and spaces (safe for filter values)
+     */
+    function isSafeFilterValue(str) {
+      return /^[a-zA-Z\s]+$/.test(str);
     }
 
     /**
      * Generate card HTML from polish data
      */
     function createCard(polish) {
-      const number = sanitizeFilename(polish.Number || '');
+      const number = polish.Number || '';
       const name = polish.Name || '';
       const link = polish.Link || '#';
       const color = polish.Color || '';
@@ -207,10 +215,10 @@
         return null;
       }
       
-      // Generate image filename from name (sanitized)
-      // Remove apostrophes and replace spaces with underscores, preserve hyphens
+      // Generate image filename from sanitized name
+      // Sanitize first, then replace spaces with underscores
       const sanitizedName = sanitizeFilename(name);
-      const imageFileName = sanitizedName.replace(/'/g, '').replace(/\s+/g, '_');
+      const imageFileName = sanitizedName.replace(/\s+/g, '_');
       const imageExt = polish['Image Address'] && polish['Image Address'].includes('.png') ? 'png' : 'jpg';
       const imagePath = `images/${number}-${imageFileName}.${imageExt}`;
       
@@ -261,8 +269,8 @@
         const color = polish.Color;
         const finish = polish.Finish;
         
-        if (color && /^[a-zA-Z\s]+$/.test(color)) colors.add(color);
-        if (finish && /^[a-zA-Z\s]+$/.test(finish)) finishes.add(finish);
+        if (color && isSafeFilterValue(color)) colors.add(color);
+        if (finish && isSafeFilterValue(finish)) finishes.add(finish);
       });
       
       // Sort and populate color filter
