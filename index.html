@@ -172,18 +172,45 @@
     }
 
     /**
+     * HTML-escape string to prevent XSS
+     */
+    function escapeHtml(unsafe) {
+      return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    /**
+     * Validate string contains only safe characters for file paths
+     */
+    function sanitizeFilename(str) {
+      // Allow only alphanumeric, hyphens, underscores, and spaces
+      return str.replace(/[^a-zA-Z0-9\-_\s]/g, '');
+    }
+
+    /**
      * Generate card HTML from polish data
      */
     function createCard(polish) {
-      const number = polish.Number || '';
+      const number = sanitizeFilename(polish.Number || '');
       const name = polish.Name || '';
       const link = polish.Link || '#';
       const color = polish.Color || '';
       const finish = polish.Finish || '';
       
-      // Generate image filename from name
+      // Validate number is numeric
+      if (!/^\d+$/.test(number)) {
+        console.warn('Invalid polish number:', polish.Number);
+        return null;
+      }
+      
+      // Generate image filename from name (sanitized)
       // Remove apostrophes and replace spaces with underscores, preserve hyphens
-      const imageFileName = name.replace(/'/g, '').replace(/\s+/g, '_');
+      const sanitizedName = sanitizeFilename(name);
+      const imageFileName = sanitizedName.replace(/'/g, '').replace(/\s+/g, '_');
       const imageExt = polish['Image Address'] && polish['Image Address'].includes('.png') ? 'png' : 'jpg';
       const imagePath = `images/${number}-${imageFileName}.${imageExt}`;
       
@@ -192,16 +219,32 @@
       card.href = link;
       card.target = '_blank';
       card.rel = 'noopener';
-      card.setAttribute('data-color', color);
-      card.setAttribute('data-finish', finish);
+      card.setAttribute('data-color', escapeHtml(color));
+      card.setAttribute('data-finish', escapeHtml(finish));
       
-      card.innerHTML = `
-        <img class="thumb" src="${imagePath}" alt="${number} ${name}" loading="lazy" />
-        <div class="meta">
-          <div class="num">${number}</div>
-          <div class="name">${name}</div>
-        </div>
-      `;
+      // Use textContent for text to avoid XSS
+      const img = document.createElement('img');
+      img.className = 'thumb';
+      img.src = imagePath;
+      img.alt = `${number} ${name}`;
+      img.loading = 'lazy';
+      
+      const metaDiv = document.createElement('div');
+      metaDiv.className = 'meta';
+      
+      const numDiv = document.createElement('div');
+      numDiv.className = 'num';
+      numDiv.textContent = number;
+      
+      const nameDiv = document.createElement('div');
+      nameDiv.className = 'name';
+      nameDiv.textContent = name;
+      
+      metaDiv.appendChild(numDiv);
+      metaDiv.appendChild(nameDiv);
+      
+      card.appendChild(img);
+      card.appendChild(metaDiv);
       
       return card;
     }
@@ -214,8 +257,12 @@
       const finishes = new Set();
       
       data.forEach(polish => {
-        if (polish.Color) colors.add(polish.Color);
-        if (polish.Finish) finishes.add(polish.Finish);
+        // Validate filter values contain only safe characters
+        const color = polish.Color;
+        const finish = polish.Finish;
+        
+        if (color && /^[a-zA-Z\s]+$/.test(color)) colors.add(color);
+        if (finish && /^[a-zA-Z\s]+$/.test(finish)) finishes.add(finish);
       });
       
       // Sort and populate color filter
@@ -269,7 +316,9 @@
         const response = await fetch('polishes.csv');
         
         if (!response.ok) {
-          throw new Error(`Failed to load CSV: ${response.status} ${response.statusText}`);
+          // Log full error details for debugging but don't expose to user
+          console.error('CSV fetch failed:', response.status, response.statusText);
+          throw new Error('Failed to load data');
         }
         
         const csvText = await response.text();
@@ -287,7 +336,9 @@
             return;
           }
           const card = createCard(polish);
-          grid.appendChild(card);
+          if (card) {
+            grid.appendChild(card);
+          }
         });
         
         // Populate filter dropdowns
