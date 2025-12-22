@@ -5,6 +5,9 @@ A simple, static web gallery for browsing my DND gel polish collection with colo
 ## 🎨 Features
 - Browse 33 polishes with images and product links
 - Filter by color (11 categories: Red, Pink, Orange, Yellow, Green, Blue, Purple, Brown, Neutral, Black, White)
+- Multi-color polish support - polishes with multiple color families appear in all relevant filters
+- Filter by finish (5 categories: Cream, Shimmer, Cat Eye, Mood Change, Sheer)
+- Multi-filter selection with AND logic (combine color + finish filters)
 - Responsive grid layout
 - Lazy-loaded images for performance
 - Offline-friendly with local images
@@ -27,10 +30,11 @@ A simple, static web gallery for browsing my DND gel polish collection with colo
 ```
 
 ## 🛠️ Adding New Polishes
-1. Add new row(s) to `polishes.csv` with Number, Name, Link, and Image Address
-2. Run `python helpers/mirror_images.py` to download images
-3. Update `index.html` with new card entries
-4. Verify color categorization from product page (never guess from name!)
+1. Add new row(s) to `polishes.csv` with Number, Name, Link, Image Address, Color, and Finish
+2. For polishes with multiple colors, use comma-separated values in quotes: `"Purple, Pink"`
+3. Run `python helpers/mirror_images.py` to download images
+4. Cards are dynamically generated from CSV - no manual HTML updates needed
+5. Verify color categorization from product page (never guess from name!)
 
 ## 📚 Documentation
 - **[ProductDocumentation/TICKETS.md](ProductDocumentation/TICKETS.md)** - Full backlog (75 tickets)
