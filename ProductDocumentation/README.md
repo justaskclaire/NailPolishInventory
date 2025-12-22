@@ -11,14 +11,14 @@ This folder contains all project planning and implementation documentation.
 - **[ProductQuestions.txt](ProductQuestions.txt)** - Original requirements and questions
 
 ### Implementation Guides
-- **[guides/](guides/)** - Detailed implementation guides for completed tickets
-  - [NPI-001-implementation.md](guides/NPI-001-implementation.md) - Git setup
-  - [NPI-005-implementation.md](guides/NPI-005-implementation.md) - Color filter
+- **[guides/](guides/)** - Implementation guides for in-progress tickets
+  - Currently empty - guides are created only for active work, not completed tickets
+  - Completed implementations are documented directly in code comments and commit history
 
-## 📁 Organization
+## 📁 Organization Policy
 
-Guides are created for each completed ticket to document:
-- Implementation approach
-- Technical decisions
-- Code changes
-- Testing notes
+Implementation guides are temporary working documents:
+- Created when starting complex tickets (3+ story points)
+- Used to plan implementation approach and track progress
+- Deleted once ticket is complete and merged
+- Code serves as the documentation for completed work
