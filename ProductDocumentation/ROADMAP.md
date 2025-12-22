@@ -11,11 +11,14 @@ Create a mobile-first web experience that helps friends and clients browse avail
 - **Deliverable:** Live mobile-first web page showcasing available shades with photos/swatches in a clean grid.
 - **Key work:**
   - Build responsive gallery/grid of available shades only, sourced from existing inventory data and images.
-  - Include basic filters (color, finish, brand) and search.
+  - Include basic filters (color, finish) with multi-color support for polishes with multiple color families.
+  - Add multi-filter selection with AND logic (color + finish simultaneously).
+  - Add search functionality for polish names and numbers.
   - Add lightweight pages/sections for charms, stickers, and accessories on hand.
   - Keep the design minimal and functional; prioritize speed to launch.
 - **Dependencies:** Current inventory CSVs and images; simple hosting (static site is fine).
-- **Success criteria:** Friends/clients can quickly browse the current collection and see on-hand extras.
+- **Success criteria:** Friends/clients can quickly browse the current collection, filter by multiple attributes, and see on-hand extras.
+- **Progress:** ~70% complete - Color filter ✅, Finish filter ✅, Multi-color support ✅, Multi-filter AND logic ✅, Search pending, Navigation pending
 
 ### Milestone 2: Personalization basics (Weeks 4-6)
 - **Deliverable:** Logged-in experience with personal tracking.

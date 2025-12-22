@@ -3,109 +3,229 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="My DND gel polish collection - browse 33 polishes with color filtering" />
-  <title>My DND Polish Inventory</title>
+  <meta name="description" content="My gel polish collection - browse 33 polishes with color filtering" />
+  <title>My Polish Inventory</title>
   <style>
+    /* ============================================
+       DESIGN SYSTEM - CSS Custom Properties
+       ============================================ */
+    
     :root {
-      --border: #e6e6e6;
-      --bg: #ffffff;
-      --muted: #666;
+      /* Colors - Neutrals */
+      --color-white: #ffffff;
+      --color-gray-50: #fafafa;
+      --color-gray-100: #f5f5f5;
+      --color-gray-200: #e6e6e6;
+      --color-gray-300: #d4d4d4;
+      --color-gray-500: #737373;
+      --color-gray-700: #404040;
+      --color-gray-900: #171717;
+      
+      /* Colors - Primary (Soft Pink - nail polish themed) */
+      --color-primary-50: #fdf2f8;
+      --color-primary-100: #fce7f3;
+      --color-primary-500: #ec4899;
+      --color-primary-600: #db2777;
+      
+      /* Semantic Colors */
+      --color-surface: var(--color-white);
+      --color-background: var(--color-gray-50);
+      --color-text: var(--color-gray-900);
+      --color-text-muted: var(--color-gray-500);
+      --color-border: var(--color-gray-200);
+      --color-hover: var(--color-gray-100);
+      
+      /* Spacing Scale (8px base) */
+      --space-1: 0.5rem;   /* 8px */
+      --space-2: 0.75rem;  /* 12px */
+      --space-3: 1rem;     /* 16px */
+      --space-4: 1.5rem;   /* 24px */
+      --space-5: 2rem;     /* 32px */
+      --space-6: 3rem;     /* 48px */
+      
+      /* Typography */
+      --font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+      --font-size-sm: 0.875rem;    /* 14px */
+      --font-size-base: 1rem;      /* 16px */
+      --font-size-lg: 1.125rem;    /* 18px */
+      --font-size-xl: 1.5rem;      /* 24px */
+      --font-size-2xl: 1.75rem;    /* 28px */
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 800;
+      --line-height-tight: 1.25;
+      --line-height-normal: 1.5;
+      
+      /* Border Radius */
+      --radius-sm: 0.5rem;   /* 8px */
+      --radius-md: 0.875rem; /* 14px */
+      --radius-lg: 1rem;     /* 16px */
+      
+      /* Shadows */
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 2px 10px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      
+      /* Transitions */
+      --transition-fast: 150ms ease;
+      --transition-base: 200ms ease;
     }
+    
+    /* ============================================
+       BASE STYLES
+       ============================================ */
+    
     body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      margin: 24px;
-      background: var(--bg);
-      color: #111;
+      font-family: var(--font-family);
+      margin: var(--space-4);
+      background: var(--color-background);
+      color: var(--color-text);
+      line-height: var(--line-height-normal);
     }
+    
     h1 {
-      margin: 0 0 12px 0;
-      font-size: 28px;
+      margin: 0 0 var(--space-2) 0;
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text);
     }
+    
     .hint {
-      margin: 0 0 18px 0;
-      color: var(--muted);
-      font-size: 14px;
+      margin: 0 0 var(--space-4) 0;
+      color: var(--color-text-muted);
+      font-size: var(--font-size-sm);
     }
+    /* ============================================
+       COMPONENTS
+       ============================================ */
+    
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 16px;
+      gap: var(--space-3);
     }
+    
     .card {
       display: block;
-      border: 1px solid var(--border);
-      border-radius: 14px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
       overflow: hidden;
-      background: #fff;
+      background: var(--color-surface);
       text-decoration: none;
       color: inherit;
+      transition: all var(--transition-base);
     }
+    
+    .card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    
     .thumb {
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       display: block;
-      background: #f3f3f3;
+      background: var(--color-gray-100);
     }
+    
     .meta {
-      padding: 10px 12px 12px 12px;
+      padding: var(--space-2) var(--space-2) var(--space-3);
     }
+    
     .num {
-      font-weight: 800;
-      font-size: 14px;
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-sm);
+      color: var(--color-text);
     }
+    
     .name {
-      margin-top: 4px;
-      font-size: 13px;
-      line-height: 1.25;
-    }
-    .card:hover {
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      margin-top: var(--space-1);
+      font-size: var(--font-size-sm);
+      line-height: var(--line-height-tight);
+      color: var(--color-text-muted);
     }
     .filter-bar {
-      margin: 0 0 24px 0;
+      margin: 0 0 var(--space-4) 0;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: var(--space-2);
       flex-wrap: wrap;
+      padding: var(--space-3);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
     }
+    
     .filter-label {
-      font-size: 14px;
-      font-weight: 600;
-      color: #333;
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text);
     }
+    
     .color-filter {
-      padding: 8px 12px;
-      font-size: 14px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: white;
+      padding: var(--space-1) var(--space-2);
+      font-size: var(--font-size-sm);
+      font-family: var(--font-family);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: var(--color-surface);
+      color: var(--color-text);
       cursor: pointer;
       min-width: 150px;
+      transition: border-color var(--transition-fast);
     }
+    
+    .color-filter:hover {
+      border-color: var(--color-gray-300);
+    }
+    
     .color-filter:focus {
-      outline: 2px solid #4a90e2;
+      outline: 2px solid var(--color-primary-500);
       outline-offset: 2px;
+      border-color: var(--color-primary-500);
     }
-    @media (max-width: 600px) {
-      .filter-bar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .color-filter {
-        width: 100%;
-      }
-    }
+    
+    /* ============================================
+       UTILITY CLASSES
+       ============================================ */
+    
     .hidden {
       display: none !important;
     }
+    
     .error-message {
-      padding: 20px;
-      margin: 20px 0;
-      background: #fee;
-      border: 1px solid #fcc;
-      border-radius: 8px;
-      color: #c33;
+      padding: var(--space-4);
+      margin: var(--space-4) 0;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: var(--radius-md);
+      color: #991b1b;
+      font-size: var(--font-size-sm);
+    }
+    
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    
+    @media (max-width: 600px) {
+      body {
+        margin: var(--space-3);
+      }
+      
+      .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .filter-label {
+        margin-bottom: var(--space-1);
+      }
+      
+      .color-filter {
+        width: 100%;
+      }
     }
   </style>
 </head>

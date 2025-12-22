@@ -148,6 +148,7 @@ NPI-002, NPI-003
 
 ### ✅ Status Notes
 ✅ Implemented dropdown color filter with 11 color families (Red, Pink, Orange, Yellow, Green, Blue, Purple, Brown, Neutral, Black, White). All 33 polishes categorized with data-color attributes verified from official product pages. Real-time filtering with JavaScript. Mobile-responsive design.
+✅ Multi-color support added (Dec 21) - 8 polishes have comma-separated colors (e.g., "Purple, Pink"). Filter logic updated to show polishes when ANY of their colors match selected filter.
 </details>
 
 <details id="npi-006">
