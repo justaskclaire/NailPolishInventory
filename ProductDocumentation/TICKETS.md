@@ -3,13 +3,13 @@
 ## 📊 Executive Summary
 
 ### 🎯 Current Status
-- **Completed:** 6/75 tickets (8%) | 10/189 points (5.3%)
-- **Current Phase:** Milestone 1 - MVP Gallery (20% complete)
-- **Velocity:** 10 points delivered in Sprint 1
+- **Completed:** 7/75 tickets (9%) | 12/189 points (6.3%)
+- **Current Phase:** Milestone 1 - MVP Gallery (24% complete)
+- **Velocity:** 12 points delivered in Sprint 1
 
 ### 🔥 Top 5 Priorities (Next Sprint)
-1. **NPI-007** - Add finish filter [2pt] - Complete filtering capabilities
-2. **NPI-008** - Build search bar [3pt] - Essential discovery feature
+1. **NPI-008** - Build search bar [3pt] - Essential discovery feature
+2. **NPI-016** - Multi-filter selection [3pt] - Enhance filter combinations (now unblocked)
 3. **NPI-012** - Add navigation between pages [2pt] - Critical for multi-page experience
 4. **NPI-014** - Mobile-first layout system [5pt] - Design consistency
 5. **NPI-016** - Multi-filter selection [3pt] - Enhance filter combinations
@@ -17,7 +17,7 @@
 ### 📦 Functional Categories
 | Category | Tickets | Points | Done | Priority |
 |---|:---:|:---:|:---:|:---:|
-| 🎨 **Filtering & Search** | 12 | 31 | 1 ✅ | 🔥 High |
+| 🎨 **Filtering & Search** | 12 | 31 | 2 ✅ | 🔥 High |
 | 🗺️ **Navigation & Layout** | 8 | 20 | 2 ✅ | 🔥 Critical |
 | 📄 **Content Pages** | 7 | 14 | 0 | ➡️ Medium |
 | 💾 **Data & Infrastructure** | 11 | 28 | 3 ✅ | ⬆️ High |
@@ -27,11 +27,11 @@
 
 ### ⚠️ Blockers & Dependencies
 - **5 tickets blocked:** NPI-006 (brand filter), NPI-009/010/011 (content pages), NPI-015 (detail modal)
-- **NPI-007 and NPI-008** ready to start (prerequisites complete)
-- **NPI-016** and **NPI-017** blocked until filters built (NPI-005, 007)
+- **NPI-008** ready to start (prerequisites complete)
+- **NPI-016** and **NPI-017** now unblocked - filters complete (NPI-005 ✅, NPI-007 ✅)
 
 ### 🎯 Milestone Overview
-- **M1: MVP Gallery (Weeks 1-3)** → 20% complete, 40 pts remaining
+- **M1: MVP Gallery (Weeks 1-3)** → 24% complete, 38 pts remaining
 - **M2: Personalization (Weeks 4-6)** → Pending M1 completion
 - **M3: Enhanced Browsing (Weeks 7-9)** → Pending M2 completion
 - **M4: Booking (Future)** → Research phase only
@@ -50,7 +50,7 @@
 
 ## 🚀 Milestone 1: MVP Gallery & Inventory (Weeks 1-3)
 
-**Progress:** 6/21 tickets ✅ | 10/50 points (20%)
+**Progress:** 7/21 tickets ✅ | 12/50 points (24%)
 
 | ID | Title | Category | Pts | Status | Priority |
 |---|---|---|:---:|:---:|:---:|
@@ -60,7 +60,7 @@
 | [NPI-004](#npi-004) | Implement image optimization and lazy loading | 💾 Performance | 2 | 🟢 | ⬆️ |
 | [NPI-005](#npi-005) | Add basic color filter | 🎨 Filtering | 3 | 🟢 | ⬆️ |
 | [NPI-006](#npi-006) | Add brand filter functionality | 🎨 Filtering | 2 | 🔴 | ⬆️ |
-| [NPI-007](#npi-007) | Add finish filter | 🎨 Filtering | 2 | 🟡 | ➡️ |
+| [NPI-007](#npi-007) | Add finish filter | 🎨 Filtering | 2 | � | ⬆️ |
 | [NPI-008](#npi-008) | Build search bar with name/number filtering | 🎨 Search | 3 | 🟡 | ⬆️ |
 | [NPI-009](#npi-009) | Create "Charms" static page | 📄 Content | 1 | 🔴 | ➡️ |
 | [NPI-010](#npi-010) | Create "Stickers" static page | 📄 Content | 1 | 🔴 | ➡️ |
@@ -164,7 +164,7 @@ NPI-002, NPI-003
 </details>
 
 <details id="npi-007">
-<summary><b>NPI-007</b> | Add finish filter [2pt] 🟡 ➡️</summary>
+<summary><b>NPI-007</b> | Add finish filter [2pt] � ⬆️</summary>
 
 ### 🏷️ Tags
 `filter` `ui`
@@ -174,6 +174,9 @@ Filter by finish type (shimmer, matte, glitter, cream, etc.)
 
 ### 🔗 Prerequisites
 NPI-002, NPI-003
+
+### ✅ Status Notes
+✅ Implemented dropdown finish filter with 5 categories: Cream (16), Shimmer (14), Cat Eye (3), Mood Change (1), Sheer (1). All 33 polishes categorized in polishes.csv. Multi-filter support with AND logic (works with color filter). Implemented on feature/npi-007-finish-filter branch.
 </details>
 
 <details id="npi-008">
@@ -674,29 +677,29 @@ _Full ticket list available - expand sections as needed_
 ## 📊 Project Summary
 
 **Total:** 75 tickets | 189 story points  
-**Completed:** 4 tickets (5.3%) | 6 points (3.2%)  
+**Completed:** 7 tickets (9.3%) | 12 points (6.3%)  
 **In Progress:** 0 tickets  
-**Not Started:** 71 tickets | 183 points  
+**Not Started:** 68 tickets | 177 points  
 
 ### By Milestone
 | Milestone | Tickets | Points | Done | Remaining |
 |---|:---:|:---:|:---:|:---:|
-| 🚀 M1: MVP Gallery | 21 | 50 | 4 ✅ | 17 (44pts) |
+| 🚀 M1: MVP Gallery | 21 | 50 | 7 ✅ | 14 (38pts) |
 | 💎 M2: Personalization | 15 | 42 | 0 | 15 (42pts) |
 | ✨ M3: Enhanced Browsing | 15 | 46 | 0 | 15 (46pts) |
 | 📅 M4: Booking | 8 | 14 | 0 | 8 (14pts) |
 | 🎨 Infrastructure | 16 | 37 | 0 | 16 (37pts) |
 
 ### By Priority
-- 🔥 **Critical:** 11 tickets (4 done, 7 remaining)
-- ⬆️ **High:** 28 tickets (0 done, 28 remaining)
+- 🔥 **Critical:** 11 tickets (6 done, 5 remaining)
+- ⬆️ **High:** 28 tickets (1 done, 27 remaining)
 - ➡️ **Medium:** 23 tickets
 - ⬇️ **Low:** 13 tickets
 
 ### Quick Stats
 - Average ticket: 2.5 points
-- Milestone 1 velocity: 6 points completed
-- Estimated M1 completion: 44 points remaining (~3-4 more sprints)
+- Milestone 1 velocity: 12 points completed
+- Estimated M1 completion: 38 points remaining (~3 more sprints)
 
 ---
 

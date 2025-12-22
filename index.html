@@ -265,11 +265,22 @@
       const finishes = new Set();
       
       data.forEach(polish => {
-        // Validate filter values contain only safe characters
         const color = polish.Color;
         const finish = polish.Finish;
         
-        if (color && isSafeFilterValue(color)) colors.add(color);
+        // Split comma-separated colors and add each individually
+        if (color) {
+          const colorList = color.split(',').map(c => c.trim());
+          colorList.forEach(c => {
+            // Validate each individual color contains only safe characters
+            if (c && isSafeFilterValue(c)) {
+              colors.add(c);
+            } else {
+              console.log('Invalid color value rejected:', JSON.stringify(c));
+            }
+          });
+        }
+        
         if (finish && isSafeFilterValue(finish)) finishes.add(finish);
       });
       
@@ -305,7 +316,9 @@
         const cardFinish = card.getAttribute('data-finish');
         
         // Show card only if it matches all active filters (AND logic)
-        const matchesColor = selectedColor === '' || cardColor === selectedColor;
+        // For colors, check if selected color exists in comma-separated list
+        const cardColors = cardColor ? cardColor.split(',').map(c => c.trim()) : [];
+        const matchesColor = selectedColor === '' || cardColors.includes(selectedColor);
         const matchesFinish = selectedFinish === '' || cardFinish === selectedFinish;
         
         if (matchesColor && matchesFinish) {
