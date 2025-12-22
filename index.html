@@ -3,8 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="My gel polish collection - browse 33 polishes with color filtering" />
-  <title>My Polish Inventory</title>
+  <meta name="description" content="Browse my nail supply collection - polishes, charms, stickers and more with color filtering" />
+  <title>Nail Supply Collection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     /* ============================================
        DESIGN SYSTEM - CSS Custom Properties
@@ -15,25 +18,38 @@
       --color-white: #ffffff;
       --color-gray-50: #fafafa;
       --color-gray-100: #f5f5f5;
-      --color-gray-200: #e6e6e6;
+      --color-gray-200: #e5e5e5;
       --color-gray-300: #d4d4d4;
+      --color-gray-400: #a3a3a3;
       --color-gray-500: #737373;
+      --color-gray-600: #525252;
       --color-gray-700: #404040;
+      --color-gray-800: #262626;
       --color-gray-900: #171717;
       
-      /* Colors - Primary (Soft Pink - nail polish themed) */
-      --color-primary-50: #fdf2f8;
-      --color-primary-100: #fce7f3;
-      --color-primary-500: #ec4899;
-      --color-primary-600: #db2777;
+      /* Colors - Primary (Elegant Rose Gold - nail polish themed) */
+      --color-primary-50: #fff1f2;
+      --color-primary-100: #ffe4e6;
+      --color-primary-200: #fecdd3;
+      --color-primary-500: #f43f5e;
+      --color-primary-600: #e11d48;
+      --color-primary-700: #be123c;
+      
+      /* Colors - Accent (Soft Lavender) */
+      --color-accent-100: #f3e8ff;
+      --color-accent-500: #a855f7;
+      --color-accent-600: #9333ea;
       
       /* Semantic Colors */
       --color-surface: var(--color-white);
-      --color-background: var(--color-gray-50);
+      --color-background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
       --color-text: var(--color-gray-900);
+      --color-text-secondary: var(--color-gray-600);
       --color-text-muted: var(--color-gray-500);
       --color-border: var(--color-gray-200);
-      --color-hover: var(--color-gray-100);
+      --color-border-light: rgba(0, 0, 0, 0.05);
+      --color-hover: var(--color-gray-50);
+      --color-focus: var(--color-primary-500);
       
       /* Spacing Scale (8px base) */
       --space-1: 0.5rem;   /* 8px */
@@ -44,18 +60,27 @@
       --space-6: 3rem;     /* 48px */
       
       /* Typography */
-      --font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-family-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --font-size-xs: 0.75rem;     /* 12px */
       --font-size-sm: 0.875rem;    /* 14px */
       --font-size-base: 1rem;      /* 16px */
       --font-size-lg: 1.125rem;    /* 18px */
-      --font-size-xl: 1.5rem;      /* 24px */
-      --font-size-2xl: 1.75rem;    /* 28px */
+      --font-size-xl: 1.375rem;    /* 22px */
+      --font-size-2xl: 1.875rem;   /* 30px */
+      --font-size-3xl: 2.25rem;    /* 36px */
       --font-weight-normal: 400;
       --font-weight-medium: 500;
       --font-weight-semibold: 600;
-      --font-weight-bold: 800;
-      --line-height-tight: 1.25;
+      --font-weight-bold: 700;
+      --font-weight-black: 800;
+      --line-height-tight: 1.2;
+      --line-height-snug: 1.375;
       --line-height-normal: 1.5;
+      --line-height-relaxed: 1.625;
+      --letter-spacing-tight: -0.025em;
+      --letter-spacing-normal: 0;
+      --letter-spacing-wide: 0.025em;
       
       /* Border Radius */
       --radius-sm: 0.5rem;   /* 8px */
@@ -63,38 +88,75 @@
       --radius-lg: 1rem;     /* 16px */
       
       /* Shadows */
-      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 2px 10px rgba(0, 0, 0, 0.06);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
       
       /* Transitions */
-      --transition-fast: 150ms ease;
-      --transition-base: 200ms ease;
+      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     /* ============================================
        BASE STYLES
        ============================================ */
     
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body {
       font-family: var(--font-family);
-      margin: var(--space-4);
-      background: var(--color-background);
+      margin: 0;
+      padding: var(--space-5) var(--space-4);
+      background: var(--color-gray-50);
       color: var(--color-text);
       line-height: var(--line-height-normal);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+    }
+    
+    .header {
+      max-width: 1400px;
+      margin: 0 auto var(--space-5);
+      text-align: center;
+    }
+    
+    .brand {
+      margin-bottom: var(--space-3);
     }
     
     h1 {
-      margin: 0 0 var(--space-2) 0;
+      font-family: var(--font-family-display);
       font-size: var(--font-size-2xl);
-      font-weight: var(--font-weight-bold);
-      color: var(--color-text);
+      font-weight: var(--font-weight-black);
+      color: var(--color-gray-900);
+      letter-spacing: var(--letter-spacing-tight);
+      line-height: var(--line-height-tight);
+      margin-bottom: var(--space-2);
+    }
+    
+    .tagline {
+      font-size: var(--font-size-base);
+      color: var(--color-text-secondary);
+      font-weight: var(--font-weight-medium);
+      margin-bottom: var(--space-2);
     }
     
     .hint {
-      margin: 0 0 var(--space-4) 0;
-      color: var(--color-text-muted);
       font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
     }
     /* ============================================
        COMPONENTS
@@ -102,24 +164,49 @@
     
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: var(--space-3);
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: var(--space-4);
+      padding: var(--space-1);
     }
     
     .card {
       display: block;
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-md);
+      position: relative;
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--radius-lg);
       overflow: hidden;
       background: var(--color-surface);
       text-decoration: none;
       color: inherit;
+      box-shadow: var(--shadow-sm);
       transition: all var(--transition-base);
     }
     
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: var(--radius-lg);
+      padding: 1px;
+      background: linear-gradient(135deg, transparent 0%, var(--color-primary-100) 50%, transparent 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+    
     .card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
+      border-color: transparent;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px) scale(1.02);
+    }
+    
+    .card:hover::before {
+      opacity: 1;
     }
     
     .thumb {
@@ -127,64 +214,279 @@
       aspect-ratio: 1 / 1;
       object-fit: cover;
       display: block;
-      background: var(--color-gray-100);
+      background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-gray-100) 100%);
+      transition: transform var(--transition-slow);
+    }
+    
+    .card:hover .thumb {
+      transform: scale(1.05);
     }
     
     .meta {
-      padding: var(--space-2) var(--space-2) var(--space-3);
+      padding: var(--space-3);
+      background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.8) 100%);
     }
     
     .num {
-      font-weight: var(--font-weight-bold);
-      font-size: var(--font-size-sm);
-      color: var(--color-text);
+      display: inline-block;
+      font-weight: var(--font-weight-black);
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      letter-spacing: var(--letter-spacing-wide);
+      text-transform: uppercase;
+      padding: 2px 6px;
+      background: var(--color-gray-100);
+      border-radius: 4px;
+      margin-bottom: var(--space-1);
     }
     
     .name {
-      margin-top: var(--space-1);
       font-size: var(--font-size-sm);
-      line-height: var(--line-height-tight);
-      color: var(--color-text-muted);
+      font-weight: var(--font-weight-medium);
+      line-height: var(--line-height-snug);
+      color: var(--color-gray-900);
     }
     .filter-bar {
-      margin: 0 0 var(--space-4) 0;
+      margin: 0 0 var(--space-5) 0;
       display: flex;
-      align-items: center;
-      gap: var(--space-2);
-      flex-wrap: wrap;
-      padding: var(--space-3);
+      flex-direction: column;
+      gap: var(--space-4);
+      padding: var(--space-4);
       background: var(--color-surface);
-      border: 1px solid var(--color-border);
+      border: 1px solid var(--color-border-light);
       border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
     }
     
     .filter-label {
-      font-size: var(--font-size-sm);
+      font-size: var(--font-size-xs);
       font-weight: var(--font-weight-semibold);
-      color: var(--color-text);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-wide);
+      margin-bottom: var(--space-1);
     }
     
-    .color-filter {
-      padding: var(--space-1) var(--space-2);
+    .filter-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+    
+    .filter-option {
+      position: relative;
+    }
+    
+    .filter-option input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .filter-option label {
+      display: inline-block;
+      padding: var(--space-1) var(--space-3);
       font-size: var(--font-size-sm);
-      font-family: var(--font-family);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-secondary);
+      background: var(--color-gray-100);
       border: 1px solid var(--color-border);
-      border-radius: var(--radius-sm);
-      background: var(--color-surface);
-      color: var(--color-text);
+      border-radius: var(--radius-md);
       cursor: pointer;
-      min-width: 150px;
-      transition: border-color var(--transition-fast);
+      transition: all var(--transition-fast);
+      user-select: none;
     }
     
-    .color-filter:hover {
+    .filter-option label:hover {
+      background: var(--color-gray-200);
       border-color: var(--color-gray-300);
     }
     
-    .color-filter:focus {
-      outline: 2px solid var(--color-primary-500);
+    .filter-option input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-600) 100%);
+      color: var(--color-white);
+      border-color: var(--color-primary-600);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .filter-option input[type="checkbox"]:focus + label {
+      outline: 2px solid var(--color-focus);
       outline-offset: 2px;
-      border-color: var(--color-primary-500);
+    }
+    
+    /* Color-coded filter buttons */
+    .filter-option.color-red label {
+      background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+      border-color: #fca5a5;
+    }
+    
+    .filter-option.color-pink label {
+      background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+      border-color: #f9a8d4;
+    }
+    
+    .filter-option.color-orange label {
+      background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
+      border-color: #fdba74;
+    }
+    
+    .filter-option.color-yellow label {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border-color: #fcd34d;
+    }
+    
+    .filter-option.color-green label {
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      border-color: #6ee7b7;
+    }
+    
+    .filter-option.color-blue label {
+      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+      border-color: #93c5fd;
+    }
+    
+    .filter-option.color-purple label {
+      background: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%);
+      border-color: #c084fc;
+    }
+    
+    .filter-option.color-brown label {
+      background: linear-gradient(135deg, #d4a574 0%, #b8824d 100%);
+      border-color: #996b3d;
+    }
+    
+    .filter-option.color-neutral label {
+      background: linear-gradient(135deg, #f5f5f4 0%, #e7e5e4 100%);
+      border-color: #d6d3d1;
+    }
+    
+    .filter-option.color-black label {
+      background: linear-gradient(135deg, #e5e5e5 0%, #d4d4d4 100%);
+      border-color: #a3a3a3;
+      color: var(--color-gray-800);
+    }
+    
+    .filter-option.color-white label {
+      background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+      border-color: #e5e5e5;
+    }
+    
+    /* Finish-styled filter buttons */
+    .filter-option.finish-cream label {
+      background: linear-gradient(135deg, #faf5f0 0%, #f5ebe0 100%);
+      border-color: #e8d5c4;
+    }
+    
+    .filter-option.finish-shimmer label {
+      background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+      border-color: #e9d5ff;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .filter-option.finish-shimmer label::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.5) 50%, transparent 70%);
+      animation: shimmer 3s infinite;
+    }
+    
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    
+    .filter-option.finish-cat-eye label {
+      background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 50%, #e2e8f0 100%);
+      border-color: #94a3b8;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .filter-option.finish-cat-eye label::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 20%;
+      width: 40%;
+      height: 140%;
+      background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0) 100%);
+      transform: rotate(-15deg);
+      animation: cat-eye-shift 5s ease-in-out infinite;
+    }
+    
+    @keyframes cat-eye-shift {
+      0%, 100% { left: 10%; }
+      50% { left: 65%; }
+    }
+    
+    .filter-option.finish-mood-change label {
+      background: linear-gradient(90deg, #fce7f3 0%, #fce7f3 45%, #ddd6fe 55%, #ddd6fe 100%);
+      border-color: #f0abfc;
+      background-size: 300% 100%;
+      animation: mood-shift 5s ease-in-out infinite;
+    }
+    
+    @keyframes mood-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    .filter-option.finish-sheer label {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(250, 250, 250, 0.7) 100%);
+      border-color: rgba(229, 229, 229, 0.6);
+      backdrop-filter: blur(4px);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .filter-option.finish-sheer label::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 60%);
+      animation: glass-glow 4s ease-in-out infinite;
+    }
+    
+    @keyframes glass-glow {
+      0%, 100% { 
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
+      50% { 
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1.2);
+      }
+    }
+    
+    /* Keep selected state prominent */
+    .filter-option input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-600) 100%) !important;
+      color: var(--color-white) !important;
+      border-color: var(--color-primary-600) !important;
+      box-shadow: var(--shadow-sm) !important;
+    }
+    
+    .filter-option input[type="checkbox"]:checked + label::before,
+    .filter-option input[type="checkbox"]:checked + label::after {
+      display: none;
     }
     
     /* ============================================
@@ -209,43 +511,71 @@
        RESPONSIVE
        ============================================ */
     
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       body {
-        margin: var(--space-3);
+        padding: var(--space-4) var(--space-3);
       }
       
-      .filter-bar {
-        flex-direction: column;
-        align-items: stretch;
+      h1 {
+        font-size: var(--font-size-xl);
       }
       
-      .filter-label {
-        margin-bottom: var(--space-1);
+      .filter-options {
+        gap: var(--space-1);
       }
       
-      .color-filter {
-        width: 100%;
+      .filter-option label {
+        padding: var(--space-1) var(--space-2);
+        font-size: var(--font-size-xs);
+      }
+      
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: var(--space-3);
+      }
+    }
+    
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      }
+    }
+    
+    @media (min-width: 1025px) {
+      body {
+        padding: var(--space-6) var(--space-5);
+      }
+      
+      .grid {
+        gap: var(--space-5);
       }
     }
   </style>
 </head>
 <body>
-  <h1>My Polish Inventory</h1>
-  <p class="hint">Click a card to open the product page.</p>
-
-  <div class="filter-bar">
-    <label for="color-filter" class="filter-label">Filter by Color:</label>
-    <select id="color-filter" class="color-filter">
-      <option value="">All Colors</option>
-    </select>
-
-    <label for="finish-filter" class="filter-label">Filter by Finish:</label>
-    <select id="finish-filter" class="color-filter">
-      <option value="">All Finishes</option>
-    </select>
+  <div class="header">
+    <div class="brand">
+      <h1>Polish Collection</h1>
+      <p class="tagline">Curated Colors & Finishes</p>
+    </div>
+    <p class="hint">Click any item to view product details</p>
   </div>
 
-  <div class="grid"></div>
+  <div class="container">
+    <div class="filter-bar">
+      <div class="filter-group">
+        <div class="filter-label">Color Family</div>
+        <div class="filter-options" id="color-filters"></div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">Finish Type</div>
+        <div class="filter-options" id="finish-filters"></div>
+      </div>
+    </div>
+
+    <div class="grid"></div>
+  </div>
 
   <script>
     /**
@@ -253,10 +583,12 @@
      * Loads polish data from CSV and dynamically generates cards and filter options
      */
     
-    const colorFilter = document.getElementById('color-filter');
-    const finishFilter = document.getElementById('finish-filter');
+    const colorFiltersContainer = document.getElementById('color-filters');
+    const finishFiltersContainer = document.getElementById('finish-filters');
     const grid = document.querySelector('.grid');
     let polishData = [];
+    let selectedColors = new Set();
+    let selectedFinishes = new Set();
 
     /**
      * Parse CSV text into array of objects
@@ -392,55 +724,107 @@
         if (color) {
           const colorList = color.split(',').map(c => c.trim());
           colorList.forEach(c => {
-            // Validate each individual color contains only safe characters
-            if (c && isSafeFilterValue(c)) {
-              colors.add(c);
-            } else {
-              console.log('Invalid color value rejected:', JSON.stringify(c));
-            }
+            if (c && isSafeFilterValue(c)) colors.add(c);
           });
         }
         
         if (finish && isSafeFilterValue(finish)) finishes.add(finish);
       });
       
-      // Sort and populate color filter
+      // Create color filter checkboxes
       const sortedColors = Array.from(colors).sort();
       sortedColors.forEach(color => {
-        const option = document.createElement('option');
-        option.value = color;
-        option.textContent = color;
-        colorFilter.appendChild(option);
+        const option = document.createElement('div');
+        option.className = `filter-option color-${color.toLowerCase().replace(/\s+/g, '-')}`;
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `color-${color.replace(/\s+/g, '-').toLowerCase()}`;
+        checkbox.value = color;
+        checkbox.addEventListener('change', handleColorFilterChange);
+        
+        const label = document.createElement('label');
+        label.htmlFor = checkbox.id;
+        label.textContent = color;
+        
+        option.appendChild(checkbox);
+        option.appendChild(label);
+        colorFiltersContainer.appendChild(option);
       });
       
-      // Sort and populate finish filter
+      // Create finish filter checkboxes
       const sortedFinishes = Array.from(finishes).sort();
       sortedFinishes.forEach(finish => {
-        const option = document.createElement('option');
-        option.value = finish;
-        option.textContent = finish;
-        finishFilter.appendChild(option);
+        const option = document.createElement('div');
+        option.className = `filter-option finish-${finish.toLowerCase().replace(/\s+/g, '-')}`;
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `finish-${finish.replace(/\s+/g, '-').toLowerCase()}`;
+        checkbox.value = finish;
+        checkbox.addEventListener('change', handleFinishFilterChange);
+        
+        const label = document.createElement('label');
+        label.htmlFor = checkbox.id;
+        label.textContent = finish;
+        
+        option.appendChild(checkbox);
+        option.appendChild(label);
+        finishFiltersContainer.appendChild(option);
       });
     }
 
     /**
+     * Handle color filter checkbox changes
+     */
+    function handleColorFilterChange(event) {
+      const value = event.target.value;
+      if (event.target.checked) {
+        selectedColors.add(value);
+      } else {
+        selectedColors.delete(value);
+      }
+      applyFilters();
+    }
+    
+    /**
+     * Handle finish filter checkbox changes
+     */
+    function handleFinishFilterChange(event) {
+      const value = event.target.value;
+      if (event.target.checked) {
+        selectedFinishes.add(value);
+      } else {
+        selectedFinishes.delete(value);
+      }
+      applyFilters();
+    }
+
+    /**
      * Apply filters to cards using CSS classes
+     * OR logic within categories, AND logic between categories
      */
     function applyFilters() {
-      const selectedColor = colorFilter.value;
-      const selectedFinish = finishFilter.value;
-      
       const cards = document.querySelectorAll('.card');
+      
       cards.forEach(card => {
         const cardColor = card.getAttribute('data-color');
         const cardFinish = card.getAttribute('data-finish');
         
-        // Show card only if it matches all active filters (AND logic)
-        // For colors, check if selected color exists in comma-separated list
-        const cardColors = cardColor ? cardColor.split(',').map(c => c.trim()) : [];
-        const matchesColor = selectedColor === '' || cardColors.includes(selectedColor);
-        const matchesFinish = selectedFinish === '' || cardFinish === selectedFinish;
+        // Check if card matches color filter (OR logic - any selected color)
+        let matchesColor = selectedColors.size === 0; // If no filters, show all
+        if (selectedColors.size > 0 && cardColor) {
+          const cardColors = cardColor.split(',').map(c => c.trim());
+          matchesColor = cardColors.some(c => selectedColors.has(c));
+        }
         
+        // Check if card matches finish filter (OR logic - any selected finish)
+        let matchesFinish = selectedFinishes.size === 0; // If no filters, show all
+        if (selectedFinishes.size > 0) {
+          matchesFinish = selectedFinishes.has(cardFinish);
+        }
+        
+        // Show card only if it matches ALL active filter categories (AND logic between categories)
         if (matchesColor && matchesFinish) {
           card.classList.remove('hidden');
         } else {
@@ -482,12 +866,8 @@
           }
         });
         
-        // Populate filter dropdowns
+        // Populate filter checkboxes
         populateFilters(polishData);
-        
-        // Set up filter event listeners
-        colorFilter.addEventListener('change', applyFilters);
-        finishFilter.addEventListener('change', applyFilters);
         
         console.log(`Successfully loaded ${polishData.length} polishes`);
         
