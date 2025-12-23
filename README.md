@@ -4,11 +4,12 @@ A simple, static web gallery for browsing my DND gel polish collection with colo
 
 ## 🎨 Features
 - Browse 33 polishes with images and product links
-- Filter by color (11 categories: Red, Pink, Orange, Yellow, Green, Blue, Purple, Brown, Neutral, Black, White)
+- Filter by color (11 categories with color-coded buttons: Red, Pink, Orange, Yellow, Green, Blue, Purple, Brown, Neutral, Black, White)
 - Multi-color polish support - polishes with multiple color families appear in all relevant filters
-- Filter by finish (5 categories: Cream, Shimmer, Cat Eye, Mood Change, Sheer)
-- Multi-filter selection with AND logic (combine color + finish filters)
-- Responsive grid layout
+- Filter by finish with animated effects (5 categories: Cream, Shimmer, Cat Eye, Mood Change, Sheer)
+- Multi-select checkbox filters with OR logic within categories, AND between categories
+- Professional design system with custom typography (Inter + Playfair Display)
+- Responsive grid layout with enhanced hover effects
 - Lazy-loaded images for performance
 - Offline-friendly with local images
 

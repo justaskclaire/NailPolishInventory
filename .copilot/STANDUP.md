@@ -1,9 +1,9 @@
 # Standup - Nail Polish Inventory
 
-## 🎯 Current State (Dec 21, 2025)
-- **Working:** Multi-color polish support (8 polishes updated)
-- **Done:** 7/75 tickets (12pts) - Core filters, multi-color support
-- **Latest:** Filter logic now handles comma-separated colors in CSV
+## 🎯 Current State (Dec 22, 2025)
+- **Working:** Visual polish - filter button animations and effects
+- **Done:** 7/75 tickets (12pts) - Core filters, multi-color support, design system
+- **Latest:** Filter buttons have color-coding + animated finish effects (shimmer, cat eye, mood change, sheer)
 - **Next:** NPI-008 (search bar) or NPI-012 (navigation)
 
 ## 📋 Key Files
@@ -21,7 +21,11 @@
 - **Git:** Feature branches for testing before merge
 
 ## 📅 Recent Changes
+**Dec 22:** Visual polish - Enhanced filter buttons with color-coded backgrounds (11 colors), animated finish effects (shimmer sparkle, cat eye magnetic stripe with animation, mood change gradient slide, sheer liquid glass glow), improved brown color from grey to warm tan tones
+
 **Dec 21:** Multi-color polish support - CSV updated with comma-separated colors for 8 polishes, filter logic updated to split and match
+
+**Dec 21 (Earlier):** Design system implementation - Comprehensive CSS design tokens (40+ variables), typography upgrade (Inter + Playfair Display), enhanced shadows/gradients/hover effects, checkbox-based multi-select filters with OR logic
 
 **Dec 20:** NPI-007 finish filter complete - 5 categories, multi-filter AND logic, merged to dev branch
 
