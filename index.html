@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Browse my nail supply collection - polishes, charms, stickers and more with color filtering" />
-  <title>Nail Supply Collection</title>
+  <meta name="description" content="Studio Claire - Browse my nail polish collection and pick what you love. Filter by color and finish." />
+  <title>Studio Claire</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
@@ -780,7 +780,10 @@
   <!-- Navigation Header (NPI-012) -->
   <nav class="nav-header">
     <div class="nav-content">
-      <a href="index.html" class="nav-brand">Nail Supply Collection</a>
+      <div>
+        <a href="index.html" class="nav-brand">Studio Claire</a>
+        <p class="tagline" style="margin: var(--space-1) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-secondary);">Browse what I have. Pick what you love.</p>
+      </div>
       <ul class="nav-links">
         <li><a href="index.html" class="nav-link active">Polishes</a></li>
         <li><a href="#" class="nav-link disabled" title="Coming soon">Charms</a></li>
@@ -790,18 +793,11 @@
     </div>
   </nav>
 
-  <div class="header">
-    <div class="brand">
-      <h1>Polish Collection</h1>
-      <p class="tagline">Curated Colors & Finishes</p>
-    </div>
-    <p class="hint">Click any item to view product details</p>
-  </div>
-
   <div class="container">
     <div class="filter-bar">
       <!-- Filter Controls (NPI-017) - Reset button -->
       <div class="filter-controls">
+        <p class="hint" style="margin: 0; color: var(--color-text-muted);">Use filters to narrow by color family and finish</p>
         <button class="btn-clear-filters" id="clear-filters-btn" disabled>Clear All Filters</button>
       </div>
       
