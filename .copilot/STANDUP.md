@@ -1,10 +1,10 @@
 # Standup - Nail Polish Inventory
 
 ## 🎯 Current State (Dec 30, 2025)
-- **Working:** Search functionality implementation complete
-- **Done:** 9/75 tickets (18pts) - Core filters, search, multi-color support, design system
-- **Latest:** Search bar with real-time name/number filtering integrated with existing filters
-- **Next:** NPI-012 (navigation) or NPI-017 (filter reset/indicators)
+- **Working:** Filter UI refinements complete
+- **Done:** 11/75 tickets (23pts) - Navigation, refined filters, design system
+- **Latest:** Improved filter visual feedback with saturated colors, removed search (TODO for later), simplified UI
+- **Next:** NPI-014 (mobile-first layout system) or NPI-018 (mobile testing)
 
 ## 📋 Key Files
 - `index.html` - Main gallery page with color + finish filters
@@ -17,11 +17,17 @@
 - **Colors:** Verify from official product pages - never guess from names
 - **Multi-color:** Use `"Purple, Pink"` format in CSV
 - **Filters:** Color=OR logic, Finish=exact, combined=AND
+- **Filter UI:** Selected state uses saturated colors (not bold borders or bright highlights)
+- **Search:** Disabled for now - users don't know polish names/numbers; revisit with better discovery methods
 - **Documentation:** Exec summaries, scannable tables, appropriate detail level
 - **Git:** Feature branches for testing before merge
 
 ## 📅 Recent Changes
-**Dec 30:** Search functionality (NPI-008) - Real-time search bar filtering by polish name or number, case-insensitive matching, integrates with existing color/finish filters using AND logic, clean UI with focus states
+**Dec 30 (UI Refinements):** Filter visual improvements - Selected filters now show saturated/vibrant colors ("Purple gets deeper purple"), removed red-pink focus indicator (now subtle gray), removed filter count display (just "Clear All Filters" button), search functionality disabled with TODO markers (users don't know polish names/numbers)
+
+**Dec 30 (Earlier):** Navigation + Filter controls (NPI-012, NPI-017) - Navigation header with Polishes/Charms/Stickers/Accessories links, active filter count display, "Clear All Filters" button with enabled/disabled states, comprehensive code comments throughout for troubleshooting
+
+**Dec 30 (Earlier):** Search functionality (NPI-008) - Real-time search bar filtering by polish name or number, case-insensitive matching, integrates with existing color/finish filters using AND logic, clean UI with focus states
 
 **Dec 22:** Visual polish - Enhanced filter buttons with color-coded backgrounds (11 colors), animated finish effects (shimmer sparkle, cat eye magnetic stripe with animation, mood change gradient slide, sheer liquid glass glow), improved brown color from grey to warm tan tones
 

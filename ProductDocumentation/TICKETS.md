@@ -3,9 +3,9 @@
 ## 📊 Executive Summary
 
 ### 🎯 Current Status
-- **Completed:** 9/75 tickets (12%) | 18/189 points (9.5%)
-- **Current Phase:** Milestone 1 - MVP Gallery (36% complete)
-- **Velocity:** 18 points delivered in Sprint 1
+- **Completed:** 11/75 tickets (15%) | 23/189 points (12.2%)
+- **Current Phase:** Milestone 1 - MVP Gallery (46% complete)
+- **Velocity:** 23 points delivered in Sprint 1
 
 ### 🔥 Top 5 Priorities (Next Sprint)
 1. **NPI-012** - Add navigation between pages [2pt] - Critical for multi-page experience
@@ -17,8 +17,8 @@
 ### 📦 Functional Categories
 | Category | Tickets | Points | Done | Priority |
 |---|:---:|:---:|:---:|:---:|
-| 🎨 **Filtering & Search** | 12 | 31 | 4 ✅ | 🔥 High |
-| 🗺️ **Navigation & Layout** | 8 | 20 | 2 ✅ | 🔥 Critical |
+| 🎨 **Filtering & Search** | 12 | 31 | 5 ✅ | 🔥 High |
+| 🗺️ **Navigation & Layout** | 8 | 20 | 3 ✅ | 🔥 Critical |
 | 📄 **Content Pages** | 7 | 14 | 0 | ➡️ Medium |
 | 💾 **Data & Infrastructure** | 11 | 28 | 3 ✅ | ⬆️ High |
 | 👤 **User & Personalization** | 15 | 42 | 0 | ➡️ Medium |
@@ -31,7 +31,7 @@
 - **NPI-012** (navigation) ready to start - no blockers
 
 ### 🎯 Milestone Overview
-- **M1: MVP Gallery (Weeks 1-3)** → 36% complete, 32 pts remaining
+- **M1: MVP Gallery (Weeks 1-3)** → 46% complete, 27 pts remaining
 - **M2: Personalization (Weeks 4-6)** → Pending M1 completion
 - **M3: Enhanced Browsing (Weeks 7-9)** → Pending M2 completion
 - **M4: Booking (Future)** → Research phase only
@@ -50,7 +50,7 @@
 
 ## 🚀 Milestone 1: MVP Gallery & Inventory (Weeks 1-3)
 
-**Progress:** 9/21 tickets ✅ | 18/50 points (36%)
+**Progress:** 11/21 tickets ✅ | 23/50 points (46%)
 
 | ID | Title | Category | Pts | Status | Priority |
 |---|---|---|:---:|:---:|:---:|
@@ -65,12 +65,12 @@
 | [NPI-009](#npi-009) | Create "Charms" static page | 📄 Content | 1 | 🔴 | ➡️ |
 | [NPI-010](#npi-010) | Create "Stickers" static page | 📄 Content | 1 | 🔴 | ➡️ |
 | [NPI-011](#npi-011) | Create "Accessories" static page | 📄 Content | 1 | 🔴 | ➡️ |
-| [NPI-012](#npi-012) | Add navigation between pages | 🗺️ Navigation | 2 | 🟡 | 🔥 |
+| [NPI-012](#npi-012) | Add navigation between pages | 🗺️ Navigation | 2 | 🟢 | 🔥 |
 | [NPI-013](#npi-013) | Deploy MVP to production | 💾 Infrastructure | 1 | 🟢 | 🔥 |
 | [NPI-014](#npi-014) | Design and implement mobile-first layout system | 🗺️ Layout | 5 | 🟡 | 🔥 |
 | [NPI-015](#npi-015) | Create polish detail modal/page | 🗺️ UI | 3 | 🔴 | ⬆️ |
-| [NPI-016](#npi-016) | Implement multi-filter selection | 🎨 Filtering | 3 | � | ⬆️ |
-| [NPI-017](#npi-017) | Add filter reset and active indicators | 🎨 Filtering | 3 | 🟡 | ➡️ |
+| [NPI-016](#npi-016) | Implement multi-filter selection | 🎨 Filtering | 3 | 🟢 | ⬆️ |
+| [NPI-017](#npi-017) | Add filter reset and active indicators | 🎨 Filtering | 3 | 🟢 | ➡️ |
 | [NPI-018](#npi-018) | Run mobile usability testing | 🧪 Testing | 2 | 🟡 | ⬆️ |
 | [NPI-019](#npi-019) | Add basic accessibility checks | 🧪 Quality | 2 | 🟡 | ⬆️ |
 | [NPI-020](#npi-020) | Optimize page load performance | 💾 Performance | 1 | 🟡 | ⬆️ |
@@ -197,8 +197,7 @@ NPI-002, NPI-003
 ✅ Real-time filtering as user types (case-insensitive)
 ✅ Searches both polish names and numbers simultaneously
 ✅ Integrates with existing color/finish filters using AND logic
-✅ Data attributes (data-number, data-name) added to all cards for efficient filtering
-</details>
+✅ Data attributes (data-number, data-name) added to all cards for efficient filtering⚠️ **Currently disabled:** Search functionality commented out with TODO markers - most users don't know polish names/numbers, and if they do, they already know the polish exists. May revisit with alternative discovery approaches in future.</details>
 
 <details id="npi-009">
 <summary><b>NPI-009</b> | Create "Charms" static page [1pt] 🔴 ➡️</summary>
@@ -240,13 +239,20 @@ On hold - needs content
 </details>
 
 <details id="npi-012">
-<summary><b>NPI-012</b> | Add navigation between pages [2pt] 🟡 🔥</summary>
+<summary><b>NPI-012</b> | Add navigation between pages [2pt] � 🔥</summary>
 
 ### 🏷️ Tags
 `navigation` `ui`
 
 ### 📋 Description
 Create header/menu navigation for gallery and extras pages
+
+### ✅ Status Notes
+✅ Navigation header component with brand logo and page links
+✅ Active state highlighting for current page (Polishes)
+✅ Placeholder links for future pages (Charms, Stickers, Accessories) with disabled state
+✅ Fully responsive design with mobile-first breakpoints
+✅ Clean visual design matching existing design system
 </details>
 
 <details id="npi-013">
@@ -308,7 +314,7 @@ NPI-005, NPI-006, NPI-007
 </details>
 
 <details id="npi-017">
-<summary><b>NPI-017</b> | Add filter reset and active indicators [3pt] 🟡 ➡️</summary>
+<summary><b>NPI-017</b> | Add filter reset and active indicators [3pt] � ➡️</summary>
 
 ### 🏷️ Tags
 `filter` `ux`
@@ -318,6 +324,14 @@ Show active filters and provide clear all button
 
 ### 🔗 Prerequisites
 NPI-005, NPI-006, NPI-007
+
+### ✅ Status Notes
+✅ Clear All Filters button with enabled/disabled states
+✅ Clears all filter types: colors and finishes
+✅ Updates in real-time as filters change
+✅ UI Refinements: Removed filter count display (not useful), simplified to just clear button
+✅ Visual feedback: Selected filters now show saturated/vibrant versions of their colors
+✅ Subtle gray focus indicators (no more bright red)
 </details>
 
 <details id="npi-018">
@@ -691,14 +705,14 @@ _Full ticket list available - expand sections as needed_
 ## 📊 Project Summary
 
 **Total:** 75 tickets | 189 story points  
-**Completed:** 9 tickets (12%) | 18 points (9.5%)  
+**Completed:** 11 tickets (15%) | 23 points (12.2%)  
 **In Progress:** 0 tickets  
-**Not Started:** 66 tickets | 171 points  
+**Not Started:** 64 tickets | 166 points  
 
 ### By Milestone
 | Milestone | Tickets | Points | Done | Remaining |
 |---|:---:|:---:|:---:|:---:|
-| 🚀 M1: MVP Gallery | 21 | 50 | 9 ✅ | 12 (32pts) |
+| 🚀 M1: MVP Gallery | 21 | 50 | 11 ✅ | 10 (27pts) |
 | 💎 M2: Personalization | 15 | 42 | 0 | 15 (42pts) |
 | ✨ M3: Enhanced Browsing | 15 | 46 | 0 | 15 (46pts) |
 | 📅 M4: Booking | 8 | 14 | 0 | 8 (14pts) |
@@ -712,8 +726,8 @@ _Full ticket list available - expand sections as needed_
 
 ### Quick Stats
 - Average ticket: 2.5 points
-- Milestone 1 velocity: 18 points completed
-- Estimated M1 completion: 32 points remaining (~2-3 more sprints)
+- Milestone 1 velocity: 23 points completed
+- Estimated M1 completion: 27 points remaining (~2 more sprints)
 
 ---
 
