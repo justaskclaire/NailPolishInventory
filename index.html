@@ -258,6 +258,29 @@
       box-shadow: var(--shadow-sm);
     }
     
+    .search-box {
+      width: 100%;
+      padding: var(--space-3);
+      font-size: var(--font-size-base);
+      font-family: var(--font-family);
+      color: var(--color-text);
+      background: var(--color-gray-50);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+    }
+    
+    .search-box:focus {
+      outline: none;
+      border-color: var(--color-focus);
+      background: var(--color-white);
+      box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.1);
+    }
+    
+    .search-box::placeholder {
+      color: var(--color-text-muted);
+    }
+    
     .filter-group {
       display: flex;
       flex-direction: column;
@@ -564,6 +587,17 @@
   <div class="container">
     <div class="filter-bar">
       <div class="filter-group">
+        <div class="filter-label">Search</div>
+        <input 
+          type="text" 
+          class="search-box" 
+          id="search-input" 
+          placeholder="Search by name or number..." 
+          autocomplete="off"
+        />
+      </div>
+      
+      <div class="filter-group">
         <div class="filter-label">Color Family</div>
         <div class="filter-options" id="color-filters"></div>
       </div>
@@ -585,10 +619,12 @@
     
     const colorFiltersContainer = document.getElementById('color-filters');
     const finishFiltersContainer = document.getElementById('finish-filters');
+    const searchInput = document.getElementById('search-input');
     const grid = document.querySelector('.grid');
     let polishData = [];
     let selectedColors = new Set();
     let selectedFinishes = new Set();
+    let searchQuery = '';
 
     /**
      * Parse CSV text into array of objects
@@ -681,6 +717,8 @@
       card.rel = 'noopener';
       card.setAttribute('data-color', escapeHtml(color));
       card.setAttribute('data-finish', escapeHtml(finish));
+      card.setAttribute('data-number', escapeHtml(number));
+      card.setAttribute('data-name', escapeHtml(name.toLowerCase()));
       
       // Use textContent for text to avoid XSS
       const img = document.createElement('img');
@@ -810,6 +848,15 @@
       cards.forEach(card => {
         const cardColor = card.getAttribute('data-color');
         const cardFinish = card.getAttribute('data-finish');
+        const cardNumber = card.getAttribute('data-number');
+        const cardName = card.getAttribute('data-name');
+        
+        // Check if card matches search query
+        let matchesSearch = true;
+        if (searchQuery) {
+          const query = searchQuery.toLowerCase();
+          matchesSearch = cardNumber.includes(query) || cardName.includes(query);
+        }
         
         // Check if card matches color filter (OR logic - any selected color)
         let matchesColor = selectedColors.size === 0; // If no filters, show all
@@ -825,7 +872,7 @@
         }
         
         // Show card only if it matches ALL active filter categories (AND logic between categories)
-        if (matchesColor && matchesFinish) {
+        if (matchesSearch && matchesColor && matchesFinish) {
           card.classList.remove('hidden');
         } else {
           card.classList.add('hidden');
@@ -868,6 +915,12 @@
         
         // Populate filter checkboxes
         populateFilters(polishData);
+        
+        // Set up search input listener
+        searchInput.addEventListener('input', (event) => {
+          searchQuery = event.target.value.trim();
+          applyFilters();
+        });
         
         console.log(`Successfully loaded ${polishData.length} polishes`);
         
