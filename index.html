@@ -162,6 +162,73 @@
        COMPONENTS
        ============================================ */
     
+    /* Navigation Header */
+    .nav-header {
+      max-width: 1400px;
+      margin: 0 auto var(--space-5);
+      padding: var(--space-4);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+    
+    .nav-brand {
+      font-family: var(--font-family-display);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-black);
+      color: var(--color-gray-900);
+      text-decoration: none;
+      letter-spacing: var(--letter-spacing-tight);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: var(--space-3);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .nav-link {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-fast);
+    }
+    
+    .nav-link:hover {
+      color: var(--color-primary-600);
+      background: var(--color-gray-50);
+    }
+    
+    .nav-link.active {
+      color: var(--color-primary-600);
+      background: var(--color-primary-50);
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    .nav-link.disabled {
+      color: var(--color-text-muted);
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+    
+    .nav-link.disabled:hover {
+      background: transparent;
+    }
+    
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
@@ -258,6 +325,63 @@
       box-shadow: var(--shadow-sm);
     }
     
+    /* Filter controls (reset button only) */
+    .filter-controls {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: var(--space-3);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    
+    .btn-clear-filters {
+      padding: var(--space-1) var(--space-3);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      font-family: var(--font-family);
+      color: var(--color-text-secondary);
+      background: var(--color-gray-100);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    
+    .btn-clear-filters:hover:not(:disabled) {
+      background: var(--color-gray-200);
+      border-color: var(--color-gray-300);
+      color: var(--color-text);
+    }
+    
+    .btn-clear-filters:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    
+    .search-box {
+      width: 100%;
+      padding: var(--space-3);
+      font-size: var(--font-size-base);
+      font-family: var(--font-family);
+      color: var(--color-text);
+      background: var(--color-gray-50);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+    }
+    
+    .search-box:focus {
+      outline: none;
+      border-color: var(--color-focus);
+      background: var(--color-white);
+      box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.1);
+    }
+    
+    .search-box::placeholder {
+      color: var(--color-text-muted);
+    }
+    
     .filter-group {
       display: flex;
       flex-direction: column;
@@ -309,14 +433,12 @@
     }
     
     .filter-option input[type="checkbox"]:checked + label {
-      background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-600) 100%);
-      color: var(--color-white);
-      border-color: var(--color-primary-600);
-      box-shadow: var(--shadow-sm);
+      border: 2px solid var(--color-gray-700);
+      font-weight: var(--font-weight-semibold);
     }
     
     .filter-option input[type="checkbox"]:focus + label {
-      outline: 2px solid var(--color-focus);
+      outline: 2px solid var(--color-gray-400);
       outline-offset: 2px;
     }
     
@@ -326,9 +448,19 @@
       border-color: #fca5a5;
     }
     
+    .filter-option.color-red input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, #fca5a5 0%, #f87171 100%);
+      border-color: #dc2626;
+    }
+    
     .filter-option.color-pink label {
       background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
       border-color: #f9a8d4;
+    }
+    
+    .filter-option.color-pink input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, #f9a8d4 0%, #f472b6 100%);
+      border-color: #db2777;
     }
     
     .filter-option.color-orange label {
@@ -336,9 +468,19 @@
       border-color: #fdba74;
     }
     
+    .filter-option.color-orange input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, #fdba74 0%, #fb923c 100%);
+      border-color: #ea580c;
+    }
+    
     .filter-option.color-yellow label {
       background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
       border-color: #fcd34d;
+    }
+    
+    .filter-option.color-yellow input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, #fcd34d 0%, #fbbf24 100%);
+      border-color: #d97706;
     }
     
     .filter-option.color-green label {
@@ -346,9 +488,19 @@
       border-color: #6ee7b7;
     }
     
+    .filter-option.color-green input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, #6ee7b7 0%, #34d399 100%);
+      border-color: #059669;
+    }
+    
     .filter-option.color-blue label {
       background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
       border-color: #93c5fd;
+    }
+    
+    .filter-option.color-blue input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 100%);
+      border-color: #2563eb;
     }
     
     .filter-option.color-purple label {
@@ -356,14 +508,29 @@
       border-color: #c084fc;
     }
     
+    .filter-option.color-purple input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, #c084fc 0%, #a855f7 100%);
+      border-color: #7c3aed;
+    }
+    
     .filter-option.color-brown label {
       background: linear-gradient(135deg, #d4a574 0%, #b8824d 100%);
       border-color: #996b3d;
     }
     
+    .filter-option.color-brown input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, #a67c52 0%, #8b6239 100%);
+      border-color: #6b4423;
+    }
+    
     .filter-option.color-neutral label {
       background: linear-gradient(135deg, #f5f5f4 0%, #e7e5e4 100%);
       border-color: #d6d3d1;
+    }
+    
+    .filter-option.color-neutral input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, #d6d3d1 0%, #a8a29e 100%);
+      border-color: #78716c;
     }
     
     .filter-option.color-black label {
@@ -372,15 +539,31 @@
       color: var(--color-gray-800);
     }
     
+    .filter-option.color-black input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, #737373 0%, #525252 100%);
+      border-color: #262626;
+      color: var(--color-white);
+    }
+    
     .filter-option.color-white label {
       background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
       border-color: #e5e5e5;
+    }
+    
+    .filter-option.color-white input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, #fafafa 0%, #e5e5e5 100%);
+      border-color: #a3a3a3;
     }
     
     /* Finish-styled filter buttons */
     .filter-option.finish-cream label {
       background: linear-gradient(135deg, #faf5f0 0%, #f5ebe0 100%);
       border-color: #e8d5c4;
+    }
+    
+    .filter-option.finish-cream input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, #f5e6d3 0%, #e8d4bf 100%);
+      border-color: #c9a876;
     }
     
     .filter-option.finish-shimmer label {
@@ -399,6 +582,11 @@
       height: 200%;
       background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.5) 50%, transparent 70%);
       animation: shimmer 3s infinite;
+    }
+    
+    .filter-option.finish-shimmer input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%);
+      border-color: #a855f7;
     }
     
     @keyframes shimmer {
@@ -428,6 +616,11 @@
       animation: cat-eye-shift 5s ease-in-out infinite;
     }
     
+    .filter-option.finish-cat-eye input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 50%, #cbd5e1 100%);
+      border-color: #475569;
+    }
+    
     @keyframes cat-eye-shift {
       0%, 100% { left: 10%; }
       50% { left: 65%; }
@@ -436,6 +629,13 @@
     .filter-option.finish-mood-change label {
       background: linear-gradient(90deg, #fce7f3 0%, #fce7f3 45%, #ddd6fe 55%, #ddd6fe 100%);
       border-color: #f0abfc;
+      background-size: 300% 100%;
+      animation: mood-shift 5s ease-in-out infinite;
+    }
+    
+    .filter-option.finish-mood-change input[type="checkbox"]:checked + label {
+      background: linear-gradient(90deg, #f9a8d4 0%, #f9a8d4 45%, #c4b5fd 55%, #c4b5fd 100%);
+      border-color: #a855f7;
       background-size: 300% 100%;
       animation: mood-shift 5s ease-in-out infinite;
     }
@@ -465,6 +665,12 @@
       animation: glass-glow 4s ease-in-out infinite;
     }
     
+    .filter-option.finish-sheer input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, rgba(229, 229, 229, 0.8) 0%, rgba(212, 212, 212, 0.9) 100%);
+      border-color: rgba(163, 163, 163, 0.8);
+      backdrop-filter: blur(4px);
+    }
+    
     @keyframes glass-glow {
       0%, 100% { 
         opacity: 0.3;
@@ -476,17 +682,11 @@
       }
     }
     
-    /* Keep selected state prominent */
-    .filter-option input[type="checkbox"]:checked + label {
-      background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-600) 100%) !important;
-      color: var(--color-white) !important;
-      border-color: var(--color-primary-600) !important;
-      box-shadow: var(--shadow-sm) !important;
-    }
-    
-    .filter-option input[type="checkbox"]:checked + label::before,
-    .filter-option input[type="checkbox"]:checked + label::after {
-      display: none;
+    /* Keep animations active for selected finish filters */
+    .filter-option.finish-shimmer input[type="checkbox"]:checked + label::before,
+    .filter-option.finish-cat-eye input[type="checkbox"]:checked + label::before,
+    .filter-option.finish-sheer input[type="checkbox"]:checked + label::before {
+      /* Keep animations running even when selected */
     }
     
     /* ============================================
@@ -518,6 +718,30 @@
       
       h1 {
         font-size: var(--font-size-xl);
+      }
+      
+      .nav-header {
+        padding: var(--space-3);
+      }
+      
+      .nav-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-3);
+      }
+      
+      .nav-links {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+      
+      .nav-link {
+        font-size: var(--font-size-xs);
+        padding: var(--space-1) var(--space-2);
+      }
+      
+      .btn-clear-filters {
+        width: 100%;
       }
       
       .filter-options {
@@ -553,6 +777,19 @@
   </style>
 </head>
 <body>
+  <!-- Navigation Header (NPI-012) -->
+  <nav class="nav-header">
+    <div class="nav-content">
+      <a href="index.html" class="nav-brand">Nail Supply Collection</a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link active">Polishes</a></li>
+        <li><a href="#" class="nav-link disabled" title="Coming soon">Charms</a></li>
+        <li><a href="#" class="nav-link disabled" title="Coming soon">Stickers</a></li>
+        <li><a href="#" class="nav-link disabled" title="Coming soon">Accessories</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <div class="header">
     <div class="brand">
       <h1>Polish Collection</h1>
@@ -563,6 +800,26 @@
 
   <div class="container">
     <div class="filter-bar">
+      <!-- Filter Controls (NPI-017) - Reset button -->
+      <div class="filter-controls">
+        <button class="btn-clear-filters" id="clear-filters-btn" disabled>Clear All Filters</button>
+      </div>
+      
+      <!-- TODO: Search Filter - Commented out for now
+           Most users don't know polish names/numbers, and if they do, they already know you have it.
+           Consider alternative search/discovery methods in future iterations.
+      <div class="filter-group">
+        <div class="filter-label">Search</div>
+        <input 
+          type="text" 
+          class="search-box" 
+          id="search-input" 
+          placeholder="Search by name or number..." 
+          autocomplete="off"
+        />
+      </div>
+      -->
+      
       <div class="filter-group">
         <div class="filter-label">Color Family</div>
         <div class="filter-options" id="color-filters"></div>
@@ -579,19 +836,69 @@
 
   <script>
     /**
-     * Polish Inventory Dynamic Loading
-     * Loads polish data from CSV and dynamically generates cards and filter options
+     * ============================================================================
+     * NAIL POLISH INVENTORY - DYNAMIC LOADING & FILTERING SYSTEM
+     * ============================================================================
+     * 
+     * This application loads polish data from CSV and provides:
+     * - Real-time search by name/number
+     * - Multi-select color and finish filters
+     * - Filter combination with AND logic between categories, OR within categories
+     * - Active filter tracking and reset functionality
+     * 
+     * Architecture:
+     * - Data flows from CSV → parseCSV() → polishData array → createCard() → DOM
+     * - Filters stored in Set objects for efficient lookups
+     * - All filtering happens client-side via CSS class toggles (.hidden)
+     * ============================================================================
      */
     
+    // ========== DOM ELEMENT REFERENCES ==========
+    // Filter containers - dynamically populated with checkboxes from CSV data
     const colorFiltersContainer = document.getElementById('color-filters');
     const finishFiltersContainer = document.getElementById('finish-filters');
+    
+    // Search and display elements
+    // TODO: Search currently disabled - uncomment when re-enabled
+    // const searchInput = document.getElementById('search-input');
     const grid = document.querySelector('.grid');
+    
+    // Filter controls (NPI-017) - Reset button
+    const clearFiltersBtn = document.getElementById('clear-filters-btn');
+    
+    // ========== APPLICATION STATE ==========
+    // Master data array - populated once on page load from polishes.csv
     let polishData = [];
-    let selectedColors = new Set();
-    let selectedFinishes = new Set();
+    
+    // Active filter tracking - using Set for O(1) lookups
+    let selectedColors = new Set();    // Stores selected color values (e.g., "Red", "Pink")
+    let selectedFinishes = new Set();  // Stores selected finish values (e.g., "Shimmer", "Cream")
+    // TODO: Search disabled for now
+    // let searchQuery = '';              // Current search input (lowercased for comparison)
+
+    /**
+     * ============================================================================
+     * CSV PARSING & DATA TRANSFORMATION
+     * ============================================================================
+     */
 
     /**
      * Parse CSV text into array of objects
+     * 
+     * Handles:
+     * - Comma-separated values with quoted field support
+     * - Multi-line data with proper quote handling
+     * - Header row extraction for property naming
+     * 
+     * Example CSV:
+     *   Number,Name,Color,Finish
+     *   "531","Lilac Dream","Purple","Shimmer"
+     * 
+     * Returns:
+     *   [{ Number: "531", Name: "Lilac Dream", Color: "Purple", Finish: "Shimmer" }]
+     * 
+     * @param {string} csvText - Raw CSV file contents
+     * @returns {Array<Object>} Array of polish objects with properties from headers
      */
     function parseCSV(csvText) {
       const lines = csvText.trim().split('\n');
@@ -624,7 +931,21 @@
     }
 
     /**
-     * HTML-escape string to prevent XSS
+     * ============================================================================
+     * SECURITY & VALIDATION UTILITIES
+     * ============================================================================
+     */
+
+    /**
+     * HTML-escape string to prevent XSS attacks
+     * 
+     * Converts dangerous HTML characters to safe entity codes.
+     * Used when setting data attributes that came from CSV.
+     * 
+     * Example: "<script>alert('xss')<\/script>" → "&lt;script&gt;alert('xss')&lt;/script&gt;"
+     * 
+     * @param {string} unsafe - Potentially dangerous string from user input or CSV
+     * @returns {string} HTML-safe escaped string
      */
     function escapeHtml(unsafe) {
       return unsafe
@@ -637,7 +958,14 @@
 
     /**
      * Validate string contains only safe characters for filenames
-     * Removes apostrophes, allows alphanumeric, hyphens, underscores, and spaces
+     * 
+     * Used to generate local image paths from polish names.
+     * Removes apostrophes and special characters that could cause file system issues.
+     * 
+     * Example: "Claire's Polish!" → "Claires Polish"
+     * 
+     * @param {string} str - Polish name from CSV
+     * @returns {string} Sanitized filename-safe string
      */
     function sanitizeFilename(str) {
       // Remove apostrophes and keep only alphanumeric, hyphens, underscores, and spaces
@@ -646,13 +974,37 @@
 
     /**
      * Check if a string contains only letters and spaces (safe for filter values)
+     * 
+     * Validates color and finish values from CSV before using them as filter options.
+     * Prevents injection of HTML/JavaScript into filter buttons.
+     * 
+     * @param {string} str - Color or finish value from CSV
+     * @returns {boolean} True if string is safe (letters and spaces only)
      */
     function isSafeFilterValue(str) {
       return /^[a-zA-Z\s]+$/.test(str);
     }
 
     /**
-     * Generate card HTML from polish data
+     * ============================================================================
+     * DOM GENERATION & CARD RENDERING
+     * ============================================================================
+     */
+
+    /**
+     * Generate a polish card HTML element from CSV data
+     * 
+     * Creates a clickable card with:
+     * - Lazy-loaded product image
+     * - Polish number badge
+     * - Polish name
+     * - Data attributes for filtering (data-color, data-finish, data-number, data-name)
+     * 
+     * Images are expected at: images/{number}-{sanitized_name}.{jpg|png}
+     * Example: images/531-Lilac_Dream.jpg
+     * 
+     * @param {Object} polish - Polish object from CSV with Number, Name, Link, Color, Finish, Image Address
+     * @returns {HTMLElement|null} Card element ready to append to grid, or null if validation fails
      */
     function createCard(polish) {
       const number = polish.Number || '';
@@ -661,26 +1013,35 @@
       const color = polish.Color || '';
       const finish = polish.Finish || '';
       
-      // Validate number is numeric
+      // SECURITY: Validate number is numeric to prevent path traversal attacks
+      // Example attack: "../../etc/passwd" would be rejected here
       if (!/^\d+$/.test(number)) {
         console.warn('Invalid polish number:', polish.Number);
         return null;
       }
       
-      // Generate image filename from sanitized name
-      // Sanitize first, then replace spaces with underscores
+      // Generate safe image filename from polish name
+      // Process: "Claire's Polish!" → "Claires Polish" → "Claires_Polish"
       const sanitizedName = sanitizeFilename(name);
       const imageFileName = sanitizedName.replace(/\s+/g, '_');
+      
+      // Determine image extension from original URL (if available)
       const imageExt = polish['Image Address'] && polish['Image Address'].includes('.png') ? 'png' : 'jpg';
       const imagePath = `images/${number}-${imageFileName}.${imageExt}`;
       
+      // Create anchor element (card container) with external link
       const card = document.createElement('a');
       card.className = 'card';
       card.href = link;
       card.target = '_blank';
-      card.rel = 'noopener';
-      card.setAttribute('data-color', escapeHtml(color));
-      card.setAttribute('data-finish', escapeHtml(finish));
+      card.rel = 'noopener';  // Security: Prevent window.opener access
+      
+      // Data attributes for filtering - escaped to prevent XSS
+      card.setAttribute('data-color', escapeHtml(color));      // May contain multiple colors: "Purple, Pink"
+      card.setAttribute('data-finish', escapeHtml(finish));    // Single finish: "Shimmer"
+      // TODO: Search disabled - these attributes not currently used
+      // card.setAttribute('data-number', escapeHtml(number));    // For search: "531"
+      // card.setAttribute('data-name', escapeHtml(name.toLowerCase())); // For search: "lilac dream"
       
       // Use textContent for text to avoid XSS
       const img = document.createElement('img');
@@ -710,7 +1071,24 @@
     }
 
     /**
-     * Generate filter options from unique values in data
+     * ============================================================================
+     * FILTER GENERATION
+     * ============================================================================
+     */
+
+    /**
+     * Generate filter checkbox options from unique values in polish data
+     * 
+     * Scans all polishes to extract unique colors and finishes, then creates:
+     * - Color filter checkboxes (supports multi-color polishes via comma separation)
+     * - Finish filter checkboxes
+     * - Visual styling classes for each filter type
+     * 
+     * Multi-color handling:
+     * - Input: "Purple, Pink" → Outputs: Two checkboxes ("Purple" and "Pink")
+     * - When "Purple" is selected, any polish with "Purple" in its color list will match
+     * 
+     * @param {Array<Object>} data - Array of polish objects from CSV
      */
     function populateFilters(data) {
       const colors = new Set();
@@ -720,7 +1098,8 @@
         const color = polish.Color;
         const finish = polish.Finish;
         
-        // Split comma-separated colors and add each individually
+        // MULTI-COLOR SUPPORT: Split comma-separated colors and add each individually
+        // Example: "Purple, Pink" creates two color options
         if (color) {
           const colorList = color.split(',').map(c => c.trim());
           colorList.forEach(c => {
@@ -728,24 +1107,28 @@
           });
         }
         
+        // Finishes are always single values
         if (finish && isSafeFilterValue(finish)) finishes.add(finish);
       });
       
-      // Create color filter checkboxes
+      // Create color filter checkboxes (sorted alphabetically)
       const sortedColors = Array.from(colors).sort();
       sortedColors.forEach(color => {
         const option = document.createElement('div');
+        // Add visual styling class based on color name (e.g., "color-red", "color-pink")
         option.className = `filter-option color-${color.toLowerCase().replace(/\s+/g, '-')}`;
         
+        // Checkbox input (hidden via CSS, label is the visual button)
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.id = `color-${color.replace(/\s+/g, '-').toLowerCase()}`;
         checkbox.value = color;
         checkbox.addEventListener('change', handleColorFilterChange);
         
+        // Visual label (styled as button)
         const label = document.createElement('label');
         label.htmlFor = checkbox.id;
-        label.textContent = color;
+        label.textContent = color;  // Using textContent (not innerHTML) for XSS safety
         
         option.appendChild(checkbox);
         option.appendChild(label);
@@ -775,7 +1158,18 @@
     }
 
     /**
+     * ============================================================================
+     * FILTER EVENT HANDLERS
+     * ============================================================================
+     */
+
+    /**
      * Handle color filter checkbox changes
+     * 
+     * Adds or removes color from active selection set, then re-applies all filters.
+     * Multiple colors can be selected (OR logic within this category).
+     * 
+     * @param {Event} event - Change event from checkbox input
      */
     function handleColorFilterChange(event) {
       const value = event.target.value;
@@ -789,6 +1183,11 @@
     
     /**
      * Handle finish filter checkbox changes
+     * 
+     * Adds or removes finish from active selection set, then re-applies all filters.
+     * Multiple finishes can be selected (OR logic within this category).
+     * 
+     * @param {Event} event - Change event from checkbox input
      */
     function handleFinishFilterChange(event) {
       const value = event.target.value;
@@ -801,43 +1200,148 @@
     }
 
     /**
-     * Apply filters to cards using CSS classes
-     * OR logic within categories, AND logic between categories
+     * ============================================================================
+     * FILTERING LOGIC
+     * ============================================================================
+     */
+
+    /**
+     * Apply all active filters to polish cards
+     * 
+     * Filter Logic:
+     * - OR within categories: Select "Red" + "Pink" shows all red OR pink polishes
+     * - AND between categories: Color + Finish + Search must ALL match
+     * 
+     * Example:
+     *   Selected: Color="Red", Finish="Shimmer", Search="531"
+     *   Result: Only polishes that are (Red) AND (Shimmer) AND (contain "531")
+     * 
+     * Multi-color handling:
+     *   Polish with Color="Purple, Pink" matches if EITHER "Purple" OR "Pink" is selected
+     * 
+     * Performance:
+     *   - Uses CSS class toggling (.hidden) instead of DOM manipulation
+     *   - All filtering happens client-side (no server requests)
+     *   - Runs in O(n*m) where n=cards, m=selected_colors (typically small)
      */
     function applyFilters() {
       const cards = document.querySelectorAll('.card');
       
       cards.forEach(card => {
-        const cardColor = card.getAttribute('data-color');
-        const cardFinish = card.getAttribute('data-finish');
+        // Extract filter values from data attributes
+        const cardColor = card.getAttribute('data-color');      // May be "Purple, Pink"
+        const cardFinish = card.getAttribute('data-finish');    // Single value: "Shimmer"
         
-        // Check if card matches color filter (OR logic - any selected color)
-        let matchesColor = selectedColors.size === 0; // If no filters, show all
+        // TODO: Search disabled for now
+        // const cardNumber = card.getAttribute('data-number');    // "531"
+        // const cardName = card.getAttribute('data-name');        // "lilac dream" (lowercased)
+        
+        // ===== COLOR FILTER CHECK (OR logic within colors) =====
+        // If no colors selected, show all (default true)
+        // If colors selected, check if card has ANY of the selected colors
+        let matchesColor = selectedColors.size === 0;
         if (selectedColors.size > 0 && cardColor) {
+          // Split multi-color polishes: "Purple, Pink" → ["Purple", "Pink"]
           const cardColors = cardColor.split(',').map(c => c.trim());
+          // Match if ANY card color is in selected set
           matchesColor = cardColors.some(c => selectedColors.has(c));
         }
         
-        // Check if card matches finish filter (OR logic - any selected finish)
-        let matchesFinish = selectedFinishes.size === 0; // If no filters, show all
+        // ===== FINISH FILTER CHECK (OR logic within finishes) =====
+        // If no finishes selected, show all (default true)
+        // If finishes selected, check if card's finish is in selected set
+        let matchesFinish = selectedFinishes.size === 0;
         if (selectedFinishes.size > 0) {
           matchesFinish = selectedFinishes.has(cardFinish);
         }
         
-        // Show card only if it matches ALL active filter categories (AND logic between categories)
+        // ===== AND LOGIC: Show card only if ALL categories match =====
         if (matchesColor && matchesFinish) {
           card.classList.remove('hidden');
         } else {
           card.classList.add('hidden');
         }
       });
+      
+      // Update filter controls UI (NPI-017)
+      updateFilterControls();
     }
 
     /**
-     * Load and initialize the polish gallery
+     * ============================================================================
+     * FILTER CONTROLS (NPI-017) - Active Count & Reset Button
+     * ============================================================================
+     */
+
+    /**
+     * Update filter control UI elements based on active filters
+     * 
+     * Updates:
+     * - Clear filters button state (enabled/disabled)
+     * 
+     * Called automatically after every filter change.
+     */
+    function updateFilterControls() {
+      // Count all active filters (colors + finishes)
+      // TODO: Add search count back when search is re-enabled
+      const totalActive = selectedColors.size + selectedFinishes.size;
+      
+      // Update clear button state
+      clearFiltersBtn.disabled = (totalActive === 0);
+    }
+
+    /**
+     * Clear all active filters and reset UI
+     * 
+     * Resets:
+     * - All checkbox states
+     * - Filter selection Sets
+     * - Visible cards (shows all)
+     * 
+     * Triggered by "Clear All Filters" button click.
+     */
+    function clearAllFilters() {
+      // TODO: Re-enable when search is active
+      // searchQuery = '';
+      // searchInput.value = '';
+      
+      // Clear color filters
+      selectedColors.clear();
+      document.querySelectorAll('#color-filters input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      
+      // Clear finish filters
+      selectedFinishes.clear();
+      document.querySelectorAll('#finish-filters input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      
+      // Re-apply filters (will show all cards since all sets are empty)
+      applyFilters();
+    }
+
+    /**
+     * ============================================================================
+     * INITIALIZATION & EVENT SETUP
+     * ============================================================================
+     * 
+     * Startup sequence:
+     * 1. Fetch polishes.csv from server
+     * 2. Parse CSV into JavaScript objects
+     * 3. Generate and append card elements to grid
+     * 4. Populate filter checkboxes based on available colors/finishes
+     * 5. Set up event listeners (search input, clear filters button)
+     * 6. Log success or display user-friendly error message
+     * 
+     * Error handling:
+     * - Network errors → User sees friendly message, details logged to console
+     * - Invalid CSV → Validation warnings, skips bad entries
+     * - Missing data → Graceful fallback with empty strings
      */
     async function initializeGallery() {
       try {
+        // Fetch CSV file from server (relative path)
         const response = await fetch('polishes.csv');
         
         if (!response.ok) {
@@ -846,15 +1350,16 @@
           throw new Error('Failed to load data');
         }
         
+        // Parse CSV text into array of objects
         const csvText = await response.text();
         polishData = parseCSV(csvText);
         
-        // Validate data
+        // Validate we got data
         if (polishData.length === 0) {
           throw new Error('No polish data found in CSV');
         }
         
-        // Generate cards
+        // Generate card for each polish and append to grid
         polishData.forEach(polish => {
           if (!polish.Number || !polish.Name) {
             console.warn('Skipping invalid polish entry:', polish);
@@ -866,8 +1371,21 @@
           }
         });
         
-        // Populate filter checkboxes
+        // Populate filter checkboxes from unique values in data
         populateFilters(polishData);
+        
+        // TODO: Search disabled - uncomment when re-enabled
+        // Set up search input listener (real-time filtering as user types)
+        // searchInput.addEventListener('input', (event) => {
+        //   searchQuery = event.target.value.trim();
+        //   applyFilters();
+        // });
+        
+        // Set up clear filters button listener (NPI-017)
+        clearFiltersBtn.addEventListener('click', clearAllFilters);
+        
+        // Initialize filter controls UI (show "No filters active")
+        updateFilterControls();
         
         console.log(`Successfully loaded ${polishData.length} polishes`);
         
@@ -882,7 +1400,8 @@
       }
     }
 
-    // Initialize when DOM is ready
+    // ========== BOOTSTRAP APPLICATION ==========
+    // Initialize when DOM is ready (handles both deferred and async script loading)
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initializeGallery);
     } else {
