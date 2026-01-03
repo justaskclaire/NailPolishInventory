@@ -1706,11 +1706,27 @@
           emptyMessage = "You haven't selected any polishes for your next appointment yet. Tap 📅 to pick for your next visit!";
         }
         
-        emptyState.innerHTML = `
-          <div class="empty-state-icon">${emptyIcon}</div>
-          <div class="empty-state-title">No Results</div>
-          <div class="empty-state-text">${emptyMessage}</div>
-        `;
+        // Clear any previous empty-state content safely
+        emptyState.textContent = '';
+
+        // Icon
+        const iconDiv = document.createElement('div');
+        iconDiv.className = 'empty-state-icon';
+        iconDiv.textContent = emptyIcon;
+
+        // Title
+        const titleDiv = document.createElement('div');
+        titleDiv.className = 'empty-state-title';
+        titleDiv.textContent = 'No Results';
+
+        // Message text
+        const textDiv = document.createElement('div');
+        textDiv.className = 'empty-state-text';
+        textDiv.textContent = emptyMessage;
+
+        emptyState.appendChild(iconDiv);
+        emptyState.appendChild(titleDiv);
+        emptyState.appendChild(textDiv);
         emptyState.style.display = 'block';
       } else if (emptyState) {
         emptyState.style.display = 'none';
