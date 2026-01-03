@@ -313,6 +313,151 @@
       line-height: var(--line-height-snug);
       color: var(--color-gray-900);
     }
+    
+    /* ============================================
+       PERSONALIZATION ICONS (Milestone 2)
+       ============================================ */
+    
+    /* Icon container - positioned over card image */
+    .card-icons {
+      position: absolute;
+      top: var(--space-2);
+      right: var(--space-2);
+      display: flex;
+      gap: var(--space-1);
+      z-index: 10;
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+    
+    /* Show icons on card hover or when active */
+    .card:hover .card-icons,
+    .card-icons.has-active {
+      opacity: 1;
+    }
+    
+    /* Base icon button style */
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--color-border-light);
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all var(--transition-fast);
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .icon-btn:hover {
+      transform: scale(1.15);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .icon-btn:focus-visible {
+      outline: 2px solid var(--color-primary-500);
+      outline-offset: 2px;
+      transform: scale(1.1);
+    }
+    
+    .icon-btn:active {
+      transform: scale(1.05);
+    }
+    
+    /* Favorite heart icon */
+    .favorite-btn {
+      color: var(--color-gray-400);
+    }
+    
+    .favorite-btn:hover {
+      color: var(--color-primary-500);
+      border-color: var(--color-primary-200);
+      background: var(--color-primary-50);
+    }
+    
+    .favorite-btn:focus-visible {
+      outline: 2px solid var(--color-primary-500);
+      outline-offset: 2px;
+      border-color: var(--color-primary-300);
+      background: var(--color-primary-50);
+    }
+    
+    .favorite-btn.active {
+      color: var(--color-primary-600);
+      border-color: var(--color-primary-500);
+      background: var(--color-primary-100);
+    }
+    
+    .favorite-btn.active:hover {
+      color: var(--color-primary-700);
+    }
+    
+    .favorite-btn.active:focus-visible {
+      outline: 2px solid var(--color-primary-600);
+      outline-offset: 2px;
+      border-color: var(--color-primary-500);
+    }
+    
+    /* Next Appointment calendar icon */
+    :root {
+      --color-calendar-50: #eff6ff;
+      --color-calendar-100: #dbeafe;
+      --color-calendar-200: #bfdbfe;
+      --color-calendar-500: #3b82f6;
+      --color-calendar-600: #2563eb;
+      --color-calendar-700: #1d4ed8;
+    }
+    
+    .nextappt-btn {
+      color: var(--color-gray-400);
+    }
+    
+    .nextappt-btn:hover {
+      color: var(--color-calendar-500);  /* Blue for calendar */
+      border-color: var(--color-calendar-200);
+      background: var(--color-calendar-50);
+    }
+    
+    .nextappt-btn:focus-visible {
+      outline: 2px solid var(--color-calendar-500);
+      outline-offset: 2px;
+      border-color: var(--color-calendar-200);
+      background: var(--color-calendar-50);
+    }
+    
+    .nextappt-btn.active {
+      color: var(--color-calendar-600);
+      border-color: var(--color-calendar-500);
+      background: var(--color-calendar-100);
+    }
+    
+    .nextappt-btn.active:hover {
+      color: var(--color-calendar-700);
+    }
+    
+    .nextappt-btn.active:focus-visible {
+      outline: 2px solid var(--color-calendar-600);
+      outline-offset: 2px;
+      border-color: var(--color-calendar-500);
+    }
+    
+    /* Mobile: Always show icons if active, larger touch targets */
+    @media (max-width: 768px) {
+      .icon-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+      }
+      
+      .card-icons {
+        opacity: 0.9;
+      }
+    }
+    
     .filter-bar {
       margin: 0 0 var(--space-5) 0;
       display: flex;
@@ -765,6 +910,34 @@
       font-size: var(--font-size-sm);
     }
     
+    .empty-state {
+      padding: var(--space-6);
+      margin: var(--space-5) 0;
+      text-align: center;
+      background: var(--color-gray-50);
+      border: 2px dashed var(--color-border);
+      border-radius: var(--radius-lg);
+      color: var(--color-text-secondary);
+    }
+    
+    .empty-state-icon {
+      font-size: 3rem;
+      margin-bottom: var(--space-3);
+      opacity: 0.5;
+    }
+    
+    .empty-state-title {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-gray-700);
+      margin-bottom: var(--space-2);
+    }
+    
+    .empty-state-text {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+    }
+    
     /* ============================================
        RESPONSIVE
        ============================================ */
@@ -875,6 +1048,20 @@
       -->
       
       <div class="filter-group">
+        <div class="filter-label">My Picks</div>
+        <div class="filter-options" id="personal-filters">
+          <div class="filter-option">
+            <input type="checkbox" data-personal="favorites" id="filter-favorites" />
+            <label for="filter-favorites">❤️ My Favorites</label>
+          </div>
+          <div class="filter-option">
+            <input type="checkbox" data-personal="nextappt" id="filter-nextappt" />
+            <label for="filter-nextappt">📅 My Next Appt</label>
+          </div>
+        </div>
+      </div>
+      
+      <div class="filter-group">
         <div class="filter-label">Color Family</div>
         <div class="filter-options" id="color-filters"></div>
       </div>
@@ -927,8 +1114,98 @@
     // Active filter tracking - using Set for O(1) lookups
     let selectedColors = new Set();    // Stores selected color values (e.g., "Red", "Pink")
     let selectedFinishes = new Set();  // Stores selected finish values (e.g., "Shimmer", "Cream")
+    let selectedPersonal = new Set();  // Stores selected personal filters (e.g., "favorites", "nextappt")
     // TODO: Search disabled for now
     // let searchQuery = '';              // Current search input (lowercased for comparison)
+
+    /**
+     * ============================================================================
+     * PERSONALIZATION - LOCALSTORAGE UTILITIES (Milestone 2)
+     * ============================================================================
+     * 
+     * Storage Strategy:
+     * - localStorage keys: "nailpolish_favorites", "nailpolish_nextappt"
+     * - Values: JSON arrays of composite polish IDs (number-name format)
+     * - Example: ["781-Air of Mint", "769-Ruby Ritz"]
+     * 
+     * Why composite IDs?
+     * - Polish numbers are NOT unique in dataset
+     * - number-name creates unique identifier without arbitrary ID generation
+     * - Human-readable for debugging
+     */
+
+    /**
+     * Create composite ID from polish data
+     * @param {string} number - Polish number (e.g., "781")
+     * @param {string} name - Polish name (e.g., "Air of Mint")
+     * @returns {string} Composite key (e.g., "781-Air of Mint")
+     */
+    function getPolishId(number, name) {
+      return `${number}-${name}`;
+    }
+
+    /**
+     * Get array from localStorage
+     * @param {string} key - Storage key ("favorites" or "nextappt")
+     * @returns {string[]} Array of polish composite IDs
+     */
+    function getStoredList(key) {
+      try {
+        const data = localStorage.getItem(`nailpolish_${key}`);
+        if (!data) return [];
+        const parsed = JSON.parse(data);
+        // Validate it's an array of strings
+        if (!Array.isArray(parsed)) return [];
+        return parsed.filter(item => typeof item === 'string');
+      } catch (e) {
+        console.warn(`Failed to load ${key} from localStorage:`, e);
+        return [];
+      }
+    }
+
+    /**
+     * Save array to localStorage
+     * @param {string} key - Storage key
+     * @param {string[]} list - Array of polish composite IDs
+     */
+    function saveStoredList(key, list) {
+      try {
+        localStorage.setItem(`nailpolish_${key}`, JSON.stringify(list));
+      } catch (e) {
+        console.error(`Failed to save ${key} to localStorage:`, e);
+      }
+    }
+
+    /**
+     * Toggle item in stored list
+     * @param {string} key - Storage key
+     * @param {string} polishId - Polish composite ID (number-name)
+     * @returns {boolean} New state (true = in list, false = removed)
+     */
+    function toggleInList(key, polishId) {
+      const list = getStoredList(key);
+      const index = list.indexOf(polishId);
+      
+      if (index > -1) {
+        list.splice(index, 1);
+        saveStoredList(key, list);
+        return false;
+      } else {
+        list.push(polishId);
+        saveStoredList(key, list);
+        return true;
+      }
+    }
+
+    /**
+     * Check if item is in stored list
+     * @param {string} key - Storage key
+     * @param {string} polishId - Polish composite ID to check
+     * @returns {boolean}
+     */
+    function isInList(key, polishId) {
+      return getStoredList(key).includes(polishId);
+    }
 
     /**
      * ============================================================================
@@ -1111,8 +1388,9 @@
       // Data attributes for filtering - escaped to prevent XSS
       card.setAttribute('data-color', escapeHtml(color));      // May contain multiple colors: "Purple, Pink"
       card.setAttribute('data-finish', escapeHtml(finish));    // Single finish: "Shimmer"
-      // TODO: Search disabled - these attributes not currently used
-      // card.setAttribute('data-number', escapeHtml(number));    // For search: "531"
+      card.setAttribute('data-number', escapeHtml(number));    // For personal filters: "781"
+      card.setAttribute('data-name', escapeHtml(name));        // For personal filters: "Air of Mint"
+      // TODO: Search disabled - these attributes for search later
       // card.setAttribute('data-name', escapeHtml(name.toLowerCase())); // For search: "lilac dream"
       
       // Use textContent for text to avoid XSS
@@ -1136,7 +1414,111 @@
       metaDiv.appendChild(numDiv);
       metaDiv.appendChild(nameDiv);
       
+      // Create icon container for personalization buttons
+      const iconsDiv = document.createElement('div');
+      iconsDiv.className = 'card-icons';
+      
+      // Create favorite (heart) button
+      const favoriteBtn = document.createElement('button');
+      favoriteBtn.className = 'icon-btn favorite-btn';
+      favoriteBtn.type = 'button';
+      
+      // Create composite ID for this polish
+      const polishId = getPolishId(number, name);
+      
+      // Check if already favorited and set initial state
+      if (isInList('favorites', polishId)) {
+        favoriteBtn.classList.add('active');
+        iconsDiv.classList.add('has-active');
+        favoriteBtn.innerHTML = '❤️';  // Filled heart
+        favoriteBtn.setAttribute('aria-label', 'Remove from favorites');
+      } else {
+        favoriteBtn.innerHTML = '🤍';  // Outline heart
+        favoriteBtn.setAttribute('aria-label', 'Add to favorites');
+      }
+      
+      // Add click handler for favorite toggle
+      favoriteBtn.addEventListener('click', (event) => {
+        event.preventDefault();  // Prevent card link navigation
+        event.stopPropagation(); // Prevent event bubbling
+        
+        // Toggle favorite in localStorage
+        const isNowFavorited = toggleInList('favorites', polishId);
+        
+        // Update button visual state
+        if (isNowFavorited) {
+          favoriteBtn.classList.add('active');
+          iconsDiv.classList.add('has-active');
+          favoriteBtn.innerHTML = '❤️';
+          favoriteBtn.setAttribute('aria-label', 'Remove from favorites');
+        } else {
+          favoriteBtn.classList.remove('active');
+          // Check if any other icon is active before removing has-active
+          if (!iconsDiv.querySelector('.icon-btn.active')) {
+            iconsDiv.classList.remove('has-active');
+          }
+          favoriteBtn.innerHTML = '🤍';
+          favoriteBtn.setAttribute('aria-label', 'Add to favorites');
+        }
+        
+        // If personal filters are active, re-apply them
+        if (selectedPersonal.size > 0) {
+          applyFilters();
+        }
+      });
+      
+      iconsDiv.appendChild(favoriteBtn);
+      
+      // Create next appointment (calendar) button
+      const nextapptBtn = document.createElement('button');
+      nextapptBtn.className = 'icon-btn nextappt-btn';
+      nextapptBtn.type = 'button';
+      
+      // Check if already in next appt list and set initial state
+      if (isInList('nextappt', polishId)) {
+        nextapptBtn.classList.add('active');
+        iconsDiv.classList.add('has-active');
+        nextapptBtn.innerHTML = '📅';  // Calendar emoji
+        nextapptBtn.setAttribute('aria-label', 'Unmark from next appointment');
+      } else {
+        nextapptBtn.innerHTML = '🗓️';  // Outline calendar
+        nextapptBtn.setAttribute('aria-label', 'Mark for next appointment');
+      }
+      
+      // Add click handler for next appt toggle
+      nextapptBtn.addEventListener('click', (event) => {
+        event.preventDefault();  // Prevent card link navigation
+        event.stopPropagation(); // Prevent event bubbling
+        
+        // Toggle next appt in localStorage
+        const isNowNextAppt = toggleInList('nextappt', polishId);
+        
+        // Update button visual state
+        if (isNowNextAppt) {
+          nextapptBtn.classList.add('active');
+          iconsDiv.classList.add('has-active');
+          nextapptBtn.textContent = '📅';
+          nextapptBtn.setAttribute('aria-label', 'Unmark from next appointment');
+        } else {
+          nextapptBtn.classList.remove('active');
+          // Check if any other icon is active before removing has-active
+          if (!iconsDiv.querySelector('.icon-btn.active')) {
+            iconsDiv.classList.remove('has-active');
+          }
+          nextapptBtn.textContent = '🗓️';
+          nextapptBtn.setAttribute('aria-label', 'Mark for next appointment');
+        }
+        
+        // If personal filters are active, re-apply them
+        if (selectedPersonal.size > 0) {
+          applyFilters();
+        }
+      });
+      
+      iconsDiv.appendChild(nextapptBtn);
+      
       card.appendChild(img);
+      card.appendChild(iconsDiv);
       card.appendChild(metaDiv);
       
       return card;
@@ -1303,9 +1685,10 @@
         // Extract filter values from data attributes
         const cardColor = card.getAttribute('data-color');      // May be "Purple, Pink"
         const cardFinish = card.getAttribute('data-finish');    // Single value: "Shimmer"
+        const cardNumber = card.getAttribute('data-number');    // "781"
+        const cardName = card.getAttribute('data-name');        // "Air of Mint"
         
         // TODO: Search disabled for now
-        // const cardNumber = card.getAttribute('data-number');    // "531"
         // const cardName = card.getAttribute('data-name');        // "lilac dream" (lowercased)
         
         // ===== COLOR FILTER CHECK (OR logic within colors) =====
@@ -1327,13 +1710,74 @@
           matchesFinish = selectedFinishes.has(cardFinish);
         }
         
+        // ===== PERSONAL FILTER CHECK (OR logic within personal) =====
+        // If no personal filters selected, show all (default true)
+        // If personal filters selected, check if card is in selected lists
+        let matchesPersonal = selectedPersonal.size === 0;
+        if (selectedPersonal.size > 0 && cardNumber && cardName) {
+          const polishId = getPolishId(cardNumber, cardName);
+          matchesPersonal = 
+            (selectedPersonal.has('favorites') && isInList('favorites', polishId)) ||
+            (selectedPersonal.has('nextappt') && isInList('nextappt', polishId));
+        }
+        
         // ===== AND LOGIC: Show card only if ALL categories match =====
-        if (matchesColor && matchesFinish) {
+        if (matchesColor && matchesFinish && matchesPersonal) {
           card.classList.remove('hidden');
         } else {
           card.classList.add('hidden');
         }
       });
+      
+      // Check if any cards are visible and show empty state if needed
+      const visibleCards = document.querySelectorAll('.card:not(.hidden)');
+      let emptyState = document.querySelector('.empty-state');
+      
+      if (visibleCards.length === 0 && (selectedColors.size > 0 || selectedFinishes.size > 0 || selectedPersonal.size > 0)) {
+        // Show empty state if filters are active but no results
+        if (!emptyState) {
+          emptyState = document.createElement('div');
+          emptyState.className = 'empty-state';
+          grid.parentElement.insertBefore(emptyState, grid);
+        }
+        
+        // Determine which personal filter is active for custom message
+        let emptyMessage = 'No polishes match your filters.';
+        let emptyIcon = '🔍';  // Magnifying glass
+        
+        if (selectedPersonal.has('favorites') && selectedPersonal.size === 1 && selectedColors.size === 0 && selectedFinishes.size === 0) {
+          emptyIcon = '🤍';
+          emptyMessage = "You haven't favorited any polishes yet. Tap ❤️ on polishes you love!";
+        } else if (selectedPersonal.has('nextappt') && selectedPersonal.size === 1 && selectedColors.size === 0 && selectedFinishes.size === 0) {
+          emptyIcon = '📅';
+          emptyMessage = "You haven't selected any polishes for your next appointment yet. Tap 📅 to pick for your next visit!";
+        }
+        
+        // Clear any previous empty-state content safely
+        emptyState.textContent = '';
+
+        // Icon
+        const iconDiv = document.createElement('div');
+        iconDiv.className = 'empty-state-icon';
+        iconDiv.textContent = emptyIcon;
+
+        // Title
+        const titleDiv = document.createElement('div');
+        titleDiv.className = 'empty-state-title';
+        titleDiv.textContent = 'No Results';
+
+        // Message text
+        const textDiv = document.createElement('div');
+        textDiv.className = 'empty-state-text';
+        textDiv.textContent = emptyMessage;
+
+        emptyState.appendChild(iconDiv);
+        emptyState.appendChild(titleDiv);
+        emptyState.appendChild(textDiv);
+        emptyState.style.display = 'block';
+      } else if (emptyState) {
+        emptyState.style.display = 'none';
+      }
       
       // Update filter controls UI (NPI-017)
       updateFilterControls();
@@ -1354,9 +1798,9 @@
      * Called automatically after every filter change.
      */
     function updateFilterControls() {
-      // Count all active filters (colors + finishes)
+      // Count all active filters (colors + finishes + personal)
       // TODO: Add search count back when search is re-enabled
-      const totalActive = selectedColors.size + selectedFinishes.size;
+      const totalActive = selectedColors.size + selectedFinishes.size + selectedPersonal.size;
       
       // Update clear button state
       clearFiltersBtn.disabled = (totalActive === 0);
@@ -1386,6 +1830,12 @@
       // Clear finish filters
       selectedFinishes.clear();
       document.querySelectorAll('#finish-filters input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      
+      // Clear personal filters
+      selectedPersonal.clear();
+      document.querySelectorAll('[data-personal] input[type="checkbox"]').forEach(cb => {
         cb.checked = false;
       });
       
@@ -1445,6 +1895,21 @@
         
         // Populate filter checkboxes from unique values in data
         populateFilters(polishData);
+        
+        // Set up personal filter listeners (Milestone 2)
+        document.querySelectorAll('input[data-personal]').forEach(checkbox => {
+          checkbox.addEventListener('change', (event) => {
+            const personalType = event.target.getAttribute('data-personal');
+            
+            if (event.target.checked) {
+              selectedPersonal.add(personalType);
+            } else {
+              selectedPersonal.delete(personalType);
+            }
+            
+            applyFilters();
+          });
+        });
         
         // TODO: Search disabled - uncomment when re-enabled
         // Set up search input listener (real-time filtering as user types)

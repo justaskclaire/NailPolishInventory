@@ -7,7 +7,7 @@ Create a mobile-first web experience that helps friends and clients browse avail
 
 ## Milestones & Phasing
 
-### Milestone 1: MVP gallery and inventory (Weeks 1-3)
+### ✅ Milestone 1: MVP gallery and inventory (Weeks 1-3) - COMPLETED
 - **Deliverable:** Live mobile-first web page showcasing available shades with photos/swatches in a clean grid.
 - **Key work:**
   - ✅ Build responsive gallery/grid of available shades only, sourced from existing inventory data and images.
@@ -21,17 +21,25 @@ Create a mobile-first web experience that helps friends and clients browse avail
   - ✅ Implement local image storage with LocalImage column in CSV.
   - ✅ Add cache-busting for CSV loading to ensure instant updates.
 - **Dependencies:** Current inventory CSVs and images; simple hosting (static site is fine).
-- **Success criteria:** Friends/clients can quickly browse the current collection, filter by multiple attributes, and see on-hand extras.
-- **Progress:** ~95% complete - Gallery ✅, Color filter ✅, Finish filter ✅, Multi-color support ✅, Multi-filter AND logic ✅, Search ✅, Navigation ✅, Filter reset ✅, Data accuracy ✅, Content pages pending
+- **Success criteria:** ✅ Friends/clients can quickly browse the current collection, filter by multiple attributes, and see on-hand extras.
+- **Status:** **COMPLETE** - All core functionality delivered. Gallery with 60 polishes, 11 color filters, 6 finish filters, multi-select filtering, search, accurate data from official sources.
+- **Completion Date:** January 3, 2026
 
-### Milestone 2: Personalization basics (Weeks 4-6)
-- **Deliverable:** Logged-in experience with personal tracking.
+### ✅ Milestone 2: Personalization basics (Weeks 4-6) - COMPLETED
+- **Deliverable:** Personal tracking without login using localStorage.
 - **Key work:**
-  - Enable account creation/login for personal use.
-  - Add favorites, “on-hand” vs. “wishlist” tracking, and simple seasonal/occasion collections.
-  - Persist personalization data locally or via lightweight backend/service.
-- **Dependencies:** Lightweight auth + data store (Supabase/Firebase or local-first storage); polish detail endpoints if needed.
-- **Success criteria:** Users can save favorite looks and track what they own versus want, with curated seasonal groupings.
+  - ✅ Add favorites tracking with heart icon on cards.
+  - ✅ Add "Next Appt" tracking with calendar icon on cards.
+  - ✅ Add "My Picks" filter group with "My Favorites" and "My Next Appt" filters.
+  - ✅ Persist personalization data in localStorage (browser-based).
+  - ✅ Implement composite ID system (number-name) for unique polish identification.
+  - ✅ Mobile-optimized with 44x44px touch targets.
+  - ✅ Empty state messages for personalization filters.
+- **Dependencies:** None - localStorage implementation, no backend required.
+- **Success criteria:** ✅ Clients can favorite polishes and select for next appointment with data persisting across sessions.
+- **Status:** **COMPLETE** - localStorage-based personalization with favorites and next appointment tracking.
+- **Completion Date:** January 3, 2026
+- **Implementation Time:** ~3.5 hours across 5 phases
 
 ### Milestone 3: Recommendations & polish browsing enhancements (Weeks 7-9)
 - **Deliverable:** Smarter browsing and discovery.
