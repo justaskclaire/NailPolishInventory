@@ -1380,7 +1380,6 @@
       // Create favorite (heart) button
       const favoriteBtn = document.createElement('button');
       favoriteBtn.className = 'icon-btn favorite-btn';
-      favoriteBtn.setAttribute('aria-label', 'Toggle favorite');
       favoriteBtn.type = 'button';
       
       // Create composite ID for this polish
@@ -1391,8 +1390,10 @@
         favoriteBtn.classList.add('active');
         iconsDiv.classList.add('has-active');
         favoriteBtn.innerHTML = '❤️';  // Filled heart
+        favoriteBtn.setAttribute('aria-label', 'Remove from favorites');
       } else {
         favoriteBtn.innerHTML = '🤍';  // Outline heart
+        favoriteBtn.setAttribute('aria-label', 'Add to favorites');
       }
       
       // Add click handler for favorite toggle
@@ -1408,6 +1409,7 @@
           favoriteBtn.classList.add('active');
           iconsDiv.classList.add('has-active');
           favoriteBtn.textContent = '❤️';
+          favoriteBtn.setAttribute('aria-label', 'Remove from favorites');
         } else {
           favoriteBtn.classList.remove('active');
           // Check if any other icon is active before removing has-active
@@ -1415,6 +1417,7 @@
             iconsDiv.classList.remove('has-active');
           }
           favoriteBtn.textContent = '🤍';
+          favoriteBtn.setAttribute('aria-label', 'Add to favorites');
         }
         
         // If personal filters are active, re-apply them
