@@ -1408,7 +1408,7 @@
         if (isNowFavorited) {
           favoriteBtn.classList.add('active');
           iconsDiv.classList.add('has-active');
-          favoriteBtn.textContent = '❤️';
+          favoriteBtn.innerHTML = '❤️';
           favoriteBtn.setAttribute('aria-label', 'Remove from favorites');
         } else {
           favoriteBtn.classList.remove('active');
@@ -1416,7 +1416,7 @@
           if (!iconsDiv.querySelector('.icon-btn.active')) {
             iconsDiv.classList.remove('has-active');
           }
-          favoriteBtn.textContent = '🤍';
+          favoriteBtn.innerHTML = '🤍';
           favoriteBtn.setAttribute('aria-label', 'Add to favorites');
         }
         
