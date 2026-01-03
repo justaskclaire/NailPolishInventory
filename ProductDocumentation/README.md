@@ -9,6 +9,7 @@ This folder contains all project planning and implementation documentation.
 - **[ROADMAP.md](ROADMAP.md)** - Project roadmap with phases and milestones
 - **[PLATFORM_TICKETS.md](PLATFORM_TICKETS.md)** - Platform improvements and tech debt
 - **[ProductQuestions.txt](ProductQuestions.txt)** - Original requirements and questions
+- **[STANDUP.md](STANDUP.md)** - Sprint standup notes and progress updates
 
 ### Implementation Guides
 - **[guides/](guides/)** - Implementation guides for in-progress tickets

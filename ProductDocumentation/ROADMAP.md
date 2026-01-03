@@ -16,9 +16,13 @@ Create a mobile-first web experience that helps friends and clients browse avail
   - ✅ Add search functionality for polish names and numbers.
   - ✅ Add lightweight pages/sections for charms, stickers, and accessories on hand.
   - ✅ Keep the design minimal and functional; prioritize speed to launch.
+  - ✅ Add accurate Color and Finish metadata from official product descriptions (60 polishes researched).
+  - ✅ Add Glitter finish filter with sparkle animation effect.
+  - ✅ Implement local image storage with LocalImage column in CSV.
+  - ✅ Add cache-busting for CSV loading to ensure instant updates.
 - **Dependencies:** Current inventory CSVs and images; simple hosting (static site is fine).
 - **Success criteria:** Friends/clients can quickly browse the current collection, filter by multiple attributes, and see on-hand extras.
-- **Progress:** ~85% complete - Gallery ✅, Color filter ✅, Finish filter ✅, Multi-color support ✅, Multi-filter AND logic ✅, Search ✅, Navigation ✅, Filter reset ✅, Content pages pending
+- **Progress:** ~95% complete - Gallery ✅, Color filter ✅, Finish filter ✅, Multi-color support ✅, Multi-filter AND logic ✅, Search ✅, Navigation ✅, Filter reset ✅, Data accuracy ✅, Content pages pending
 
 ### Milestone 2: Personalization basics (Weeks 4-6)
 - **Deliverable:** Logged-in experience with personal tracking.
