@@ -358,6 +358,12 @@
       box-shadow: var(--shadow-md);
     }
     
+    .icon-btn:focus-visible {
+      outline: 2px solid var(--color-primary-500);
+      outline-offset: 2px;
+      transform: scale(1.1);
+    }
+    
     .icon-btn:active {
       transform: scale(1.05);
     }
@@ -373,6 +379,13 @@
       background: var(--color-primary-50);
     }
     
+    .favorite-btn:focus-visible {
+      outline: 2px solid var(--color-primary-500);
+      outline-offset: 2px;
+      border-color: var(--color-primary-300);
+      background: var(--color-primary-50);
+    }
+    
     .favorite-btn.active {
       color: var(--color-primary-600);
       border-color: var(--color-primary-500);
@@ -383,25 +396,53 @@
       color: var(--color-primary-700);
     }
     
+    .favorite-btn.active:focus-visible {
+      outline: 2px solid var(--color-primary-600);
+      outline-offset: 2px;
+      border-color: var(--color-primary-500);
+    }
+    
     /* Next Appointment calendar icon */
+    :root {
+      --color-calendar-50: #eff6ff;
+      --color-calendar-100: #dbeafe;
+      --color-calendar-200: #bfdbfe;
+      --color-calendar-500: #3b82f6;
+      --color-calendar-600: #2563eb;
+      --color-calendar-700: #1d4ed8;
+    }
+    
     .nextappt-btn {
       color: var(--color-gray-400);
     }
     
     .nextappt-btn:hover {
-      color: #3b82f6;  /* Blue for calendar */
-      border-color: #bfdbfe;
-      background: #eff6ff;
+      color: var(--color-calendar-500);  /* Blue for calendar */
+      border-color: var(--color-calendar-200);
+      background: var(--color-calendar-50);
+    }
+    
+    .nextappt-btn:focus-visible {
+      outline: 2px solid var(--color-calendar-500);
+      outline-offset: 2px;
+      border-color: var(--color-calendar-200);
+      background: var(--color-calendar-50);
     }
     
     .nextappt-btn.active {
-      color: #2563eb;
-      border-color: #3b82f6;
-      background: #dbeafe;
+      color: var(--color-calendar-600);
+      border-color: var(--color-calendar-500);
+      background: var(--color-calendar-100);
     }
     
     .nextappt-btn.active:hover {
-      color: #1d4ed8;
+      color: var(--color-calendar-700);
+    }
+    
+    .nextappt-btn.active:focus-visible {
+      outline: 2px solid var(--color-calendar-600);
+      outline-offset: 2px;
+      border-color: var(--color-calendar-500);
     }
     
     /* Mobile: Always show icons if active, larger touch targets */
@@ -1380,7 +1421,6 @@
       // Create favorite (heart) button
       const favoriteBtn = document.createElement('button');
       favoriteBtn.className = 'icon-btn favorite-btn';
-      favoriteBtn.setAttribute('aria-label', 'Toggle favorite');
       favoriteBtn.type = 'button';
       
       // Create composite ID for this polish
@@ -1391,8 +1431,10 @@
         favoriteBtn.classList.add('active');
         iconsDiv.classList.add('has-active');
         favoriteBtn.innerHTML = '❤️';  // Filled heart
+        favoriteBtn.setAttribute('aria-label', 'Remove from favorites');
       } else {
         favoriteBtn.innerHTML = '🤍';  // Outline heart
+        favoriteBtn.setAttribute('aria-label', 'Add to favorites');
       }
       
       // Add click handler for favorite toggle
@@ -1408,6 +1450,7 @@
           favoriteBtn.classList.add('active');
           iconsDiv.classList.add('has-active');
           favoriteBtn.innerHTML = '❤️';
+          favoriteBtn.setAttribute('aria-label', 'Remove from favorites');
         } else {
           favoriteBtn.classList.remove('active');
           // Check if any other icon is active before removing has-active
@@ -1415,6 +1458,7 @@
             iconsDiv.classList.remove('has-active');
           }
           favoriteBtn.innerHTML = '🤍';
+          favoriteBtn.setAttribute('aria-label', 'Add to favorites');
         }
         
         // If personal filters are active, re-apply them
@@ -1428,7 +1472,6 @@
       // Create next appointment (calendar) button
       const nextapptBtn = document.createElement('button');
       nextapptBtn.className = 'icon-btn nextappt-btn';
-      nextapptBtn.setAttribute('aria-label', 'Toggle next appointment');
       nextapptBtn.type = 'button';
       
       // Check if already in next appt list and set initial state
@@ -1436,8 +1479,10 @@
         nextapptBtn.classList.add('active');
         iconsDiv.classList.add('has-active');
         nextapptBtn.innerHTML = '📅';  // Calendar emoji
+        nextapptBtn.setAttribute('aria-label', 'Unmark from next appointment');
       } else {
         nextapptBtn.innerHTML = '🗓️';  // Outline calendar
+        nextapptBtn.setAttribute('aria-label', 'Mark for next appointment');
       }
       
       // Add click handler for next appt toggle
@@ -1452,14 +1497,16 @@
         if (isNowNextAppt) {
           nextapptBtn.classList.add('active');
           iconsDiv.classList.add('has-active');
-          nextapptBtn.innerHTML = '📅';
+          nextapptBtn.textContent = '📅';
+          nextapptBtn.setAttribute('aria-label', 'Unmark from next appointment');
         } else {
           nextapptBtn.classList.remove('active');
           // Check if any other icon is active before removing has-active
           if (!iconsDiv.querySelector('.icon-btn.active')) {
             iconsDiv.classList.remove('has-active');
           }
-          nextapptBtn.innerHTML = '🗓️';
+          nextapptBtn.textContent = '🗓️';
+          nextapptBtn.setAttribute('aria-label', 'Mark for next appointment');
         }
         
         // If personal filters are active, re-apply them
@@ -1706,11 +1753,27 @@
           emptyMessage = "You haven't selected any polishes for your next appointment yet. Tap 📅 to pick for your next visit!";
         }
         
-        emptyState.innerHTML = `
-          <div class="empty-state-icon">${emptyIcon}</div>
-          <div class="empty-state-title">No Results</div>
-          <div class="empty-state-text">${emptyMessage}</div>
-        `;
+        // Clear any previous empty-state content safely
+        emptyState.textContent = '';
+
+        // Icon
+        const iconDiv = document.createElement('div');
+        iconDiv.className = 'empty-state-icon';
+        iconDiv.textContent = emptyIcon;
+
+        // Title
+        const titleDiv = document.createElement('div');
+        titleDiv.className = 'empty-state-title';
+        titleDiv.textContent = 'No Results';
+
+        // Message text
+        const textDiv = document.createElement('div');
+        textDiv.className = 'empty-state-text';
+        textDiv.textContent = emptyMessage;
+
+        emptyState.appendChild(iconDiv);
+        emptyState.appendChild(titleDiv);
+        emptyState.appendChild(textDiv);
         emptyState.style.display = 'block';
       } else if (emptyState) {
         emptyState.style.display = 'none';
