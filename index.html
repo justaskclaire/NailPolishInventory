@@ -384,24 +384,33 @@
     }
     
     /* Next Appointment calendar icon */
+    :root {
+      --color-calendar-50: #eff6ff;
+      --color-calendar-100: #dbeafe;
+      --color-calendar-200: #bfdbfe;
+      --color-calendar-500: #3b82f6;
+      --color-calendar-600: #2563eb;
+      --color-calendar-700: #1d4ed8;
+    }
+    
     .nextappt-btn {
       color: var(--color-gray-400);
     }
     
     .nextappt-btn:hover {
-      color: #3b82f6;  /* Blue for calendar */
-      border-color: #bfdbfe;
-      background: #eff6ff;
+      color: var(--color-calendar-500);  /* Blue for calendar */
+      border-color: var(--color-calendar-200);
+      background: var(--color-calendar-50);
     }
     
     .nextappt-btn.active {
-      color: #2563eb;
-      border-color: #3b82f6;
-      background: #dbeafe;
+      color: var(--color-calendar-600);
+      border-color: var(--color-calendar-500);
+      background: var(--color-calendar-100);
     }
     
     .nextappt-btn.active:hover {
-      color: #1d4ed8;
+      color: var(--color-calendar-700);
     }
     
     /* Mobile: Always show icons if active, larger touch targets */
