@@ -50,7 +50,7 @@ polish_data = {
     497: {"color": "Pink", "finish": "Cream"},  # Baby Girl - pink cream
     530: {"color": "Blue", "finish": "Shimmer"},  # Blue Lake - blue shimmer
     607: {"color": "Brown, Neutral", "finish": "Cream"},  # Hazelnut - brown neutral
-    635: {"color": "Red, Purple", "finish": "Shimmer"},  # Burgandy Mist - burgundy red/purple
+    635: {"color": "Red, Purple", "finish": "Shimmer"},  # Burgundy Mist - burgundy red/purple
     729: {"color": "Blue", "finish": "Shimmer"},  # Ambrosia - blue shimmer
     751: {"color": "Brown, Red", "finish": "Shimmer"},  # Cherry Mocha - brown with red
     753: {"color": "Red", "finish": "Shimmer"},  # Scarlett Dreams - red shimmer
