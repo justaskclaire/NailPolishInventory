@@ -1407,14 +1407,14 @@
         if (isNowFavorited) {
           favoriteBtn.classList.add('active');
           iconsDiv.classList.add('has-active');
-          favoriteBtn.innerHTML = '❤️';
+          favoriteBtn.textContent = '❤️';
         } else {
           favoriteBtn.classList.remove('active');
           // Check if any other icon is active before removing has-active
           if (!iconsDiv.querySelector('.icon-btn.active')) {
             iconsDiv.classList.remove('has-active');
           }
-          favoriteBtn.innerHTML = '🤍';
+          favoriteBtn.textContent = '🤍';
         }
         
         // If personal filters are active, re-apply them
