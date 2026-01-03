@@ -19,7 +19,7 @@ polish_data = {
     3: {"color": "Purple, Blue", "finish": "Shimmer"},  # Blue Violet - already in old file
     116: {"color": "Pink", "finish": "Cream"},  # Blushing Face - already in old file
     775: {"color": "Red, Purple", "finish": "Shimmer"},  # Boo'd Up - romantic red/purple
-    635: {"color": "Red, Purple", "finish": "Shimmer"},  # Burgandy Mist - burgundy is red/purple
+    635: {"color": "Red, Purple", "finish": "Shimmer"},  # Burgundy Mist - burgundy is red/purple
     418: {"color": "Orange, Yellow", "finish": "Cream"},  # Butternut Squash - orange/yellow
     278: {"color": "Pink", "finish": "Cream"},  # California Grace/Vibes - already in old file
     151: {"color": "Neutral, Brown", "finish": "Shimmer"},  # Castles In Spain - already in old file
