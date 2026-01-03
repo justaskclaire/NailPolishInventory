@@ -1428,7 +1428,6 @@
       // Create next appointment (calendar) button
       const nextapptBtn = document.createElement('button');
       nextapptBtn.className = 'icon-btn nextappt-btn';
-      nextapptBtn.setAttribute('aria-label', 'Toggle next appointment');
       nextapptBtn.type = 'button';
       
       // Check if already in next appt list and set initial state
@@ -1436,8 +1435,10 @@
         nextapptBtn.classList.add('active');
         iconsDiv.classList.add('has-active');
         nextapptBtn.innerHTML = '📅';  // Calendar emoji
+        nextapptBtn.setAttribute('aria-label', 'Unmark from next appointment');
       } else {
         nextapptBtn.innerHTML = '🗓️';  // Outline calendar
+        nextapptBtn.setAttribute('aria-label', 'Mark for next appointment');
       }
       
       // Add click handler for next appt toggle
@@ -1453,6 +1454,7 @@
           nextapptBtn.classList.add('active');
           iconsDiv.classList.add('has-active');
           nextapptBtn.textContent = '📅';
+          nextapptBtn.setAttribute('aria-label', 'Unmark from next appointment');
         } else {
           nextapptBtn.classList.remove('active');
           // Check if any other icon is active before removing has-active
@@ -1460,6 +1462,7 @@
             iconsDiv.classList.remove('has-active');
           }
           nextapptBtn.textContent = '🗓️';
+          nextapptBtn.setAttribute('aria-label', 'Mark for next appointment');
         }
         
         // If personal filters are active, re-apply them
