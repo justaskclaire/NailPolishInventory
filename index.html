@@ -358,6 +358,12 @@
       box-shadow: var(--shadow-md);
     }
     
+    .icon-btn:focus-visible {
+      outline: 2px solid var(--color-primary-500);
+      outline-offset: 2px;
+      transform: scale(1.1);
+    }
+    
     .icon-btn:active {
       transform: scale(1.05);
     }
@@ -373,6 +379,13 @@
       background: var(--color-primary-50);
     }
     
+    .favorite-btn:focus-visible {
+      outline: 2px solid var(--color-primary-500);
+      outline-offset: 2px;
+      border-color: var(--color-primary-300);
+      background: var(--color-primary-50);
+    }
+    
     .favorite-btn.active {
       color: var(--color-primary-600);
       border-color: var(--color-primary-500);
@@ -381,6 +394,12 @@
     
     .favorite-btn.active:hover {
       color: var(--color-primary-700);
+    }
+    
+    .favorite-btn.active:focus-visible {
+      outline: 2px solid var(--color-primary-600);
+      outline-offset: 2px;
+      border-color: var(--color-primary-500);
     }
     
     /* Next Appointment calendar icon */
@@ -403,6 +422,13 @@
       background: var(--color-calendar-50);
     }
     
+    .nextappt-btn:focus-visible {
+      outline: 2px solid var(--color-calendar-500);
+      outline-offset: 2px;
+      border-color: var(--color-calendar-200);
+      background: var(--color-calendar-50);
+    }
+    
     .nextappt-btn.active {
       color: var(--color-calendar-600);
       border-color: var(--color-calendar-500);
@@ -411,6 +437,12 @@
     
     .nextappt-btn.active:hover {
       color: var(--color-calendar-700);
+    }
+    
+    .nextappt-btn.active:focus-visible {
+      outline: 2px solid var(--color-calendar-600);
+      outline-offset: 2px;
+      border-color: var(--color-calendar-500);
     }
     
     /* Mobile: Always show icons if active, larger touch targets */
