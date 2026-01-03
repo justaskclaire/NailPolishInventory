@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Browse my nail supply collection - polishes, charms, stickers and more with color filtering" />
-  <title>Nail Supply Collection</title>
+  <meta name="description" content="Studio Claire - Browse my nail polish collection and pick what you love. Filter by color and finish." />
+  <title>Studio Claire</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
@@ -682,10 +682,68 @@
       }
     }
     
+    .filter-option.finish-glitter label {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border-color: #fbbf24;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .filter-option.finish-glitter label::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.9) 2px, transparent 2px),
+        radial-gradient(circle at 60% 70%, rgba(255, 215, 0, 0.9) 1.5px, transparent 1.5px),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.8) 2.5px, transparent 2.5px),
+        radial-gradient(circle at 40% 80%, rgba(255, 223, 0, 0.85) 1px, transparent 1px),
+        radial-gradient(circle at 90% 60%, rgba(255, 255, 255, 0.95) 1.5px, transparent 1.5px),
+        radial-gradient(circle at 15% 90%, rgba(255, 215, 0, 0.8) 2px, transparent 2px),
+        radial-gradient(circle at 35% 15%, rgba(255, 255, 255, 0.7) 1.5px, transparent 1.5px),
+        radial-gradient(circle at 70% 45%, rgba(255, 215, 0, 0.75) 2px, transparent 2px),
+        radial-gradient(circle at 50% 95%, rgba(255, 255, 255, 0.85) 1px, transparent 1px),
+        radial-gradient(circle at 10% 60%, rgba(255, 223, 0, 0.8) 1.5px, transparent 1.5px);
+      background-size: 100% 100%;
+      animation: glitter-sparkle 2s ease-in-out infinite;
+    }
+    
+    .filter-option.finish-glitter input[type="checkbox"]:checked + label {
+      background: linear-gradient(135deg, #fde047 0%, #fbbf24 100%);
+      border-color: #f59e0b;
+    }
+    
+    @keyframes glitter-sparkle {
+      0% { 
+        opacity: 0.3;
+        transform: scale(1) rotate(0deg);
+      }
+      25% { 
+        opacity: 0.7;
+        transform: scale(1.05) rotate(5deg);
+      }
+      50% { 
+        opacity: 1;
+        transform: scale(1.1) rotate(0deg);
+      }
+      75% { 
+        opacity: 0.6;
+        transform: scale(1.05) rotate(-5deg);
+      }
+      100% { 
+        opacity: 0.3;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+    
     /* Keep animations active for selected finish filters */
     .filter-option.finish-shimmer input[type="checkbox"]:checked + label::before,
     .filter-option.finish-cat-eye input[type="checkbox"]:checked + label::before,
-    .filter-option.finish-sheer input[type="checkbox"]:checked + label::before {
+    .filter-option.finish-sheer input[type="checkbox"]:checked + label::before,
+    .filter-option.finish-glitter input[type="checkbox"]:checked + label::before {
       /* Keep animations running even when selected */
     }
     
@@ -780,7 +838,10 @@
   <!-- Navigation Header (NPI-012) -->
   <nav class="nav-header">
     <div class="nav-content">
-      <a href="index.html" class="nav-brand">Nail Supply Collection</a>
+      <div>
+        <a href="index.html" class="nav-brand">Studio Claire</a>
+        <p class="tagline" style="margin: var(--space-1) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-secondary);">Browse what I have. Pick what you love.</p>
+      </div>
       <ul class="nav-links">
         <li><a href="index.html" class="nav-link active">Polishes</a></li>
         <li><a href="#" class="nav-link disabled" title="Coming soon">Charms</a></li>
@@ -790,18 +851,11 @@
     </div>
   </nav>
 
-  <div class="header">
-    <div class="brand">
-      <h1>Polish Collection</h1>
-      <p class="tagline">Curated Colors & Finishes</p>
-    </div>
-    <p class="hint">Click any item to view product details</p>
-  </div>
-
   <div class="container">
     <div class="filter-bar">
       <!-- Filter Controls (NPI-017) - Reset button -->
       <div class="filter-controls">
+        <p class="hint" style="margin: 0; color: var(--color-text-muted);">Use filters to narrow by color family and finish</p>
         <button class="btn-clear-filters" id="clear-filters-btn" disabled>Clear All Filters</button>
       </div>
       
@@ -902,17 +956,25 @@
      */
     function parseCSV(csvText) {
       const lines = csvText.trim().split('\n');
-      const headers = lines[0].split(',');
+      const headers = lines[0].split(',').map(h => h.trim());
       
       return lines.slice(1).map(line => {
-        // Handle commas within quoted fields
+        // Handle commas within quoted fields and quotes properly
         const values = [];
         let currentValue = '';
         let insideQuotes = false;
         
-        for (let char of line) {
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+          
           if (char === '"') {
-            insideQuotes = !insideQuotes;
+            // Check if this is an escaped quote (doubled quotes)
+            if (insideQuotes && line[i + 1] === '"') {
+              currentValue += '"';
+              i++; // Skip the next quote
+            } else {
+              insideQuotes = !insideQuotes;
+            }
           } else if (char === ',' && !insideQuotes) {
             values.push(currentValue.trim());
             currentValue = '';
@@ -924,7 +986,12 @@
         
         const obj = {};
         headers.forEach((header, index) => {
-          obj[header.trim()] = values[index] || '';
+          // Remove surrounding quotes if present
+          let value = values[index] || '';
+          if (value.startsWith('"') && value.endsWith('"')) {
+            value = value.slice(1, -1);
+          }
+          obj[header] = value;
         });
         return obj;
       });
@@ -1012,6 +1079,7 @@
       const link = polish.Link || '#';
       const color = polish.Color || '';
       const finish = polish.Finish || '';
+      const localImage = polish.LocalImage || '';
       
       // SECURITY: Validate number is numeric to prevent path traversal attacks
       // Example attack: "../../etc/passwd" would be rejected here
@@ -1020,14 +1088,18 @@
         return null;
       }
       
-      // Generate safe image filename from polish name
-      // Process: "Claire's Polish!" → "Claires Polish" → "Claires_Polish"
-      const sanitizedName = sanitizeFilename(name);
-      const imageFileName = sanitizedName.replace(/\s+/g, '_');
-      
-      // Determine image extension from original URL (if available)
-      const imageExt = polish['Image Address'] && polish['Image Address'].includes('.png') ? 'png' : 'jpg';
-      const imagePath = `images/${number}-${imageFileName}.${imageExt}`;
+      // Use LocalImage path if available, otherwise generate from name
+      let imagePath = localImage;
+      if (!imagePath) {
+        // Fallback: Generate safe image filename from polish name
+        // Process: "Claire's Polish!" → "Claires Polish" → "Claires_Polish"
+        const sanitizedName = sanitizeFilename(name);
+        const imageFileName = sanitizedName.replace(/\s+/g, '_');
+        
+        // Determine image extension from original URL (if available)
+        const imageExt = polish['Image Address'] && polish['Image Address'].includes('.png') ? 'png' : 'jpg';
+        imagePath = `images/${number}-${imageFileName}.${imageExt}`;
+      }
       
       // Create anchor element (card container) with external link
       const card = document.createElement('a');
@@ -1341,8 +1413,8 @@
      */
     async function initializeGallery() {
       try {
-        // Fetch CSV file from server (relative path)
-        const response = await fetch('polishes.csv');
+        // Fetch CSV file from server (relative path) with cache busting
+        const response = await fetch('polishes.csv?v=' + Date.now());
         
         if (!response.ok) {
           // Log full error details for debugging but don't expose to user
