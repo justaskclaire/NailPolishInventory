@@ -11,6 +11,9 @@ ENV/
 # Generated files
 DND Inventory - with_local_images.csv
 
+# Reference materials
+reference/
+
 # IDE
 .vscode/
 .idea/
