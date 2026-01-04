@@ -1864,7 +1864,7 @@
     async function initializeGallery() {
       try {
         // Fetch CSV file from server (relative path) with cache busting
-        const response = await fetch('polishes.csv?v=' + Date.now());
+        const response = await fetch('data/polishes.csv?v=' + Date.now());
         
         if (!response.ok) {
           // Log full error details for debugging but don't expose to user
