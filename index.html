@@ -1344,8 +1344,8 @@
      * - Polish name
      * - Data attributes for filtering (data-color, data-finish, data-number, data-name)
      * 
-     * Images are expected at: images/{number}-{sanitized_name}.{jpg|png}
-     * Example: images/531-Lilac_Dream.jpg
+     * Images are expected at: public/images/{number}-{sanitized_name}.{jpg|png}
+     * Example: public/images/531-Lilac_Dream.jpg
      * 
      * @param {Object} polish - Polish object from CSV with Number, Name, Link, Color, Finish, Image Address
      * @returns {HTMLElement|null} Card element ready to append to grid, or null if validation fails
@@ -1375,7 +1375,7 @@
         
         // Determine image extension from original URL (if available)
         const imageExt = polish['Image Address'] && polish['Image Address'].includes('.png') ? 'png' : 'jpg';
-        imagePath = `images/${number}-${imageFileName}.${imageExt}`;
+        imagePath = `public/images/${number}-${imageFileName}.${imageExt}`;
       }
       
       // Create anchor element (card container) with external link
