@@ -1938,6 +1938,10 @@
           if (card) {
             // Stagger entrance animation — cap at 40 cards so the wave completes in ~800ms
             card.style.animationDelay = Math.min(cardIndex, 40) * 20 + 'ms';
+            // Clear the inline delay after the first animation completes so re-entrance is not laggy
+            card.addEventListener('animationend', () => {
+              card.style.animationDelay = '';
+            }, { once: true });
             cardIndex++;
             grid.appendChild(card);
           }
