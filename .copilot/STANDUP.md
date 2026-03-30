@@ -15,7 +15,7 @@
 - `docs/ROADMAP.md` - Milestone tracking (M1 & M2 complete, M3 pending)
 - `docs/Milestone2Planning.md` - M2 implementation documentation
 - `docs/Milestone3Planning.md` - M3 Pinterest integration plan (PENDING API approval)
-- `helpers/merge_csv.rb` - **Ruby: merge new raw inventory CSV into data/polishes.csv** (preserves Brand + LocalImage)
+- `helpers/merge_csv.rb` - **Ruby: merge new raw inventory CSV into data/polishes.csv** (preserves Brand + LocalImage; note: script currently uses hard-coded local paths and a specific source filename, so update those per machine/export before running)
 - `scripts/mirror_images.rb` - **Ruby: download images from Image Address URLs → public/images/, updates LocalImage column in data/polishes.csv**
 - `scripts/mirror_images.py` - **Python equivalent of mirror_images.rb** (use on Windows/PC; use Ruby version on Mac)
 - `scripts/fix_colors_accurate.py` - Color/Finish accuracy script
