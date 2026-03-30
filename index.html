@@ -258,6 +258,9 @@
       color: inherit;
       box-shadow: var(--shadow-sm);
       transition: all var(--transition-base);
+    }
+
+    .card-inner {
       animation: card-enter 420ms ease-out both;
     }
     
@@ -1046,7 +1049,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .card { animation: none; }
+      .card-inner { animation: none; }
     }
   </style>
 </head>
@@ -1560,9 +1563,12 @@
 
       iconsDiv.appendChild(nextapptBtn);
       
-      card.appendChild(img);
-      card.appendChild(iconsDiv);
-      card.appendChild(metaDiv);
+      const cardInner = document.createElement('div');
+      cardInner.className = 'card-inner';
+      cardInner.appendChild(img);
+      cardInner.appendChild(iconsDiv);
+      cardInner.appendChild(metaDiv);
+      card.appendChild(cardInner);
       
       return card;
     }
@@ -1936,11 +1942,12 @@
           }
           const card = createCard(polish);
           if (card) {
-            // Stagger entrance animation — cap at 40 cards so the wave completes in ~800ms
-            card.style.animationDelay = Math.min(cardIndex, 40) * 20 + 'ms';
+            // Stagger entrance animation on inner wrapper — cap at 40 cards so the wave completes in ~800ms
+            const cardInner = card.querySelector('.card-inner');
+            cardInner.style.animationDelay = Math.min(cardIndex, 40) * 20 + 'ms';
             // Clear the inline delay after the first animation completes so re-entrance is not laggy
-            card.addEventListener('animationend', () => {
-              card.style.animationDelay = '';
+            cardInner.addEventListener('animationend', () => {
+              cardInner.style.animationDelay = '';
             }, { once: true });
             cardIndex++;
             grid.appendChild(card);
