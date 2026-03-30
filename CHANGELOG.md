@@ -114,6 +114,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Version | Date | Description |
 |---------|------|-------------|
+| 1.2.0 | 2026-03-29 | Inventory refresh to 135 polishes + Ruby workflow + nav links hidden |
 | 1.1.0 | 2026-01-03 | Data accuracy + Glitter filter + Local images + Cache-busting |
 | 1.0.0 | 2026-01-01 | Initial release with 33 polishes, color/finish filters |
 
