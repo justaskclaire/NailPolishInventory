@@ -236,6 +236,17 @@
       padding: var(--space-1);
     }
     
+    @keyframes card-enter {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .card {
       display: block;
       position: relative;
@@ -247,6 +258,10 @@
       color: inherit;
       box-shadow: var(--shadow-sm);
       transition: all var(--transition-base);
+    }
+
+    .card-inner {
+      animation: card-enter 420ms ease-out both;
     }
     
     .card::before {
@@ -313,7 +328,27 @@
       line-height: var(--line-height-snug);
       color: var(--color-gray-900);
     }
-    
+
+    /* Finish type badge on polish cards */
+    .finish-badge {
+      display: inline-block;
+      margin-left: var(--space-1);
+      vertical-align: middle;
+      padding: 2px 8px;
+      font-size: 0.65rem;
+      font-weight: var(--font-weight-semibold);
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .finish-badge-cream        { background: #f5ebe0; color: #7c5a3a; }
+    .finish-badge-shimmer      { background: #ede9fe; color: #6d28d9; }
+    .finish-badge-cat-eye      { background: #e2e8f0; color: #475569; }
+    .finish-badge-glitter      { background: #fef3c7; color: #b45309; }
+    .finish-badge-mood-change  { background: linear-gradient(90deg, #fce7f3, #ddd6fe); color: #7e22ce; }
+    .finish-badge-sheer        { background: rgba(255,255,255,0.6); border: 1px solid var(--color-gray-200); color: var(--color-gray-500); }
+
     /* ============================================
        PERSONALIZATION ICONS (Milestone 2)
        ============================================ */
@@ -480,6 +515,13 @@
       border-bottom: 1px solid var(--color-border-light);
     }
     
+    .polish-count {
+      margin-right: auto;
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      font-weight: var(--font-weight-medium);
+    }
+
     .btn-clear-filters {
       padding: var(--space-1) var(--space-3);
       font-size: var(--font-size-sm);
@@ -503,7 +545,7 @@
       opacity: 0.4;
       cursor: not-allowed;
     }
-    
+
     .search-box {
       width: 100%;
       padding: var(--space-3);
@@ -1005,6 +1047,10 @@
         gap: var(--space-5);
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card-inner { animation: none; }
+    }
   </style>
 </head>
 <body>
@@ -1028,10 +1074,11 @@
     <div class="filter-bar">
       <!-- Filter Controls (NPI-017) - Reset button -->
       <div class="filter-controls">
+        <span id="polish-count" class="polish-count"></span>
         <p class="hint" style="margin: 0; color: var(--color-text-muted);">Use filters to narrow by color family and finish</p>
         <button class="btn-clear-filters" id="clear-filters-btn" disabled>Clear All Filters</button>
       </div>
-      
+
       <!-- TODO: Search Filter - Commented out for now
            Most users don't know polish names/numbers, and if they do, they already know you have it.
            Consider alternative search/discovery methods in future iterations.
@@ -1402,8 +1449,17 @@
       nameDiv.textContent = name;
       
       metaDiv.appendChild(numDiv);
+
+      // Finish type badge — sits inline next to the number
+      if (finish) {
+        const badgeEl = document.createElement('div');
+        badgeEl.className = `finish-badge finish-badge-${finish.toLowerCase().replace(/\s+/g, '-')}`;
+        badgeEl.textContent = finish;
+        metaDiv.appendChild(badgeEl);
+      }
+
       metaDiv.appendChild(nameDiv);
-      
+
       // Create icon container for personalization buttons
       const iconsDiv = document.createElement('div');
       iconsDiv.className = 'card-icons';
@@ -1450,13 +1506,13 @@
           favoriteBtn.innerHTML = '🤍';
           favoriteBtn.setAttribute('aria-label', 'Add to favorites');
         }
-        
+
         // If personal filters are active, re-apply them
         if (selectedPersonal.size > 0) {
           applyFilters();
         }
       });
-      
+
       iconsDiv.appendChild(favoriteBtn);
       
       // Create next appointment (calendar) button
@@ -1504,12 +1560,15 @@
           applyFilters();
         }
       });
-      
+
       iconsDiv.appendChild(nextapptBtn);
       
-      card.appendChild(img);
-      card.appendChild(iconsDiv);
-      card.appendChild(metaDiv);
+      const cardInner = document.createElement('div');
+      cardInner.className = 'card-inner';
+      cardInner.appendChild(img);
+      cardInner.appendChild(iconsDiv);
+      cardInner.appendChild(metaDiv);
+      card.appendChild(cardInner);
       
       return card;
     }
@@ -1791,9 +1850,19 @@
       // Count all active filters (colors + finishes + personal)
       // TODO: Add search count back when search is re-enabled
       const totalActive = selectedColors.size + selectedFinishes.size + selectedPersonal.size;
-      
+
       // Update clear button state
       clearFiltersBtn.disabled = (totalActive === 0);
+
+      // Update live polish count
+      const polishCountEl = document.getElementById('polish-count');
+      if (polishCountEl) {
+        const visibleCount = document.querySelectorAll('.card:not(.hidden)').length;
+        const totalCount = polishData.length;
+        polishCountEl.textContent = totalActive === 0
+          ? `${totalCount} polishes`
+          : `Showing ${visibleCount} of ${totalCount}`;
+      }
     }
 
     /**
@@ -1836,15 +1905,8 @@
     /**
      * ============================================================================
      * INITIALIZATION & EVENT SETUP
-     * ============================================================================
-     * 
-     * Startup sequence:
-     * 1. Fetch polishes.csv from server
-     * 2. Parse CSV into JavaScript objects
-     * 3. Generate and append card elements to grid
-     * 4. Populate filter checkboxes based on available colors/finishes
-     * 5. Set up event listeners (search input, clear filters button)
-     * 6. Log success or display user-friendly error message
+     * 1. Set up event listeners (search input, clear filters button)
+     * 2. Log success or display user-friendly error message
      * 
      * Error handling:
      * - Network errors → User sees friendly message, details logged to console
@@ -1872,6 +1934,7 @@
         }
         
         // Generate card for each polish and append to grid
+        let cardIndex = 0;
         polishData.forEach(polish => {
           if (!polish.Number || !polish.Name) {
             console.warn('Skipping invalid polish entry:', polish);
@@ -1879,6 +1942,14 @@
           }
           const card = createCard(polish);
           if (card) {
+            // Stagger entrance animation on inner wrapper — cap at 40 cards so the wave completes in ~800ms
+            const cardInner = card.querySelector('.card-inner');
+            cardInner.style.animationDelay = Math.min(cardIndex, 40) * 20 + 'ms';
+            // Clear the inline delay after the first animation completes so re-entrance is not laggy
+            cardInner.addEventListener('animationend', () => {
+              cardInner.style.animationDelay = '';
+            }, { once: true });
+            cardIndex++;
             grid.appendChild(card);
           }
         });

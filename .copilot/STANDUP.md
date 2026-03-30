@@ -13,12 +13,12 @@
 - `privacy-policy.html` - GDPR/CCPA compliant privacy policy for Pinterest API application
 - `docs/TICKETS.md` - 75-ticket backlog
 - `docs/ROADMAP.md` - Milestone tracking (M1 & M2 complete, M3 pending)
-- `docs/Milestone2Planning.md` - M2 implementation documentation
+- `docs/archive/Milestone2Planning.md` - M2 implementation documentation (complete)
 - `docs/Milestone3Planning.md` - M3 Pinterest integration plan (PENDING API approval)
 - `helpers/merge_csv.rb` - **Ruby: merge new raw inventory CSV into data/polishes.csv** (preserves Brand + LocalImage; note: script currently uses hard-coded local paths and a specific source filename, so update those per machine/export before running)
-- `scripts/mirror_images.rb` - **Ruby: download images from Image Address URLs → public/images/, updates LocalImage column in data/polishes.csv**
-- `scripts/mirror_images.py` - **Python equivalent of mirror_images.rb** (use on Windows/PC; use Ruby version on Mac)
-- `scripts/fix_colors_accurate.py` - Color/Finish accuracy script
+- `scripts/mirror_images.rb` - **Ruby (Mac): download images from Image Address URLs → public/images/, updates LocalImage column in data/polishes.csv**
+- `scripts/mirror_images.py` - **Python (PC/Windows): equivalent of mirror_images.rb** — see `scripts/README-mirror-images.md` for which to use
+- `data/raw_exports/` - Raw inventory export CSVs before merging (naming: YYYY-MM-polishes.csv)
 
 ## 💡 Best Practices
 - **Colors:** Verify from official product pages - never guess from names
@@ -34,6 +34,11 @@
 - **Milestone 2:** LocalStorage for personalization (no backend, no auth - SIMPLE)
 
 ## 📅 Recent Changes
+
+**Mar 29, 2026 — Project cleanup:**
+Removed 5 obsolete/superseded files (`polishes.csv` root duplicate, `data/polishes_old.csv`, and three superseded color/finish scripts). Reorganized: raw export CSV moved to `data/raw_exports/2026-03-polishes.csv` (new folder with README), completed milestone doc moved to `docs/archive/`. Updated `scripts/README-mirror-images.md` with Mac (Ruby) vs PC/Windows (Python) guidance. Updated `docs/README.md` to index the new archive/ folder.
+
+---
 
 **Mar 29, 2026 — Inventory refresh + Ruby workflow + nav cleanup:**
 
