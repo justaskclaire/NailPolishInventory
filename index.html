@@ -1365,18 +1365,8 @@
         return null;
       }
       
-      // Use LocalImage path if available, otherwise generate from name
-      let imagePath = localImage;
-      if (!imagePath) {
-        // Fallback: Generate safe image filename from polish name
-        // Process: "Claire's Polish!" → "Claires Polish" → "Claires_Polish"
-        const sanitizedName = sanitizeFilename(name);
-        const imageFileName = sanitizedName.replace(/\s+/g, '_');
-        
-        // Determine image extension from original URL (if available)
-        const imageExt = polish['Image Address'] && polish['Image Address'].includes('.png') ? 'png' : 'jpg';
-        imagePath = `public/images/${number}-${imageFileName}.${imageExt}`;
-      }
+      // Use LocalImage path if available, otherwise fall back to the remote Image Address URL
+      let imagePath = localImage || polish['Image Address'] || '';
       
       // Create anchor element (card container) with external link
       const card = document.createElement('a');

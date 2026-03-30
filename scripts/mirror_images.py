@@ -18,16 +18,17 @@ import requests
 
 
 # ---------- Config you might change ----------
-CSV_FILENAME = "polishes.csv"
+CSV_FILENAME = "data/polishes.csv"
 
 # Column names expected in your CSV
 NUMBER_COL = "Number"
 NAME_COL = "Name"
 IMAGE_URL_COL = "Image Address"
+LOCAL_IMAGE_COL = "LocalImage"
 
 # Output settings
-IMAGES_DIRNAME = "images"
-OUTPUT_CSV_FILENAME = "DND Inventory - with_local_images.csv"
+IMAGES_DIRNAME = "public/images"
+OUTPUT_CSV_FILENAME = "data/polishes.csv"  # Update in-place
 
 # Download behavior
 TIMEOUT_SECONDS = 25
@@ -128,6 +129,12 @@ def main() -> None:
         number = str(row.get(NUMBER_COL, "")).strip()
         name = str(row.get(NAME_COL, "")).strip()
         img_url = str(row.get(IMAGE_URL_COL, "")).strip()
+
+        # If already has a LocalImage path set, skip entirely
+        existing_local = str(row.get(LOCAL_IMAGE_COL, "")).strip()
+        if existing_local:
+            skipped += 1
+            continue
 
         # If there's no URL, we can't download anything
         if not img_url:
