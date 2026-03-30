@@ -10,7 +10,6 @@
 ## 📋 Key Files
 - `index.html` - Main gallery page with filters + personalization (favorites & next appt)
 - `data/polishes.csv` - **Master CSV (site reads this)** - 135 polishes, columns: Brand, Number, Name, Link, Image Address, LocalImage, Color, Finish
-- `polishes.csv` - Raw inventory export (root); replaced each time new inventory arrives — NOT what the site reads
 - `privacy-policy.html` - GDPR/CCPA compliant privacy policy for Pinterest API application
 - `docs/TICKETS.md` - 75-ticket backlog
 - `docs/ROADMAP.md` - Milestone tracking (M1 & M2 complete, M3 pending)
@@ -18,6 +17,7 @@
 - `docs/Milestone3Planning.md` - M3 Pinterest integration plan (PENDING API approval)
 - `helpers/merge_csv.rb` - **Ruby: merge new raw inventory CSV into data/polishes.csv** (preserves Brand + LocalImage)
 - `scripts/mirror_images.rb` - **Ruby: download images from Image Address URLs → public/images/, updates LocalImage column in data/polishes.csv**
+- `scripts/mirror_images.py` - **Python equivalent of mirror_images.rb** (use on Windows/PC; use Ruby version on Mac)
 - `scripts/fix_colors_accurate.py` - Color/Finish accuracy script
 
 ## 💡 Best Practices
@@ -37,11 +37,11 @@
 
 **Mar 29, 2026 — Inventory refresh + Ruby workflow + nav cleanup:**
 
-1. **New inventory loaded (March 2026):** Received `POLISHES-03-2026 - polishes.csv` — a 107-polish raw export, saved as root `polishes.csv` (CRLF-stripped raw inventory file; NOT read by the site). `data/polishes.csv` (what the site reads) is the enriched master, now at **135 polishes**, all with Brand, LocalImage, Color, and Finish. The merge matched rows by Number+Name, fell back to Number-only for unique numbers, and preserved Brand and LocalImage while pulling in updated Links, Image Addresses, Colors, and Finishes from the new export.
+1. **New inventory loaded (March 2026):** Received `POLISHES-03-2026 - polishes.csv` — a 107-polish raw export. `data/polishes.csv` (what the site reads) is the enriched master, now at **135 polishes**, all with Brand, LocalImage, Color, and Finish. The merge matched rows by Number+Name, fell back to Number-only for unique numbers, and preserved Brand and LocalImage while pulling in updated Links, Image Addresses, Colors, and Finishes from the new export.
 
-2. **Ruby workflow for Mac:** Python 3 is not readily available on the dev Mac, so two Ruby scripts were created as the go-forward workflow for inventory updates:
+2. **Ruby workflow for Mac:** Python 3 is not readily available on the dev Mac, so a Ruby script was created as the go-forward workflow for inventory updates on Mac. On Windows/PC, use the equivalent Python scripts:
    - `helpers/merge_csv.rb` — takes a new raw inventory export and merges it into `data/polishes.csv`. Run this first whenever new inventory arrives.
-   - `scripts/mirror_images.rb` — downloads images from the Image Address column into `public/images/` and updates the LocalImage column in-place. Run this after the merge to pull any new images.
+   - `scripts/mirror_images.rb` (Mac) / `scripts/mirror_images.py` (PC) — downloads images from the Image Address column into `public/images/` and updates the LocalImage column in-place. Run this after the merge to pull any new images.
 
 3. **Nav links hidden:** Commented out the entire `<ul class="nav-links">` block in `index.html`. It previously listed Polishes, Charms, Stickers, and Accessories — but Charms/Stickers/Accessories were non-functional placeholders. With only "Polishes" remaining, the nav bar added no meaningful context. Code is preserved in comments for when those sections become real.
 
