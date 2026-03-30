@@ -11,6 +11,10 @@ This folder contains all project planning and implementation documentation.
 - **[ProductQuestions.txt](ProductQuestions.txt)** - Original requirements and questions
 - **[../.copilot/STANDUP.md](../.copilot/STANDUP.md)** - Daily standup notes with running change log
 
+### Archive
+- **[archive/](archive/)** - Completed milestone planning docs kept for historical reference
+  - **[archive/Milestone2Planning.md](archive/Milestone2Planning.md)** - localStorage favorites & next appointment (complete, Jan 2026)
+
 ### Implementation Guides
 - **[guides/](guides/)** - Implementation guides for in-progress tickets
   - Currently empty - guides are created only for active work, not completed tickets
