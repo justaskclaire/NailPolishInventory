@@ -1,13 +1,10 @@
 require 'csv'
 
 src  = "/Users/claire/code/NailPolishInventory/POLISHES-03-2026 - polishes.csv"
-root = "/Users/claire/code/NailPolishInventory/polishes.csv"
 data = "/Users/claire/code/NailPolishInventory/data/polishes.csv"
 
-# Clean CRLF from source, write straight to polishes.csv
+# Clean CRLF from source
 clean = File.read(src).gsub(/\r\n/, "\n").gsub(/\r/, "\n")
-File.write(root, clean)
-puts "polishes.csv replaced with 03-2026 data (CRLF stripped)"
 
 # Build lookup from 03-2026: key = [number, name.downcase]
 lookup = {}

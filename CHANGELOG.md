@@ -13,6 +13,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Accessibility improvements (ARIA labels, keyboard navigation)
 - Performance optimizations
 
+## [1.2.0] - 2026-03-29
+
+### Added
+- **Ruby inventory workflow** for Mac-based updates
+  - `helpers/merge_csv.rb` — merges a new raw inventory export into `data/polishes.csv`, matching on Number+Name (falls back to Number-only for unique numbers), preserving Brand and LocalImage, updating Links, Image Addresses, Colors, and Finishes; currently hard-codes the March 2026 export path/filename, so update those values in the script before each run
+  - `scripts/mirror_images.rb` — Ruby port of the Python image mirror script; downloads images from Image Address URLs to `public/images/` and updates the LocalImage column in-place
+- **March 2026 inventory export** — `POLISHES-03-2026 - polishes.csv` (107 polishes, raw)
+
+### Changed
+- **Expanded collection** from 60 to 135 polishes in `data/polishes.csv`
+  - All 135 polishes have local images (LocalImage column fully populated)
+- **Nav links hidden** — commented out `<ul class="nav-links">` block in `index.html`
+  - Charms, Stickers, and Accessories were non-functional placeholders; "Polishes" alone as the sole item added no navigational value; code preserved in comments
+
 ## [1.1.0] - 2026-01-03
 
 ### Added
@@ -100,6 +114,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Version | Date | Description |
 |---------|------|-------------|
+| 1.2.0 | 2026-03-29 | Inventory refresh to 135 polishes + Ruby workflow + nav links hidden |
 | 1.1.0 | 2026-01-03 | Data accuracy + Glitter filter + Local images + Cache-busting |
 | 1.0.0 | 2026-01-01 | Initial release with 33 polishes, color/finish filters |
 
