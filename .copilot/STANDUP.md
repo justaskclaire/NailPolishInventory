@@ -36,7 +36,7 @@
 ## 📅 Recent Changes
 
 **Mar 29, 2026 — Project cleanup:**
-Removed 5 obsolete/superseded files (`polishes.csv` root duplicate, `data/polishes_old.csv`, and three superseded color/finish scripts). Reorganized: raw export CSV moved to `data/raw_exports/2026-03-polishes.csv` (new folder with README), completed milestone doc moved to `docs/archive/`. Updated `scripts/README-mirror-images.md` with Mac (Python) vs PC/Windows (Ruby) guidance. Updated `docs/README.md` to index the new archive/ folder.
+Removed 5 obsolete/superseded files (`polishes.csv` root duplicate, `data/polishes_old.csv`, and three superseded color/finish scripts). Reorganized: raw export CSV moved to `data/raw_exports/2026-03-polishes.csv` (new folder with README), completed milestone doc moved to `docs/archive/`. Updated `scripts/README-mirror-images.md` with Mac (Ruby) vs PC/Windows (Python) guidance. Updated `docs/README.md` to index the new archive/ folder.
 
 ---
 
