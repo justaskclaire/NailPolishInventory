@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - **Ruby inventory workflow** for Mac-based updates
-  - `helpers/merge_csv.rb` — merges a new raw inventory export into `data/polishes.csv`, matching on Number+Name (falls back to Number-only for unique numbers), preserving Brand and LocalImage, updating Links, Image Addresses, Colors, and Finishes
+  - `helpers/merge_csv.rb` — merges a new raw inventory export into `data/polishes.csv`, matching on Number+Name (falls back to Number-only for unique numbers), preserving Brand and LocalImage, updating Links, Image Addresses, Colors, and Finishes; currently hard-codes the March 2026 export path/filename, so update those values in the script before each run
   - `scripts/mirror_images.rb` — Ruby port of the Python image mirror script; downloads images from Image Address URLs to `public/images/` and updates the LocalImage column in-place
 - **March 2026 inventory export** — `POLISHES-03-2026 - polishes.csv` (107 polishes, raw)
 
