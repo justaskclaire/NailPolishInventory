@@ -7,7 +7,7 @@
 > If starting a data import in a new chat session, tell your assistant which machine you're using so the correct script is selected.
 
 ## Purpose
-Downloads product images from URLs in your CSV and saves them locally to the `images/` folder. Updates the `LocalImage` column in `data/polishes.csv`.
+Downloads product images from URLs in your CSV and saves them locally to the `public/images/` folder. Updates the `LocalImage` column in `data/polishes.csv`.
 
 ---
 
@@ -46,7 +46,7 @@ ruby scripts/mirror_images.rb
 ### 3. What It Does
 - Reads `polishes.csv`
 - Downloads each image from the "Image Address" column
-- Saves images to `images/` folder as `{Number}-{Name}.{ext}`
+- Saves images to `public/images/` folder as `{Number}-{Name}.{ext}`
 - Skips images that already exist (won't re-download)
 - Creates `DND Inventory - with_local_images.csv` with a new "LocalImage" column
 
@@ -61,7 +61,7 @@ Downloaded: 2, Skipped: 31, Failed: 0
 ```
 
 ### 5. What to Check
-- ✅ New images appear in `images/` folder
+- ✅ New images appear in `public/images/` folder
 - ✅ `DND Inventory - with_local_images.csv` has the "LocalImage" column filled in
 - ⚠️ If any downloads fail, check the image URL is valid
 
