@@ -2022,11 +2022,22 @@
     /**
      * Show a brief confirmation toast that auto-dismisses after 2.5s
      */
+    let copyToastTimeoutId = null;
     function showCopyToast() {
       const toast = document.getElementById('copy-toast');
       if (!toast) return;
+
+      // If a previous hide timeout is pending, cancel it so the toast
+      // remains visible for a full duration after the latest copy.
+      if (copyToastTimeoutId !== null) {
+        clearTimeout(copyToastTimeoutId);
+      }
+
       toast.classList.add('visible');
-      setTimeout(() => toast.classList.remove('visible'), 2500);
+      copyToastTimeoutId = setTimeout(() => {
+        toast.classList.remove('visible');
+        copyToastTimeoutId = null;
+      }, 2500);
     }
 
     /**
