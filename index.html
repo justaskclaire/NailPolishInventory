@@ -2074,6 +2074,11 @@
 
       const lines = list.map(id => {
         const dashIndex = id.indexOf('-');
+        // Guard against unexpected/corrupt IDs without a valid '-' separator
+        if (dashIndex <= 0 || dashIndex === id.length - 1) {
+          // Fall back to the full string to avoid malformed "# " output
+          return id;
+        }
         const number = id.substring(0, dashIndex);
         const name = id.substring(dashIndex + 1);
         return `#${number} ${name}`;
