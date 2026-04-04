@@ -1061,6 +1061,73 @@
     @media (prefers-reduced-motion: reduce) {
       .card-inner { animation: none; }
     }
+
+    /* ============================================
+       COPY PICKS BUTTON & TOAST
+       ============================================ */
+
+    .copy-picks-wrapper {
+      display: none;
+      margin-top: var(--space-2);
+    }
+
+    .copy-picks-wrapper.visible {
+      display: block;
+    }
+
+    .btn-copy-picks {
+      width: 100%;
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      font-family: var(--font-family);
+      color: var(--color-white);
+      background: linear-gradient(135deg, var(--color-calendar-500) 0%, var(--color-calendar-600) 100%);
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-1);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-copy-picks:hover {
+      background: linear-gradient(135deg, var(--color-calendar-600) 0%, var(--color-calendar-700) 100%);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+    }
+
+    .btn-copy-picks:active {
+      transform: translateY(0);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .copy-toast {
+      position: fixed;
+      bottom: var(--space-5);
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--color-gray-900);
+      color: var(--color-white);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-md);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      box-shadow: var(--shadow-xl);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity var(--transition-base), transform var(--transition-base);
+      pointer-events: none;
+      max-width: calc(100vw - 2rem);
+    }
+
+    .copy-toast.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
   </style>
 </head>
 <body>
@@ -1115,6 +1182,11 @@
             <input type="checkbox" data-personal="nextappt" id="filter-nextappt" />
             <label for="filter-nextappt">📅 My Next Appt</label>
           </div>
+        </div>
+        <div class="copy-picks-wrapper" id="copy-picks-wrapper">
+          <button class="btn-copy-picks" id="copy-picks-btn" type="button">
+            📋 Send colors to Claire
+          </button>
         </div>
       </div>
       
@@ -1564,7 +1636,10 @@
           nextapptBtn.textContent = '🗓️';
           nextapptBtn.setAttribute('aria-label', 'Mark for next appointment');
         }
-        
+
+        // Update copy button visibility
+        updateCopyButton();
+
         // If personal filters are active, re-apply them
         if (selectedPersonal.size > 0) {
           applyFilters();
@@ -1923,6 +1998,101 @@
      * - Invalid CSV → Validation warnings, skips bad entries
      * - Missing data → Graceful fallback with empty strings
      */
+    /**
+     * ============================================================================
+     * COPY PICKS - SEND COLORS TO CLAIRE
+     * ============================================================================
+     */
+
+    /**
+     * Show or hide the "Send colors to Claire" button based on nextappt list
+     * Called on page load and after every nextappt toggle.
+     */
+    function updateCopyButton() {
+      const wrapper = document.getElementById('copy-picks-wrapper');
+      if (!wrapper) return;
+      const list = getStoredList('nextappt');
+      if (list.length > 0) {
+        wrapper.classList.add('visible');
+      } else {
+        wrapper.classList.remove('visible');
+      }
+    }
+
+    /**
+     * Show a brief confirmation toast that auto-dismisses after 2.5s
+     */
+    let copyToastTimeoutId = null;
+    function showCopyToast() {
+      const toast = document.getElementById('copy-toast');
+      if (!toast) return;
+
+      // If a previous hide timeout is pending, cancel it so the toast
+      // remains visible for a full duration after the latest copy.
+      if (copyToastTimeoutId !== null) {
+        clearTimeout(copyToastTimeoutId);
+      }
+
+      toast.classList.add('visible');
+      copyToastTimeoutId = setTimeout(() => {
+        toast.classList.remove('visible');
+        copyToastTimeoutId = null;
+      }, 2500);
+    }
+
+    /**
+     * Fallback copy using execCommand for browsers without Clipboard API
+     * @param {string} text
+     */
+    function fallbackCopy(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showCopyToast();
+      } catch (e) {
+        console.error('Copy failed:', e);
+      }
+      document.body.removeChild(textarea);
+    }
+
+    /**
+     * Format the nextappt list and copy it to the clipboard.
+     * Output format:
+     *   My picks for my next appointment:
+     *   #781 Air of Mint
+     *   #427 Banana Crepe
+     */
+    function copyPicksToClipboard() {
+      const list = getStoredList('nextappt');
+      if (list.length === 0) return;
+
+      const lines = list.map(id => {
+        const dashIndex = id.indexOf('-');
+        // Guard against unexpected/corrupt IDs without a valid '-' separator
+        if (dashIndex <= 0 || dashIndex === id.length - 1) {
+          // Fall back to the full string to avoid malformed "# " output
+          return id;
+        }
+        const number = id.substring(0, dashIndex);
+        const name = id.substring(dashIndex + 1);
+        return `#${number} ${name}`;
+      });
+
+      const message = `My picks for my next appointment:\n${lines.join('\n')}`;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(message).then(showCopyToast).catch(() => fallbackCopy(message));
+      } else {
+        fallbackCopy(message);
+      }
+    }
+
     async function initializeGallery() {
       try {
         // Fetch CSV file from server (relative path) with cache busting
@@ -1994,6 +2164,11 @@
         
         // Initialize filter controls UI (show "No filters active")
         updateFilterControls();
+
+        // Set up copy picks button
+        document.getElementById('copy-picks-btn').addEventListener('click', copyPicksToClipboard);
+        // Show button if user already has nextappt picks from a previous session
+        updateCopyButton();
         
         console.log(`Successfully loaded ${polishData.length} polishes`);
         
@@ -2016,5 +2191,6 @@
       initializeGallery();
     }
   </script>
+  <div class="copy-toast" id="copy-toast" role="status" aria-live="polite" aria-atomic="true">Copied! Paste it in a text to Claire 💅</div>
 </body>
 </html>
