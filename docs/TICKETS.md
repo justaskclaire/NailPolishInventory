@@ -3,17 +3,17 @@
 ## 📊 Executive Summary
 
 ### 🎯 Current Status
-- **Completed:** 11/76 tickets (14%) | 23/191 points (12%)
-- **Current Phase:** Milestone 2 - Personalization Basics ✅ COMPLETE (January 3, 2026)
-- **Previous Milestone:** Milestone 1 - MVP Gallery ✅ COMPLETE (January 3, 2026)
-- **Velocity:** 33 points delivered in Sprint 1
+- **Completed:** 23/84 tickets (27%) | 48/208 points (23%) | **Skipped/Descoped:** 13 tickets (37pts)
+- **Current Phase:** 🖼️ Inspo Gallery shipped (Aug 26, 2026) - a full color/season/occasion/vibe-filterable photo gallery, plus the Book Appointment booking flow
+- **Previous Milestone:** Milestone 2 - Personalization Basics ✅ COMPLETE (Jan 3, 2026, via a simplified localStorage approach - see note in that section)
+- **Velocity:** 33 points (Sprint 1) + 20 points (Aug 26, 2026 session: booking CTA + Inspo Gallery)
 
 ### 🔥 Top 5 Priorities (Next Sprint)
-1. **NPI-014** - Mobile-first layout system [5pt] - Design consistency
-2. **NPI-018** - Mobile usability testing [2pt] - Quality assurance
-3. **NPI-019** - Add basic accessibility checks [2pt] - Accessibility compliance
-4. **NPI-020** - Optimize page load performance [1pt] - Performance
-5. **M3 Planning** - Enhanced Browsing milestone planning
+1. **NPI-014** - Mobile-first layout system [5pt] - Design consistency (Polishes page; Inspo page's equivalent shipped as NPI-066)
+2. **NPI-060** - Pre-appointment inspo/color-pick reminder [2pt] - Inspo Gallery now gives clients somewhere to browse; the actual reminder/nudge mechanism is still unbuilt
+3. **NPI-018** - Mobile usability testing [2pt] - Quality assurance
+4. **NPI-019** - Add basic accessibility checks [2pt] - Accessibility compliance
+5. **NPI-057/059** - Contact/inquiry form + services/pricing page [4pt] - Rounds out the booking flow
 
 ### 📦 Functional Categories
 | Category | Tickets | Points | Done | Priority |
@@ -26,6 +26,8 @@
 | 🎯 **Discovery & Recommendations** | 11 | 33 | 0 | ⬇️ Low |
 | 🧪 **Testing & Quality** | 11 | 21 | 0 | ⬆️ High |
 
+_This table's a cross-cutting view by function, separate from the milestone-based tracking above/below - it predates tonight's Inspo Gallery work and wasn't recategorized into it. The Milestone Overview and Project Summary sections are the accurate, current source of truth._
+
 ### ⚠️ Blockers & Dependencies
 - **5 tickets blocked:** NPI-006 (brand filter), NPI-009/010/011 (content pages), NPI-015 (detail modal)
 - **NPI-017** ready to start - all filter prerequisites complete (NPI-005 ✅, NPI-007 ✅, NPI-008 ✅)
@@ -33,16 +35,17 @@
 
 ### 🎯 Milestone Overview
 - **M1: MVP Gallery (Weeks 1-3)** → ✅ COMPLETE (Jan 3, 2026) - 29 pts delivered
-- **M2: Personalization (Weeks 4-6)** → ✅ COMPLETE (Jan 3, 2026) - 4 pts delivered (simplified scope)
-- **M3: Enhanced Browsing (Weeks 7-9)** → 🚀 NEXT - Ready to plan
-- **M4: Booking (Future)** → Research phase only
+- **M2: Personalization (Weeks 4-6)** → ✅ COMPLETE (Jan 3, 2026) - delivered via localStorage (favorites + next-appt + "Send colors to Claire"), not the originally-scoped auth/backend approach - see note in that section
+- **M3: Enhanced Browsing (Weeks 7-9)** → Polish-specific recommendation/lookbook tickets still not started, but the **Inspo Gallery** (new, Aug 26 2026) delivers the "enhanced browsing" spirit of this milestone for inspiration photos - see the new section below
+- **🖼️ Inspo Gallery (Aug 26, 2026)** → ✅ SHIPPED - 216 photos mirrored from Pinterest, tagged and filterable by Color/Season/Occasion/Vibe, hashtag overlays, clean URLs, mobile-responsive
+- **M4: Booking (Future)** → 🔵 IN PROGRESS - live Google Calendar booking flow shipped (NPI-058); pricing/contact-form/payment tickets still open
 
 ---
 
 ## Quick Reference Guide
 - **ID:** NPI-### (unique identifier)
 - **Points:** 1-13 (Fibonacci complexity scale)
-- **Status:** 🟢 Done | 🔵 In Progress | 🟡 Not Started | 🔴 Blocked
+- **Status:** 🟢 Done | 🔵 In Progress | 🟡 Not Started | 🔴 Blocked | ⏭️ Skipped/Descoped (superseded by a simpler shipped solution)
 - **Priority:** 🔥 Critical | ⬆️ High | ➡️ Medium | ⬇️ Low
 
 💡 **Tip:** Click ▶ to expand ticket details | **Executive view above** for high-level status
@@ -384,62 +387,50 @@ Track page views, filter usage, and user behavior
 
 ---
 
-## 💎 Milestone 2: Personalization Basics (Weeks 4-6)
+## 💎 Milestone 2: Personalization Basics (Weeks 4-6) - COMPLETE (simplified scope)
 
-**Progress:** 0/15 tickets | 0/42 points (0%)
+**Progress:** 2/15 tickets done | 13/15 skipped/descoped | 5/42 points done (37pts descoped)
+
+> ⚠️ **Reality check (added Aug 26, 2026):** This milestone was originally scoped around full auth + a backend (NPI-022/023/025 etc.), but shipped instead via a much simpler no-login, no-backend approach: a heart-icon "favorites" toggle and a calendar-icon "next appointment" toggle, both persisted in `localStorage` with a composite `number-name` ID, plus a "📋 Send colors to Claire" clipboard-copy button so clients can hand off their picks without any account system. ROADMAP.md already reflected this; this ticket list didn't. Tickets below are marked ⏭️ Skipped where the simpler approach made them unnecessary, not because the underlying need wasn't met.
 
 | ID | Title | Category | Pts | Status | Priority |
 |---|---|---|:---:|:---:|:---:|
-| [NPI-022](#npi-022) | Set up authentication system | 👤 Auth | 5 | 🟡 | 🔥 |
-| [NPI-023](#npi-023) | Create login/signup UI flow | 👤 Auth | 3 | 🟡 | 🔥 |
-| [NPI-024](#npi-024) | Design user data schema | 💾 Data | 2 | 🟡 | 🔥 |
-| [NPI-025](#npi-025) | Implement backend data persistence | 💾 Backend | 5 | 🟡 | 🔥 |
-| [NPI-026](#npi-026) | Add "Favorite" button to polish cards | 👤 Favorites | 3 | 🟡 | ⬆️ |
-| [NPI-027](#npi-027) | Create "My Favorites" page | 👤 Favorites | 3 | 🟡 | ⬆️ |
-| [NPI-028](#npi-028) | Build "On-Hand" vs "Wishlist" toggle | 👤 Collection | 5 | 🟡 | ⬆️ |
-| [NPI-029](#npi-029) | Create "My Collection" page | 👤 Collection | 3 | 🟡 | ⬆️ |
-| [NPI-030](#npi-030) | Add collection counters | 👤 Collection | 2 | 🟡 | ➡️ |
-| [NPI-031](#npi-031) | Create seasonal collection tags | 📄 Content | 3 | 🟡 | ➡️ |
-| [NPI-032](#npi-032) | Build "Seasonal Collections" browsing page | 📄 Content | 3 | 🟡 | ➡️ |
-| [NPI-033](#npi-033) | Add custom collections/boards feature | 👤 Collection | 2 | 🟡 | ⬇️ |
-| [NPI-034](#npi-034) | Implement cross-device data sync | 💾 Backend | 2 | 🟡 | ⬆️ |
-| [NPI-035](#npi-035) | Add collection export functionality | 💾 Data | 2 | 🟡 | ⬇️ |
-| [NPI-036](#npi-036) | Create user profile/settings page | 👤 Profile | 1 | 🟡 | ➡️ |
+| [NPI-022](#npi-022) | Set up authentication system | 👤 Auth | 5 | ⏭️ | 🔥 |
+| [NPI-023](#npi-023) | Create login/signup UI flow | 👤 Auth | 3 | ⏭️ | 🔥 |
+| [NPI-024](#npi-024) | Design user data schema | 💾 Data | 2 | 🟢 | 🔥 |
+| [NPI-025](#npi-025) | Implement backend data persistence | 💾 Backend | 5 | ⏭️ | 🔥 |
+| [NPI-026](#npi-026) | Add "Favorite" button to polish cards | 👤 Favorites | 3 | 🟢 | ⬆️ |
+| [NPI-027](#npi-027) | Create "My Favorites" page | 👤 Favorites | 3 | ⏭️ | ⬆️ |
+| [NPI-028](#npi-028) | Build "On-Hand" vs "Wishlist" toggle | 👤 Collection | 5 | ⏭️ | ⬆️ |
+| [NPI-029](#npi-029) | Create "My Collection" page | 👤 Collection | 3 | ⏭️ | ⬆️ |
+| [NPI-030](#npi-030) | Add collection counters | 👤 Collection | 2 | ⏭️ | ➡️ |
+| [NPI-031](#npi-031) | Create seasonal collection tags | 📄 Content | 3 | ⏭️ | ➡️ |
+| [NPI-032](#npi-032) | Build "Seasonal Collections" browsing page | 📄 Content | 3 | ⏭️ | ➡️ |
+| [NPI-033](#npi-033) | Add custom collections/boards feature | 👤 Collection | 2 | ⏭️ | ⬇️ |
+| [NPI-034](#npi-034) | Implement cross-device data sync | 💾 Backend | 2 | ⏭️ | ⬆️ |
+| [NPI-035](#npi-035) | Add collection export functionality | 💾 Data | 2 | ⏭️ | ⬇️ |
+| [NPI-036](#npi-036) | Create user profile/settings page | 👤 Profile | 1 | ⏭️ | ➡️ |
 
 <details>
 <summary><b>📋 View All Ticket Details</b> (click to expand)</summary>
 
 ### Ticket Details
-| [NPI-022](#npi-022) | Set up authentication system | 5 | 🟡 | 🔥 |
-| [NPI-023](#npi-023) | Create login/signup UI flow | 3 | 🟡 | 🔥 |
-| [NPI-024](#npi-024) | Design user data schema | 2 | 🟡 | 🔥 |
-| [NPI-025](#npi-025) | Implement backend data persistence | 5 | 🟡 | 🔥 |
-| [NPI-026](#npi-026) | Add "Favorite" button to polish cards | 3 | 🟡 | ⬆️ |
-| [NPI-027](#npi-027) | Create "My Favorites" page | 3 | 🟡 | ⬆️ |
-| [NPI-028](#npi-028) | Build "On-Hand" vs "Wishlist" toggle | 5 | 🟡 | ⬆️ |
-| [NPI-029](#npi-029) | Create "My Collection" page | 3 | 🟡 | ⬆️ |
-| [NPI-030](#npi-030) | Add collection counters | 2 | 🟡 | ➡️ |
-| [NPI-031](#npi-031) | Create seasonal collection tags | 3 | 🟡 | ➡️ |
-| [NPI-032](#npi-032) | Build "Seasonal Collections" browsing page | 3 | 🟡 | ➡️ |
-| [NPI-033](#npi-033) | Add custom collections/boards feature | 2 | 🟡 | ⬇️ |
-| [NPI-034](#npi-034) | Implement cross-device data sync | 2 | 🟡 | ⬆️ |
-| [NPI-035](#npi-035) | Add collection export functionality | 2 | 🟡 | ⬇️ |
-| [NPI-036](#npi-036) | Create user profile/settings page | 1 | 🟡 | ➡️ |
-
-### Ticket Details
 
 <details id="npi-022">
-<summary><b>NPI-022</b> | Set up authentication system [5pt] 🟡 🔥</summary>
+<summary><b>NPI-022</b> | Set up authentication system [5pt] ⏭️ 🔥</summary>
 
 ### 🏷️ Tags
 `auth` `backend` `firebase` `supabase`
 
 ### 📋 Description
 Implement Firebase or Supabase authentication
+
+### ⏭️ Skipped
+Not needed - shipped with localStorage instead, no login required (see M2 note above)
 </details>
 
 <details id="npi-023">
-<summary><b>NPI-023</b> | Create login/signup UI flow [3pt] 🟡 🔥</summary>
+<summary><b>NPI-023</b> | Create login/signup UI flow [3pt] ⏭️ 🔥</summary>
 
 ### 🏷️ Tags
 `auth` `ui` `forms`
@@ -449,20 +440,26 @@ Build user-friendly authentication forms and flows
 
 ### 🔗 Prerequisites
 NPI-022
+
+### ⏭️ Skipped
+No auth system built - not needed
 </details>
 
 <details id="npi-024">
-<summary><b>NPI-024</b> | Design user data schema [2pt] 🟡 🔥</summary>
+<summary><b>NPI-024</b> | Design user data schema [2pt] 🟢 🔥</summary>
 
 ### 🏷️ Tags
 `database` `schema` `planning`
 
 ### 📋 Description
 Define data structure for favorites, on-hand, wishlist
+
+### ✅ Status Notes
+✅ Shipped as a composite `number-name` ID scheme in localStorage (`nailpolish_favorites`, `nailpolish_nextappt` keys) - simpler than the originally-planned backend schema, but fulfills the same need
 </details>
 
 <details id="npi-025">
-<summary><b>NPI-025</b> | Implement backend data persistence [5pt] 🟡 🔥</summary>
+<summary><b>NPI-025</b> | Implement backend data persistence [5pt] ⏭️ 🔥</summary>
 
 ### 🏷️ Tags
 `backend` `database` `api`
@@ -472,10 +469,13 @@ Build data layer for storing user preferences and collections
 
 ### 🔗 Prerequisites
 NPI-022, NPI-024
+
+### ⏭️ Skipped
+No backend - localStorage is sufficient for a single-device, no-login use case
 </details>
 
 <details id="npi-026">
-<summary><b>NPI-026</b> | Add "Favorite" button to polish cards [3pt] 🟡 ⬆️</summary>
+<summary><b>NPI-026</b> | Add "Favorite" button to polish cards [3pt] 🟢 ⬆️</summary>
 
 ### 🏷️ Tags
 `ui` `favorites` `interaction`
@@ -484,11 +484,14 @@ NPI-022, NPI-024
 Heart icon toggle to save favorite polishes
 
 ### 🔗 Prerequisites
-NPI-022, NPI-025
+NPI-022, NPI-025 (skipped - not actually needed, see below)
+
+### ✅ Status Notes
+✅ ❤️/🤍 heart icon toggle on each card, persisted in localStorage - no auth/backend required
 </details>
 
 <details id="npi-027">
-<summary><b>NPI-027</b> | Create "My Favorites" page [3pt] 🟡 ⬆️</summary>
+<summary><b>NPI-027</b> | Create "My Favorites" page [3pt] ⏭️ ⬆️</summary>
 
 ### 🏷️ Tags
 `ui` `page` `favorites`
@@ -498,10 +501,13 @@ View all saved favorite polishes
 
 ### 🔗 Prerequisites
 NPI-026
+
+### ⏭️ Skipped
+Delivered differently - "My Favorites" is a filter checkbox on the main gallery (My Picks filter group) rather than a separate page
 </details>
 
 <details id="npi-028">
-<summary><b>NPI-028</b> | Build "On-Hand" vs "Wishlist" toggle [5pt] 🟡 ⬆️</summary>
+<summary><b>NPI-028</b> | Build "On-Hand" vs "Wishlist" toggle [5pt] ⏭️ ⬆️</summary>
 
 ### 🏷️ Tags
 `ui` `collection` `tracking`
@@ -511,10 +517,13 @@ Allow users to mark polishes as owned or wanted
 
 ### 🔗 Prerequisites
 NPI-022, NPI-025
+
+### ⏭️ Skipped
+Not applicable to this business model (Claire owns the inventory, clients don't) - superseded by the simpler "Next Appointment" marking concept instead
 </details>
 
 <details id="npi-029">
-<summary><b>NPI-029</b> | Create "My Collection" page [3pt] 🟡 ⬆️</summary>
+<summary><b>NPI-029</b> | Create "My Collection" page [3pt] ⏭️ ⬆️</summary>
 
 ### 🏷️ Tags
 `ui` `page` `collection`
@@ -524,10 +533,13 @@ Display on-hand and wishlist tabs
 
 ### 🔗 Prerequisites
 NPI-028
+
+### ⏭️ Skipped
+Depended on NPI-028, which was skipped
 </details>
 
 <details id="npi-030">
-<summary><b>NPI-030</b> | Add collection counters [2pt] 🟡 ➡️</summary>
+<summary><b>NPI-030</b> | Add collection counters [2pt] ⏭️ ➡️</summary>
 
 ### 🏷️ Tags
 `ui` `stats`
@@ -537,20 +549,26 @@ Show totals for favorites/on-hand/wishlist items
 
 ### 🔗 Prerequisites
 NPI-026, NPI-028
+
+### ⏭️ Skipped
+Not built - low value without the collection pages above
 </details>
 
 <details id="npi-031">
-<summary><b>NPI-031</b> | Create seasonal collection tags [3pt] 🟡 ➡️</summary>
+<summary><b>NPI-031</b> | Create seasonal collection tags [3pt] ⏭️ ➡️</summary>
 
 ### 🏷️ Tags
 `content` `tags` `collections`
 
 ### 📋 Description
 Tag polishes with Spring, Summer, Fall, Winter
+
+### ⏭️ Skipped
+Not built for polishes - but the equivalent WAS built for the Inspo Gallery (Season field: Spring/Summer/Fall/Winter, multi-label) - see NPI-062
 </details>
 
 <details id="npi-032">
-<summary><b>NPI-032</b> | Build "Seasonal Collections" browsing page [3pt] 🟡 ➡️</summary>
+<summary><b>NPI-032</b> | Build "Seasonal Collections" browsing page [3pt] ⏭️ ➡️</summary>
 
 ### 🏷️ Tags
 `ui` `page` `collections`
@@ -560,10 +578,13 @@ Browse polishes by season
 
 ### 🔗 Prerequisites
 NPI-031
+
+### ⏭️ Skipped
+Depended on NPI-031 (not built for polishes) - see NPI-063 for the Inspo Gallery's season filter, which serves the same purpose for inspiration photos
 </details>
 
 <details id="npi-033">
-<summary><b>NPI-033</b> | Add custom collections/boards feature [2pt] 🟡 ⬇️</summary>
+<summary><b>NPI-033</b> | Add custom collections/boards feature [2pt] ⏭️ ⬇️</summary>
 
 ### 🏷️ Tags
 `ui` `collections` `customization`
@@ -573,10 +594,13 @@ Let users create named collections (e.g., "Date Night")
 
 ### 🔗 Prerequisites
 NPI-025
+
+### ⏭️ Skipped
+Depended on backend persistence, which was skipped
 </details>
 
 <details id="npi-034">
-<summary><b>NPI-034</b> | Implement cross-device data sync [2pt] 🟡 ⬆️</summary>
+<summary><b>NPI-034</b> | Implement cross-device data sync [2pt] ⏭️ ⬆️</summary>
 
 ### 🏷️ Tags
 `sync` `backend`
@@ -586,10 +610,13 @@ Sync user data across logged-in devices
 
 ### 🔗 Prerequisites
 NPI-022, NPI-025
+
+### ⏭️ Skipped
+No auth/backend to sync - the "Send colors to Claire" clipboard button covers the actual need (handing picks off to Claire) without needing sync
 </details>
 
 <details id="npi-035">
-<summary><b>NPI-035</b> | Add collection export functionality [2pt] 🟡 ⬇️</summary>
+<summary><b>NPI-035</b> | Add collection export functionality [2pt] ⏭️ ⬇️</summary>
 
 ### 🏷️ Tags
 `export` `csv` `data`
@@ -599,10 +626,13 @@ Download user's collection as CSV file
 
 ### 🔗 Prerequisites
 NPI-028
+
+### ⏭️ Skipped
+Depended on NPI-028 - "Send colors to Claire" (clipboard copy) covers the practical need instead
 </details>
 
 <details id="npi-036">
-<summary><b>NPI-036</b> | Create user profile/settings page [1pt] 🟡 ➡️</summary>
+<summary><b>NPI-036</b> | Create user profile/settings page [1pt] ⏭️ ➡️</summary>
 
 ### 🏷️ Tags
 `ui` `profile` `settings`
@@ -612,6 +642,9 @@ Basic user profile and preferences
 
 ### 🔗 Prerequisites
 NPI-022
+
+### ⏭️ Skipped
+No auth system - nothing to attach a profile to
 </details>
 
 </details>
@@ -621,6 +654,8 @@ NPI-022
 ## ✨ Milestone 3: Recommendations & Enhanced Browsing (Weeks 7-9)
 
 **Progress:** 0/15 tickets | 0/46 points (0%)
+
+> 💡 **Note (Aug 26, 2026):** None of the tickets below (recommendation engine, similar shades, lookbooks, etc. - all scoped to the *Polishes* dataset) have been built. Separately, a new **Inspo Gallery** shipped this session that delivers the "enhanced browsing/discovery" spirit of this milestone for a different dataset (216 Pinterest-sourced inspiration photos, not the polish inventory) - see the new section after Milestone 4 below for those tickets (NPI-061 onward).
 
 | ID | Title | Category | Pts | Status | Priority |
 |---|---|---|:---:|:---:|:---:|
@@ -646,7 +681,7 @@ NPI-022
 
 ## 📅 Milestone 4: Future Booking Foundation (Placeholder)
 
-**Progress:** 0/9 tickets | 0/16 points (0%)
+**Progress:** 2/9 tickets | 3/16 points (19%)
 
 💡 _Detailed specs pending - focusing on M1-M3 first_
 
@@ -654,13 +689,19 @@ NPI-022
 |---|---|---|:---:|:---:|:---:|
 | NPI-052 | Create booking interest form | 📋 Research | 2 | 🟡 | ⬇️ |
 | NPI-053 | Draft booking flow wireframes | 🎨 Design | 3 | 🟡 | ⬇️ |
-| NPI-054 | Research calendar/scheduling tools | 📋 Research | 1 | 🟡 | ⬇️ |
+| NPI-054 | Research calendar/scheduling tools | 📋 Research | 1 | 🟢 | ⬇️ |
 | NPI-055 | Document pricing structure requirements | 📋 Planning | 1 | 🟡 | ⬇️ |
 | NPI-056 | Plan payment integration approach | 📋 Planning | 2 | 🟡 | ⬇️ |
 | NPI-057 | Build simple contact/inquiry form | 🗺️ UI | 3 | 🟡 | ➡️ |
-| NPI-058 | Add "Book Appointment" CTA button | 🗺️ UI | 2 | 🟡 | ➡️ |
+| NPI-058 | Add "Book Appointment" CTA button | 🗺️ UI | 2 | 🟢 | ➡️ |
 | NPI-059 | Create services/pricing static page | 📄 Content | 1 | 🟡 | ➡️ |
 | NPI-060 | Add pre-appointment inspo/color-pick reminder | 📅 Booking | 2 | 🟡 | ➡️ |
+
+#### NPI-054: Research calendar/scheduling tools ✅ DONE (Aug 26, 2026)
+Chose **Google Calendar Appointment Schedules** (the native booking-page feature, not the full Calendar API) - zero code, zero backend, matches the static-site philosophy. Found and documented a workaround for Google's fixed-duration-slot limitation (decouple slot spacing from real appointment length using a shorter Duration + a Buffer time after, e.g. 60min duration + 120min buffer = hourly start times but 3 real hours blocked). Booking notifications go through Google's own "Appointment schedules" notification setting plus the per-calendar "New events" setting.
+
+#### NPI-058: Add "Book Appointment" CTA button ✅ DONE (Aug 26, 2026)
+Added as a styled solid-rose CTA in the nav on both the Polishes and Inspo pages, linking to the Google Calendar appointment schedule (opens in a new tab). Placed as its own live nav item, kept separate from the still-commented-out Charms/Stickers/Accessories placeholder links.
 
 #### NPI-060: Add pre-appointment inspo/color-pick reminder
 
@@ -673,7 +714,142 @@ NPI-022
 - A follow-up automation (e.g. Zapier/Apps Script) triggered off new calendar bookings
 - Text in the booking form itself asking clients to pre-select colors
 
-**Status:** Not started — logged as a TODO per client request, needs scoping.
+**Status:** 🟡 Not started, but partially addressed as a side effect — the **Inspo Gallery** (NPI-061-068, below) now gives clients an actual page to browse and filter inspiration photos by before their appointment, which is half of what this ticket wanted. The *active reminder/nudge* mechanism itself (a calendar notification tweak, or an automation that fires when someone books) still isn't built.
+
+---
+
+## 🖼️ Inspo Gallery (Aug 26, 2026) - SHIPPED
+
+**Progress:** 8/8 tickets | 17/17 points (100%) ✅
+
+Not part of the original milestone plan — delivers the "Pinterest-powered inspiration browsing" vision from `docs/Milestone3Planning.md` via a local photo mirror instead of the live Pinterest API, sidestepping the still-pending Pinterest API trial approval entirely. Also functions as the practical half of NPI-060.
+
+| ID | Title | Category | Pts | Status | Priority |
+|---|---|---|:---:|:---:|:---:|
+| NPI-061 | Mirror Pinterest inspo board photos locally | 💾 Data | 2 | 🟢 | 🔥 |
+| NPI-062 | Tag all photos by Color/Season/Occasion/Vibe | 🎯 Discovery | 5 | 🟢 | 🔥 |
+| NPI-063 | Build Inspo Gallery filter UI | 🎨 Filtering | 3 | 🟢 | 🔥 |
+| NPI-064 | Add hashtag overlay + click-to-enlarge lightbox | 🗺️ UI | 2 | 🟢 | ➡️ |
+| NPI-065 | Clean URLs for Inspo page (`/inspo/`, no `.html`) | 💾 Infrastructure | 1 | 🟢 | ➡️ |
+| NPI-066 | Fix Inspo page mobile-responsive layout | 🗺️ Layout | 2 | 🟢 | 🔥 |
+| NPI-067 | Fix nav consistency between Polishes and Inspo pages | 🗺️ Navigation | 1 | 🟢 | ➡️ |
+| NPI-068 | Add emoji icons to Occasion/Vibe filter labels | 🎨 Design System | 1 | 🟢 | ⬇️ |
+
+<details>
+<summary><b>📋 View All Ticket Details</b> (click to expand)</summary>
+
+<details id="npi-061">
+<summary><b>NPI-061</b> | Mirror Pinterest inspo board photos locally [2pt] 🟢 🔥</summary>
+
+### 🏷️ Tags
+`data` `images` `pinterest`
+
+### 📋 Description
+Download the photos from Claire's Pinterest "nail-inspo" board to `public/inspo/` so they can be browsed without the Pinterest API
+
+### ✅ Status Notes
+✅ `scripts/download_nails.py` downloads all 216 pins via direct `i.pinimg.com` URLs to `public/inspo/nail-001.jpg` through `nail-216.jpg`
+</details>
+
+<details id="npi-062">
+<summary><b>NPI-062</b> | Tag all photos by Color/Season/Occasion/Vibe [5pt] 🟢 🔥</summary>
+
+### 🏷️ Tags
+`data` `tagging` `ai`
+
+### 📋 Description
+Visually tag each of the 216 photos so they can be filtered like the polish gallery
+
+### ✅ Status Notes
+✅ Two full tagging passes (216 photos each, via parallel sub-agents actually viewing every image). First pass: Color (any visible) + single Occasion. Second pass, after Claire's feedback: Color restricted to primary/dominant only + added Black to the vocabulary; Occasion split into independent multi-label **Season** (Spring/Summer/Fall/Winter) and **Occasion** (Christmas/Valentine's Day/Halloween/Easter/New Year's/4th of July/Birthday/Everyday) fields, since designs often span several; New Year's broadened to catch any glitter/sparkle/metallic shine regardless of color (8→37 photos); added a 4th **Vibe** field (Minimalist/Detailed/Floral/Geometric/Glam/French Tip/Ombre/Polka Dot/Stripes/Marble/Abstract/Animal Print/Whimsical/Elegant).
+✅ Data lives in `data/inspo.csv` (`Filename,Colors,Seasons,Occasions,Vibes,Confidence`)
+✅ 142/216 photos flagged low-confidence on the occasion/season/vibe judgment calls - logged in `docs/inspo-tagging-review.md` for Claire to spot-check; colors are generally reliable
+</details>
+
+<details id="npi-063">
+<summary><b>NPI-063</b> | Build Inspo Gallery filter UI [3pt] 🟢 🔥</summary>
+
+### 🏷️ Tags
+`filter` `ui`
+
+### 📋 Description
+Filter the 216 photos by Color, Season, Occasion, and Vibe, matching the Polishes page's filter UX
+
+### ✅ Status Notes
+✅ Four independent filter groups, each populated only from tags that actually exist in the data (a tag with zero photos never renders as an option - verified Marble/Animal Print correctly don't show up)
+✅ Same OR-within-category / AND-across-categories logic as the Polishes page, same color-swatch CSS classes (plus added Black, which the Polishes page's filter didn't have either)
+✅ Live count, Clear All Filters, empty-state message
+</details>
+
+<details id="npi-064">
+<summary><b>NPI-064</b> | Add hashtag overlay + click-to-enlarge lightbox [2pt] 🟢 ➡️</summary>
+
+### 🏷️ Tags
+`ui` `interaction`
+
+### 📋 Description
+Show each photo's tags directly on the thumbnail, and let users tap a photo to see it larger
+
+### ✅ Status Notes
+✅ `#floral #spring`-style hashtag overlay (dark gradient scrim + light text) built from Season+Occasion+Vibe, visible while scrolling
+✅ Vanilla-JS lightbox on click, closes on backdrop click, close button, or Escape
+</details>
+
+<details id="npi-065">
+<summary><b>NPI-065</b> | Clean URLs for Inspo page [1pt] 🟢 ➡️</summary>
+
+### 🏷️ Tags
+`infrastructure` `urls`
+
+### 📋 Description
+Serve the Inspo page at `/inspo/` instead of `/inspo.html`, matching how the site root already works
+
+### ✅ Status Notes
+✅ Moved to `inspo/index.html` (GitHub Pages serves `index.html` for directory requests natively, no server config needed)
+✅ Left a meta-refresh redirect stub at the old `inspo.html` path after the move broke existing bookmarks/links - lesson: should have shipped the redirect in the same commit as the move, not after
+</details>
+
+<details id="npi-066">
+<summary><b>NPI-066</b> | Fix Inspo page mobile-responsive layout [2pt] 🟢 🔥</summary>
+
+### 🏷️ Tags
+`mobile` `responsive` `bug`
+
+### 📋 Description
+Fix the nav ("Book Appointment" overflowing off-screen) and grid layout on small viewports
+
+### ✅ Status Notes
+✅ Root cause: the Inspo page was built from scratch and never got the `@media (max-width: 768px)` responsive overrides the Polishes page already had, so the nav never switched to a stacked mobile layout. Ported that breakpoint over, plus dropped the masonry grid to a single column below 768px.
+✅ Verified at a 375px mobile viewport: no horizontal overflow, nav stacks cleanly
+</details>
+
+<details id="npi-067">
+<summary><b>NPI-067</b> | Fix nav consistency between Polishes and Inspo pages [1pt] 🟢 ➡️</summary>
+
+### 🏷️ Tags
+`navigation` `consistency` `bug`
+
+### 📋 Description
+Both pages should show the same nav links
+
+### ✅ Status Notes
+✅ "Polishes" had been left inside the commented-out placeholder block (grouped with the still-unbuilt Charms/Stickers/Accessories) on the home page, so it only appeared as a link on the Inspo page. Split it out as a live link on both pages.
+</details>
+
+<details id="npi-068">
+<summary><b>NPI-068</b> | Add emoji icons to Occasion/Vibe filter labels [1pt] 🟢 ⬇️</summary>
+
+### 🏷️ Tags
+`design-system` `polish`
+
+### 📋 Description
+Give every Occasion and Vibe filter option a small emoji, matching the existing Season icons
+
+### ✅ Status Notes
+✅ 💅 Everyday, plus a unique emoji for each of the 14 Vibe tags (🎨 Abstract, 🔬 Detailed, 💎 Elegant, 🌼 Floral, 🤍 French Tip, 🔷 Geometric, ✨ Glam, ⚪ Minimalist, 🌈 Ombre, ⚫ Polka Dot, 〰️ Stripes, 🦄 Whimsical, plus Marble/Animal Print icons defined and waiting for a photo to use them)
+</details>
+
+</details>
 
 ---
 
@@ -724,29 +900,33 @@ _Full ticket list available - expand sections as needed_
 
 ## 📊 Project Summary
 
-**Total:** 76 tickets | 191 story points  
-**Completed:** 11 tickets (14%) | 23 points (12%)  
+**Total:** 84 tickets | 208 story points  
+**Completed:** 23 tickets (27%) | 48 points (23%)  
+**Skipped/Descoped:** 13 tickets (15%) | 37 points (18%) - all in M2, superseded by the simpler localStorage approach that actually shipped  
 **In Progress:** 0 tickets  
-**Not Started:** 65 tickets | 168 points  
+**Not Started:** 48 tickets | 123 points  
 
 ### By Milestone
-| Milestone | Tickets | Points | Done | Remaining |
-|---|:---:|:---:|:---:|:---:|
-| 🚀 M1: MVP Gallery | 21 | 50 | 11 ✅ | 10 (27pts) |
-| 💎 M2: Personalization | 15 | 42 | 0 | 15 (42pts) |
-| ✨ M3: Enhanced Browsing | 15 | 46 | 0 | 15 (46pts) |
-| 📅 M4: Booking | 9 | 16 | 0 | 9 (16pts) |
-| 🎨 Infrastructure | 16 | 37 | 0 | 16 (37pts) |
+| Milestone | Tickets | Points | Done | Skipped | Remaining |
+|---|:---:|:---:|:---:|:---:|:---:|
+| 🚀 M1: MVP Gallery | 21 | 50 | 11 ✅ (23pts) | 0 | 10 (27pts) |
+| 💎 M2: Personalization | 15 | 42 | 2 ✅ (5pts) | 13 (37pts) | 0 |
+| ✨ M3: Enhanced Browsing | 15 | 46 | 0 | 0 | 15 (46pts) |
+| 📅 M4: Booking | 9 | 16 | 2 ✅ (3pts) | 0 | 7 (13pts) |
+| 🎨 Infrastructure | 16 | 37 | 0 | 0 | 16 (37pts) |
+| 🖼️ Inspo Gallery | 8 | 17 | 8 ✅ (17pts) | 0 | 0 |
 
 ### By Priority
-- 🔥 **Critical:** 11 tickets (6 done, 5 remaining)
-- ⬆️ **High:** 28 tickets (1 done, 27 remaining)
-- ➡️ **Medium:** 23 tickets
-- ⬇️ **Low:** 13 tickets
+_(Individually-itemized tickets only - the 16 Infrastructure tickets are tracked as a category rollup, not itemized, so aren't counted here)_
+- 🔥 **Critical:** 14 tickets - 10 done, 3 skipped, 1 not started
+- ⬆️ **High:** 21 tickets - 6 done, 4 skipped, 2 blocked, 9 not started
+- ➡️ **Medium:** 21 tickets - 5 done, 4 skipped, 3 blocked, 9 not started
+- ⬇️ **Low:** 12 tickets - 2 done, 2 skipped, 8 not started
 
 ### Quick Stats
 - Average ticket: 2.5 points
 - Milestone 1 velocity: 23 points completed
+- Aug 26, 2026 session velocity: 20 points (Book Appointment + calendar research + full Inspo Gallery)
 - Estimated M1 completion: 27 points remaining (~2 more sprints)
 
 ---
@@ -766,8 +946,9 @@ _Full ticket list available - expand sections as needed_
 ## 🔄 Quick Access
 
 - [📊 Executive Summary](#executive-summary) - Current status, priorities, and category breakdown
-- [🚀 Milestone 1: MVP Gallery](#milestone-1-mvp-gallery--inventory-weeks-1-3) - 20% complete
-- [💎 Milestone 2: Personalization](#milestone-2-personalization-basics-weeks-4-6) - Not started
-- [✨ Milestone 3: Enhanced Browsing](#milestone-3-recommendations--enhanced-browsing-weeks-7-9) - Not started  
-- [📅 Milestone 4: Booking](#milestone-4-future-booking-foundation-placeholder) - Planning phase
+- [🚀 Milestone 1: MVP Gallery](#milestone-1-mvp-gallery--inventory-weeks-1-3) - 52% complete (11/21)
+- [💎 Milestone 2: Personalization](#milestone-2-personalization-basics-weeks-4-6) - Complete via simplified scope (2 done, 13 skipped)
+- [✨ Milestone 3: Enhanced Browsing](#milestone-3-recommendations--enhanced-browsing-weeks-7-9) - Not started (polish-specific tickets; see Inspo Gallery below for the delivered equivalent)
+- [📅 Milestone 4: Booking](#milestone-4-future-booking-foundation-placeholder) - In progress (2/9 done)
+- [🖼️ Inspo Gallery](#-inspo-gallery-aug-26-2026---shipped) - 100% complete (8/8)
 - [🚀 Sprint Plan](#recommended-sprint-plan) - Recommended sprint breakdown

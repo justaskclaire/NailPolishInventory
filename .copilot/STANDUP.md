@@ -1,11 +1,11 @@
 # Standup - Nail Polish Inventory
 
-## 🎯 Current State (Mar 29, 2026)
-- **Working:** ⏳ Milestone 3 - PENDING Pinterest API approval (application submitted)
-- **Done:** 15/75 tickets (33pts) - ✅ Milestone 1 COMPLETE, ✅ Milestone 2 COMPLETE
-- **Collection:** 135 polishes in `data/polishes.csv`, all with local images
-- **Latest:** New March 2026 inventory loaded, Ruby workflow in place for future inventory updates, nav links hidden
-- **Next:** ⏳ Monitor email for Pinterest approval, then proceed with M3 implementation
+## 🎯 Current State (Aug 26, 2026)
+- **Working:** Booking flow rounding out (services/pricing page, contact form still open); Pinterest API application still pending but no longer blocking anything (see below)
+- **Done:** 23/84 tickets (48pts), 13 skipped/descoped (37pts, all M2 - see that section's note) - ✅ M1 COMPLETE, ✅ M2 COMPLETE (simplified scope), 🖼️ Inspo Gallery COMPLETE, 📅 M4 Booking in progress (2/9)
+- **Collection:** 135 polishes in `data/polishes.csv`, all with local images. Plus 216 Inspo photos in `public/inspo/`, tagged in `data/inspo.csv`
+- **Latest:** Shipped "Book Appointment" (Google Calendar) + the full Inspo Gallery (`/inspo/`) in one session; did a full `docs/TICKETS.md` audit afterward to reconcile the backlog against everything actually built (including M2's localStorage-vs-auth reality gap, which predates tonight)
+- **Next:** Pick 2-3 more polish features for tonight (see bottom of this file for the candidates offered); NPI-060 (pre-appointment inspo reminder) and the rest of M4 (pricing page, contact form) still open
 
 ## 📋 Key Files
 - `index.html` - Main gallery page with filters + personalization (favorites & next appt)

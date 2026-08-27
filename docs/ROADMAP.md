@@ -44,19 +44,21 @@ Create a mobile-first web experience that helps friends and clients browse avail
 ### Milestone 3: Recommendations & polish browsing enhancements (Weeks 7-9)
 - **Deliverable:** Smarter browsing and discovery.
 - **Key work:**
-  - Surface seasonal recommendations and curated sets on the gallery page.
-  - Improve filtering (multi-filter chips, quick color families, finishes).
-  - Add richer polish detail views (multiple swatches/photos, finish notes).
+  - Surface seasonal recommendations and curated sets on the gallery page. — *Not built for the polish gallery itself.*
+  - Improve filtering (multi-filter chips, quick color families, finishes). — *Not built for the polish gallery itself.*
+  - Add richer polish detail views (multiple swatches/photos, finish notes). — Not built.
 - **Dependencies:** Personalization data from Milestone 2; tagging scheme for seasons/finishes/colors.
 - **Success criteria:** Browsing feels personalized and inspiring, with quicker navigation to desired shades.
+- **Status:** Original scope (recommendations/detail views for the *polish* gallery) not started. However, this milestone's underlying goal — Pinterest-powered inspiration browsing, originally planned in `Milestone3Planning.md` and blocked on Pinterest API approval — **shipped a different way** on Aug 26, 2026: a **Nail Inspo Gallery** (`/inspo/`) mirroring 216 photos from Claire's Pinterest board locally, tagged and filterable by Color, Season, Occasion, and Vibe, with a hashtag overlay and lightbox. No Pinterest API dependency at all. See `docs/TICKETS.md` → "🖼️ Inspo Gallery" section.
 
 ### Milestone 4: Future booking foundation (High-level placeholder)
 - **Deliverable:** Very light planning for potential appointment support.
 - **Key work:**
-  - Draft simple intake/interest form to gauge booking needs.
-  - Outline potential scheduling/booking flow for later implementation.
+  - Draft simple intake/interest form to gauge booking needs. — Not built.
+  - Outline potential scheduling/booking flow for later implementation. — Superseded: chose to just use Google Calendar's built-in Appointment Schedules feature directly instead of a custom flow.
 - **Dependencies:** None—keep as a discovery item; can run as a static form.
 - **Success criteria:** Clear next steps if/when booking becomes a priority; no full scheduling build yet.
+- **Status:** **Live and ahead of the original "planning only" scope.** A real "Book Appointment" button (Aug 26, 2026) links to a working Google Calendar Appointment Schedule, styled into the nav on both pages. Still open: a services/pricing page, a contact/inquiry form, and a pre-appointment reminder nudging clients to review the new Inspo Gallery before their visit (requested by a friend/client - see NPI-060 in `docs/TICKETS.md`).
 
 ## Risks & Considerations
 - Keep scope lean early—focus on gallery, filters, and showcasing available shades.
