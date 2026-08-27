@@ -35,6 +35,10 @@
 
 ## 📅 Recent Changes
 
+**Aug 26, 2026:** 📅 Google Calendar booking live - Added "Book Appointment" nav CTA (index.html) linking to Google Calendar appointment schedule (calendar.app.google/jKuqSteddKHj1B5fA), placed as its own active nav item alongside the still-commented-out Polishes/Charms/Stickers/Accessories placeholder block. Added `.claude/launch.json` and `.vscode/tasks.json` (Ctrl+Shift+B) for one-click local server. Logged **NPI-060** (docs/TICKETS.md): friend requested a pre-appointment reminder nudging clients to review Pinterest inspo (linked in the booking event description) and pick colors on the site before their appointment - not started, needs scoping. Also discovered `dev` had drifted ~40 commits behind `main` (missing the 135-polish inventory refresh and the "Send colors to Claire" feature) - fast-forwarded `dev` to match.
+
+---
+
 **Mar 29, 2026 — Project cleanup:**
 Removed 5 obsolete/superseded files (`polishes.csv` root duplicate, `data/polishes_old.csv`, and three superseded color/finish scripts). Reorganized: raw export CSV moved to `data/raw_exports/2026-03-polishes.csv` (new folder with README), completed milestone doc moved to `docs/archive/`. Updated `scripts/README-mirror-images.md` with Mac (Ruby) vs PC/Windows (Python) guidance. Updated `docs/README.md` to index the new archive/ folder.
 
