@@ -1729,8 +1729,10 @@
         if (finish && isSafeFilterValue(finish)) finishes.add(finish);
       });
       
-      // Create color filter checkboxes (sorted alphabetically)
-      const sortedColors = Array.from(colors).sort();
+      // Create color filter checkboxes (rainbow order - ROYGBIV + Pink near
+      // Red/Purple, neutrals after; shared convention with inspo/index.html)
+      const colorOrder = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Pink', 'Brown', 'Gold', 'Neutral', 'White', 'Grey', 'Black'];
+      const sortedColors = Array.from(colors).sort((a, b) => colorOrder.indexOf(a) - colorOrder.indexOf(b));
       sortedColors.forEach(color => {
         const option = document.createElement('div');
         // Add visual styling class based on color name (e.g., "color-red", "color-pink")
