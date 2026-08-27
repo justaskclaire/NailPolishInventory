@@ -2035,33 +2035,35 @@
      */
 
     /**
-     * Read the Inspo Gallery's saved-photo picks. Shared localStorage key with
-     * inspo/index.html (same origin) - each entry is {filename, tags} so this
-     * page can build a message without needing to fetch data/inspo.csv itself.
+     * Read the Inspo Gallery's "My Next Appt" picks. Shared localStorage key
+     * with inspo/index.html (same origin) - each entry is {filename, tags} so
+     * this page can build a message without needing to fetch data/inspo.csv
+     * itself. Deliberately reads "nextappt", NOT "favorites" - favorites are a
+     * personal bookmark/filter on the Inspo page, not something that gets sent.
      */
-    function getInspoFavorites() {
+    function getInspoNextAppt() {
       try {
-        const data = localStorage.getItem('nailinspo_favorites');
+        const data = localStorage.getItem('nailinspo_nextappt');
         if (!data) return [];
         const parsed = JSON.parse(data);
         if (!Array.isArray(parsed)) return [];
         return parsed.filter(item => item && typeof item.filename === 'string');
       } catch (e) {
-        console.warn('Failed to load inspo favorites from localStorage:', e);
+        console.warn('Failed to load inspo next-appt picks from localStorage:', e);
         return [];
       }
     }
 
     /**
      * Show or hide the "Send my picks to Claire" button based on the nextappt
-     * list AND the Inspo Gallery's saved photos (either one is enough to show it).
+     * list AND the Inspo Gallery's next-appt picks (either one is enough to show it).
      * Called on page load and after every nextappt toggle.
      */
     function updateCopyButton() {
       const wrapper = document.getElementById('copy-picks-wrapper');
       if (!wrapper) return;
       const hasPolishes = getStoredList('nextappt').length > 0;
-      const hasInspo = getInspoFavorites().length > 0;
+      const hasInspo = getInspoNextAppt().length > 0;
       if (hasPolishes || hasInspo) {
         wrapper.classList.add('visible');
       } else {
@@ -2119,12 +2121,12 @@
      *   #781 Air of Mint
      *   #427 Banana Crepe
      *
-     *   Nail inspo I love:
+     *   Nail inspo for my next appointment:
      *   https://.../inspo/#nail-042 (Christmas, Glam)
      */
     function copyPicksToClipboard() {
       const polishList = getStoredList('nextappt');
-      const inspoList = getInspoFavorites();
+      const inspoList = getInspoNextAppt();
       if (polishList.length === 0 && inspoList.length === 0) return;
 
       const sections = [];
@@ -2149,7 +2151,7 @@
           const url = `https://justaskclaire.github.io/NailPolishInventory/inspo/#${item.filename.replace('.jpg', '')}`;
           return item.tags ? `${url} (${item.tags})` : url;
         });
-        sections.push(`Nail inspo I love:\n${lines.join('\n')}`);
+        sections.push(`Nail inspo for my next appointment:\n${lines.join('\n')}`);
       }
 
       const message = sections.join('\n\n');

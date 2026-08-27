@@ -454,13 +454,25 @@
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
     }
 
-    /* Save/favorite heart button - top-right of each photo, matches the
-       Polishes page's icon-btn/favorite-btn pattern */
-    .favorite-btn {
+    /* Save/next-appt icon buttons - top-right of each photo, matches the
+       Polishes page's card-icons/icon-btn/favorite-btn/nextappt-btn pattern */
+    .inspo-icons {
       position: absolute;
       top: var(--space-2);
       right: var(--space-2);
       z-index: 10;
+      display: flex;
+      gap: var(--space-1);
+      opacity: 0;
+      transition: opacity var(--transition-base);
+    }
+
+    .inspo-item:hover .inspo-icons,
+    .inspo-icons.has-active {
+      opacity: 1;
+    }
+
+    .icon-btn {
       width: 36px;
       height: 36px;
       display: flex;
@@ -471,29 +483,30 @@
       border-radius: 50%;
       cursor: pointer;
       font-size: 18px;
-      color: var(--color-gray-500, #737373);
       transition: all var(--transition-fast);
       backdrop-filter: blur(8px);
       box-shadow: var(--shadow-sm);
-      opacity: 0;
     }
 
-    .inspo-item:hover .favorite-btn,
-    .favorite-btn.active {
-      opacity: 1;
+    .icon-btn:hover {
+      transform: scale(1.15);
+      box-shadow: var(--shadow-md);
+    }
+
+    .icon-btn:focus-visible {
+      outline: 2px solid var(--color-primary-500);
+      outline-offset: 2px;
+      transform: scale(1.1);
+    }
+
+    .favorite-btn {
+      color: var(--color-gray-500, #737373);
     }
 
     .favorite-btn:hover {
-      transform: scale(1.15);
       color: var(--color-primary-500);
       border-color: var(--color-primary-100);
       background: var(--color-primary-50);
-    }
-
-    .favorite-btn:focus-visible {
-      opacity: 1;
-      outline: 2px solid var(--color-primary-500);
-      outline-offset: 2px;
     }
 
     .favorite-btn.active {
@@ -506,22 +519,48 @@
       color: var(--color-primary-700);
     }
 
-    /* Touch devices have no hover state, so the heart needs to always be
-       visible - larger touch target too. Must come after the base
-       .favorite-btn rule above, since equal-specificity CSS rules resolve
-       by source order, not by media-query presence. */
+    .nextappt-btn {
+      color: var(--color-gray-500, #737373);
+    }
+
+    .nextappt-btn:hover {
+      color: #2563eb;
+      border-color: #bfdbfe;
+      background: #eff6ff;
+    }
+
+    .nextappt-btn.active {
+      color: #2563eb;
+      border-color: #3b82f6;
+      background: #dbeafe;
+    }
+
+    .nextappt-btn.active:hover {
+      color: #1d4ed8;
+    }
+
+    /* Touch devices have no hover state, so the icons need to always be
+       visible - larger touch targets too. Must come after the base rules
+       above, since equal-specificity CSS rules resolve by source order,
+       not by media-query presence. */
     @media (max-width: 768px) {
-      .favorite-btn {
-        opacity: 0.9;
+      .icon-btn {
         width: 44px;
         height: 44px;
         font-size: 20px;
       }
+
+      .inspo-icons {
+        opacity: 0.9;
+      }
     }
 
-    /* Send picks to Claire - mirrors index.html's copy-picks pattern */
+    /* Send picks to Claire - matches index.html's copy-picks pattern exactly
+       (full-width button, blue "next appt" gradient, sits inside the My Picks
+       filter group rather than the filter-controls row) */
     .copy-picks-wrapper {
       display: none;
+      margin-top: var(--space-2);
     }
 
     .copy-picks-wrapper.visible {
@@ -529,29 +568,33 @@
     }
 
     .btn-copy-picks {
-      padding: var(--space-1) var(--space-3);
+      width: 100%;
+      padding: var(--space-2) var(--space-4);
       font-size: var(--font-size-sm);
       font-weight: var(--font-weight-semibold);
       font-family: var(--font-family);
-      color: var(--color-surface);
-      background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-700) 100%);
+      color: var(--color-white);
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
       border: none;
       border-radius: var(--radius-md);
       cursor: pointer;
       transition: all var(--transition-fast);
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: var(--space-1);
       box-shadow: var(--shadow-sm);
     }
 
     .btn-copy-picks:hover {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
       box-shadow: var(--shadow-md);
       transform: translateY(-1px);
     }
 
     .btn-copy-picks:active {
       transform: translateY(0);
+      box-shadow: var(--shadow-xs, var(--shadow-sm));
     }
 
     .copy-toast {
@@ -655,10 +698,24 @@
     <div class="filter-bar">
       <div class="filter-controls">
         <span id="inspo-count" class="inspo-count"></span>
+        <button class="btn-clear-filters" id="clear-filters-btn" disabled>Clear All Filters</button>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">My Picks</div>
+        <div class="filter-options" id="personal-filters">
+          <div class="filter-option">
+            <input type="checkbox" data-personal="favorites" id="filter-favorites" />
+            <label for="filter-favorites">❤️ My Favorites</label>
+          </div>
+          <div class="filter-option">
+            <input type="checkbox" data-personal="nextappt" id="filter-nextappt" />
+            <label for="filter-nextappt">📅 My Next Appt</label>
+          </div>
+        </div>
         <div class="copy-picks-wrapper" id="copy-picks-wrapper">
           <button class="btn-copy-picks" id="copy-picks-btn" type="button">📋 Send my picks to Claire</button>
         </div>
-        <button class="btn-clear-filters" id="clear-filters-btn" disabled>Clear All Filters</button>
       </div>
 
       <div class="filter-group">
@@ -815,47 +872,51 @@
         return summaryTags(row).map(t => '#' + t.replace(/[\s']+/g, '').toLowerCase());
       }
 
-      // ========== SAVED PICKS ("Save this look") ==========
-      // Shared localStorage key with index.html (same origin) - each entry is
+      // ========== PERSONALIZATION (favorites + next appt) ==========
+      // Mirrors index.html's getStoredList/saveStoredList/toggleInList/isInList
+      // pattern exactly, but keyed by filename instead of a polish composite ID.
+      // Shared localStorage keys with index.html (same origin) - each entry is
       // {filename, tags} so the Polishes page can build a "send to Claire"
       // message without needing to fetch data/inspo.csv itself.
-      function getInspoFavorites() {
+      function getInspoList(key) {
         try {
-          const data = localStorage.getItem('nailinspo_favorites');
+          const data = localStorage.getItem(`nailinspo_${key}`);
           if (!data) return [];
           const parsed = JSON.parse(data);
           if (!Array.isArray(parsed)) return [];
           return parsed.filter(item => item && typeof item.filename === 'string');
         } catch (e) {
-          console.warn('Failed to load inspo favorites from localStorage:', e);
+          console.warn(`Failed to load inspo ${key} from localStorage:`, e);
           return [];
         }
       }
 
-      function saveInspoFavorites(list) {
+      function saveInspoList(key, list) {
         try {
-          localStorage.setItem('nailinspo_favorites', JSON.stringify(list));
+          localStorage.setItem(`nailinspo_${key}`, JSON.stringify(list));
         } catch (e) {
-          console.error('Failed to save inspo favorites to localStorage:', e);
+          console.error(`Failed to save inspo ${key} to localStorage:`, e);
         }
       }
 
-      function isInspoFavorited(filename) {
-        return getInspoFavorites().some(item => item.filename === filename);
+      function isInInspoList(key, filename) {
+        return getInspoList(key).some(item => item.filename === filename);
       }
 
-      function toggleInspoFavorite(filename, tags) {
-        const list = getInspoFavorites();
+      function toggleInspoList(key, filename, tags) {
+        const list = getInspoList(key);
         const index = list.findIndex(item => item.filename === filename);
         if (index > -1) {
           list.splice(index, 1);
-          saveInspoFavorites(list);
+          saveInspoList(key, list);
           return false;
         }
         list.push({ filename, tags });
-        saveInspoFavorites(list);
+        saveInspoList(key, list);
         return true;
       }
+
+      const selectedPersonal = new Set();
 
       function createItem(row) {
         const item = document.createElement('div');
@@ -864,6 +925,7 @@
         // setAttribute is not HTML parsing, so it's already injection-safe here -
         // escaping would corrupt apostrophes (e.g. "New Year's") since the escaped
         // entity never gets decoded back on read.
+        item.setAttribute('data-filename', row.Filename);
         item.setAttribute('data-colors', row.Colors || '');
         item.setAttribute('data-seasons', row.Seasons || '');
         item.setAttribute('data-occasions', row.Occasions || '');
@@ -877,22 +939,63 @@
 
         const tagsSummary = summaryTags(row).join(', ');
 
+        const iconsDiv = document.createElement('div');
+        iconsDiv.className = 'inspo-icons';
+
+        // Favorite (heart) button - a personal bookmark/filter only, doesn't
+        // feed the "Send my picks to Claire" button (Next Appt does that).
         const favBtn = document.createElement('button');
         favBtn.type = 'button';
-        favBtn.className = 'favorite-btn';
-        const alreadySaved = isInspoFavorited(row.Filename);
-        if (alreadySaved) favBtn.classList.add('active');
-        favBtn.textContent = alreadySaved ? '❤️' : '🤍';
-        favBtn.setAttribute('aria-label', alreadySaved ? 'Remove from saved looks' : 'Save this look');
+        favBtn.className = 'icon-btn favorite-btn';
+        if (isInInspoList('favorites', row.Filename)) {
+          favBtn.classList.add('active');
+          iconsDiv.classList.add('has-active');
+          favBtn.textContent = '❤️';
+          favBtn.setAttribute('aria-label', 'Remove from favorites');
+        } else {
+          favBtn.textContent = '🤍';
+          favBtn.setAttribute('aria-label', 'Add to favorites');
+        }
         favBtn.addEventListener('click', function (event) {
           event.stopPropagation();
-          const nowSaved = toggleInspoFavorite(row.Filename, tagsSummary);
-          favBtn.classList.toggle('active', nowSaved);
-          favBtn.textContent = nowSaved ? '❤️' : '🤍';
-          favBtn.setAttribute('aria-label', nowSaved ? 'Remove from saved looks' : 'Save this look');
-          updateCopyButton();
+          const nowActive = toggleInspoList('favorites', row.Filename, tagsSummary);
+          favBtn.classList.toggle('active', nowActive);
+          if (!iconsDiv.querySelector('.icon-btn.active')) iconsDiv.classList.remove('has-active');
+          else iconsDiv.classList.add('has-active');
+          favBtn.textContent = nowActive ? '❤️' : '🤍';
+          favBtn.setAttribute('aria-label', nowActive ? 'Remove from favorites' : 'Add to favorites');
+          if (selectedPersonal.size > 0) applyFilters();
         });
-        item.appendChild(favBtn);
+        iconsDiv.appendChild(favBtn);
+
+        // Next appointment (calendar) button - this is the ONLY thing the
+        // "Send my picks to Claire" button reads from.
+        const nextapptBtn = document.createElement('button');
+        nextapptBtn.type = 'button';
+        nextapptBtn.className = 'icon-btn nextappt-btn';
+        if (isInInspoList('nextappt', row.Filename)) {
+          nextapptBtn.classList.add('active');
+          iconsDiv.classList.add('has-active');
+          nextapptBtn.textContent = '📅';
+          nextapptBtn.setAttribute('aria-label', 'Unmark from next appointment');
+        } else {
+          nextapptBtn.textContent = '🗓️';
+          nextapptBtn.setAttribute('aria-label', 'Mark for next appointment');
+        }
+        nextapptBtn.addEventListener('click', function (event) {
+          event.stopPropagation();
+          const nowActive = toggleInspoList('nextappt', row.Filename, tagsSummary);
+          nextapptBtn.classList.toggle('active', nowActive);
+          if (!iconsDiv.querySelector('.icon-btn.active')) iconsDiv.classList.remove('has-active');
+          else iconsDiv.classList.add('has-active');
+          nextapptBtn.textContent = nowActive ? '📅' : '🗓️';
+          nextapptBtn.setAttribute('aria-label', nowActive ? 'Unmark from next appointment' : 'Mark for next appointment');
+          updateCopyButton();
+          if (selectedPersonal.size > 0) applyFilters();
+        });
+        iconsDiv.appendChild(nextapptBtn);
+
+        item.appendChild(iconsDiv);
 
         const hashtags = hashtagText(row);
         if (hashtags.length) {
@@ -983,19 +1086,46 @@
           const occasionMatch = selected.occasions.size === 0 || itemOccasions.some(o => selected.occasions.has(o));
           const vibeMatch = selected.vibes.size === 0 || itemVibes.some(v => selected.vibes.has(v));
 
-          const visible = colorMatch && seasonMatch && occasionMatch && vibeMatch;
+          let personalMatch = selectedPersonal.size === 0;
+          if (selectedPersonal.size > 0) {
+            personalMatch =
+              (selectedPersonal.has('favorites') && isInInspoList('favorites', item.getAttribute('data-filename'))) ||
+              (selectedPersonal.has('nextappt') && isInInspoList('nextappt', item.getAttribute('data-filename')));
+          }
+
+          const visible = colorMatch && seasonMatch && occasionMatch && vibeMatch && personalMatch;
           item.classList.toggle('hidden', !visible);
           if (visible) visibleCount++;
         });
 
         countEl.textContent = `${visibleCount} photo${visibleCount === 1 ? '' : 's'}`;
+
+        const onlyPersonalFilterActive = selectedPersonal.size > 0 &&
+          Object.values(selected).every(set => set.size === 0);
+        if (onlyPersonalFilterActive && selectedPersonal.has('favorites') && selectedPersonal.size === 1) {
+          emptyStateEl.textContent = "You haven't saved any looks yet. Tap 🤍 on photos you love!";
+        } else if (onlyPersonalFilterActive && selectedPersonal.has('nextappt') && selectedPersonal.size === 1) {
+          emptyStateEl.textContent = "You haven't picked any looks for your next appointment yet. Tap 🗓️ to pick one!";
+        } else {
+          emptyStateEl.textContent = 'No photos match those filters. Try clearing a few.';
+        }
         emptyStateEl.classList.toggle('visible', visibleCount === 0);
-        const anySelected = Object.values(selected).some(set => set.size > 0);
+
+        const anySelected = Object.values(selected).some(set => set.size > 0) || selectedPersonal.size > 0;
         clearBtn.disabled = !anySelected;
       }
 
+      document.querySelectorAll('#personal-filters input[data-personal]').forEach(cb => {
+        cb.addEventListener('change', (e) => {
+          const key = e.target.getAttribute('data-personal');
+          e.target.checked ? selectedPersonal.add(key) : selectedPersonal.delete(key);
+          applyFilters();
+        });
+      });
+
       function clearAllFilters() {
         Object.values(selected).forEach(set => set.clear());
+        selectedPersonal.clear();
         document.querySelectorAll('.filter-options input').forEach(cb => { cb.checked = false; });
         applyFilters();
       }
@@ -1040,7 +1170,7 @@
 
       function updateCopyButton() {
         if (!copyPicksWrapper) return;
-        copyPicksWrapper.classList.toggle('visible', getInspoFavorites().length > 0);
+        copyPicksWrapper.classList.toggle('visible', getInspoList('nextappt').length > 0);
       }
 
       let copyToastTimeoutId = null;
@@ -1072,14 +1202,14 @@
       }
 
       function copyPicksToClipboard() {
-        const list = getInspoFavorites();
+        const list = getInspoList('nextappt');
         if (list.length === 0) return;
 
         const lines = list.map(item => {
           const url = `https://justaskclaire.github.io/NailPolishInventory/inspo/#${item.filename.replace(/\.jpg$/i, '')}`;
           return item.tags ? `${url} (${item.tags})` : url;
         });
-        const message = `Nail inspo I love:\n${lines.join('\n')}`;
+        const message = `Nail inspo for my next appointment:\n${lines.join('\n')}`;
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(message).then(showCopyToast).catch(() => fallbackCopy(message));
