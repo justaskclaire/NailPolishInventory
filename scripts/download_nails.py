@@ -228,7 +228,9 @@ URLS = [
     "https://i.pinimg.com/736x/a3/63/c1/a363c1e69428e8f83f3bcdb694a34619.jpg",
 ]
 
-OUT = "public/inspo"
+OUT = os.path.normpath(
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "public", "inspo")
+)
 os.makedirs(OUT, exist_ok=True)
 
 HEADERS = {
