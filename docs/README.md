@@ -5,10 +5,12 @@ This folder contains all project planning and implementation documentation.
 ## 📋 Files
 
 ### Planning Documents
-- **[TICKETS.md](TICKETS.md)** - Complete backlog of 75 tickets organized by milestone
+- **[TICKETS.md](TICKETS.md)** - Complete backlog of 84 tickets organized by milestone
 - **[ROADMAP.md](ROADMAP.md)** - Project roadmap with phases and milestones
 - **[PLATFORM_TICKETS.md](PLATFORM_TICKETS.md)** - Platform improvements and tech debt
 - **[ProductQuestions.txt](ProductQuestions.txt)** - Original requirements and questions
+- **[Milestone3Planning.md](Milestone3Planning.md)** - Original Pinterest-API-based inspo plan; superseded by the local-mirror Inspo Gallery that actually shipped (see TICKETS.md → Inspo Gallery)
+- **[inspo-tagging-review.md](inspo-tagging-review.md)** - Inspo Gallery photos flagged low-confidence during tagging, for manual spot-check
 - **[../.copilot/STANDUP.md](../.copilot/STANDUP.md)** - Daily standup notes with running change log
 
 ### Archive

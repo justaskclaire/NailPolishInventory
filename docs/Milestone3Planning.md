@@ -6,6 +6,8 @@
 **Created:** January 3, 2026  
 **Approach:** Pinterest API Integration (not manual/static)
 
+> ⚠️ **Superseded (Aug 26, 2026):** The core need this doc plans for — Pinterest-powered inspiration browsing — shipped via a completely different, much simpler approach that doesn't depend on Pinterest API approval at all: a **Nail Inspo Gallery** (`/inspo/`) that mirrors 216 photos from Claire's Pinterest board locally and tags them by hand (Color/Season/Occasion/Vibe) instead of live API-driven color extraction. See `docs/TICKETS.md` → "🖼️ Inspo Gallery" section for what actually shipped. This plan is kept for reference in case a live Pinterest API integration (dynamic sync, auto color-matching to the polish inventory, etc.) is revisited later — none of the phases below have been built.
+
 **TODO:**
 - [ ] Complete privacy policy document (privacy-policy.html)
 - [ ] Deploy privacy policy to publicly accessible URL

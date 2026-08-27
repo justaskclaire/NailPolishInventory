@@ -1,48 +1,66 @@
 # Nail Polish Inventory
 
-A simple, static web gallery for browsing my DND gel polish collection with color and finish filtering.
+A simple, static web experience for Studio Claire's nail business: a browsable gel polish gallery, a Pinterest-sourced inspiration gallery, and a live appointment-booking link — no backend, no build step, no login.
 
 ## 🎨 Features
-- Browse 60 polishes with images and product links
-- Filter by color (11 categories with color-coded buttons: Red, Pink, Orange, Yellow, Green, Blue, Purple, Brown, Neutral, Grey, Gold)
-- Multi-color polish support - polishes with multiple color families appear in all relevant filters
-- Filter by finish with animated effects (6 categories: Cream, Shimmer, Cat Eye, Mood Change, Sheer, Glitter)
+
+### Polishes (`/`)
+- Browse 135 polishes with images and product links
+- Filter by color (color-coded buttons) and finish (with animated effects: Cream, Shimmer, Cat Eye, Mood Change, Sheer, Glitter)
 - Multi-select checkbox filters with OR logic within categories, AND between categories
-- Professional design system with custom typography (Inter + Playfair Display)
-- Responsive grid layout with enhanced hover effects
-- Lazy-loaded images for performance
-- Offline-friendly with local images
-- Cache-busting CSV loading for instant updates
+- Favorites (❤️) and "Next Appointment" (📅) marking, persisted in `localStorage` — no login required
+- "📋 Send colors to Claire" — copies picked polishes to the clipboard to hand off before an appointment
+- Lazy-loaded local images, cache-busting CSV loading for instant updates
+
+### Inspo (`/inspo/`)
+- 216 nail-art inspiration photos mirrored locally from Claire's Pinterest board
+- Filter by **Color** (primary/dominant color only), **Season** (Spring/Summer/Fall/Winter), **Occasion** (Christmas/Valentine's Day/Halloween/Easter/New Year's/4th of July/Birthday/Everyday), and **Vibe** (Minimalist, Detailed, Floral, Geometric, Glam, French Tip, Ombré, Polka Dot, Stripes, Marble, Abstract, Animal Print, Whimsical, Elegant) — Season/Occasion/Vibe are multi-label, since one design can span several
+- Hashtag overlay on each photo, click-to-enlarge lightbox
+
+### Booking
+- "Book Appointment" nav CTA links directly to a Google Calendar Appointment Schedule (no custom booking backend)
 
 ## 🚀 Quick Start
-1. Run `python -m http.server 8000` from the project directory
-2. Open http://localhost:8000 in a web browser
-3. Use the color and finish filters to browse by attributes
-4. Click any card to view the product page on dndgel.com
+1. Run `python -m http.server 8000` from the project directory (or, in VS Code, press **Ctrl+Shift+B** — see `.vscode/tasks.json`)
+2. Open http://localhost:8000 for the Polishes gallery, or http://localhost:8000/inspo/ for the Inspo gallery
 
 ## 📁 Project Structure
 ```
-├── index.html              # Main gallery page
-├── polishes.csv            # Source data (Brand, Number, Name, Link, Image Address, LocalImage, Color, Finish)
-├── images/                 # Local product images
+├── index.html                    # Polishes gallery (home page)
+├── inspo/index.html              # Inspo gallery (served at /inspo/)
+├── inspo.html                    # Redirect stub → inspo/ (keeps old bookmarks/links working)
+├── privacy-policy.html           # GDPR/CCPA privacy policy (for the Pinterest API application)
+├── data/
+│   ├── polishes.csv              # Master polish data (site reads this)
+│   ├── inspo.csv                 # Inspo photo tags (Filename,Colors,Seasons,Occasions,Vibes,Confidence)
+│   └── raw_exports/              # Raw inventory export CSVs before merging
+├── public/
+│   ├── images/                   # Local polish product images
+│   └── inspo/                    # Local Inspo gallery photos (nail-001.jpg ... nail-216.jpg)
+├── scripts/
+│   ├── download_nails.py         # Downloads Inspo photos from Pinterest pin URLs
+│   ├── mirror_images.py          # Downloads polish images from CSV URLs (Windows/PC)
+│   └── mirror_images.rb          # Same, for Mac (Ruby)
 ├── helpers/
-│   ├── mirror_images.py    # Script to download images from CSV URLs
-│   ├── fix_colors_accurate.py  # Script to update Color/Finish from official product descriptions
-│   └── README-mirror-images.md
-├── ProductDocumentation/   # Tickets, roadmap, implementation guides
-└── reference/              # Original order PDFs
+│   └── merge_csv.rb              # Merges a new raw inventory export into data/polishes.csv
+└── docs/                         # Tickets, roadmap, planning docs, tagging review
 ```
 
 ## 🛠️ Adding New Polishes
-1. Add new row(s) to `polishes.csv` with Brand, Number, Name, Link, Image Address
-2. Run `python helpers/mirror_images.py` to download images and add LocalImage paths
+1. Add new row(s) to `data/polishes.csv` with Brand, Number, Name, Link, Image Address
+2. Run `scripts/mirror_images.py` (PC) or `scripts/mirror_images.rb` (Mac) to download images and add LocalImage paths
 3. Research each polish's Color and Finish from official product page descriptions (never guess from name!)
 4. For polishes with multiple colors, use comma-separated values in quotes: `"Purple, Pink"`
-5. Update Color and Finish columns in CSV
-6. Cards are dynamically generated from CSV - no manual HTML updates needed
+5. Cards are dynamically generated from the CSV — no manual HTML updates needed
+
+## 🖼️ Adding New Inspo Photos
+1. Add new Pinterest pin image URLs to `scripts/download_nails.py`, run it to download into `public/inspo/`
+2. Tag each new photo's Colors/Seasons/Occasions/Vibes in `data/inspo.csv` (see the existing rows for the format and vocabulary)
+3. The Inspo page's filters and hashtag overlays are generated automatically from the CSV
 
 ## 📚 Documentation
-- **[ProductDocumentation/TICKETS.md](ProductDocumentation/TICKETS.md)** - Full backlog (75 tickets)
-- **[ProductDocumentation/ROADMAP.md](ProductDocumentation/ROADMAP.md)** - Roadmap and milestones
-- **[helpers/README-mirror-images.md](helpers/README-mirror-images.md)** - How to use mirror_images.py
-
+- **[docs/TICKETS.md](docs/TICKETS.md)** — Full backlog, current status, and what shipped vs. what's still open
+- **[docs/ROADMAP.md](docs/ROADMAP.md)** — Milestone roadmap
+- **[docs/inspo-tagging-review.md](docs/inspo-tagging-review.md)** — Low-confidence Inspo photo tags flagged for a manual spot-check
+- **[CHANGELOG.md](CHANGELOG.md)** — Version history
+- **[.copilot/STANDUP.md](.copilot/STANDUP.md)** — Running day-to-day change log
