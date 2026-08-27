@@ -228,6 +228,22 @@
     .nav-link.disabled:hover {
       background: transparent;
     }
+
+    .nav-link.nav-cta {
+      color: var(--color-surface);
+      background: var(--color-primary-600);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .nav-link.nav-cta:hover {
+      color: var(--color-surface);
+      background: var(--color-primary-700);
+    }
+
+    .nav-link.nav-cta:focus-visible {
+      outline: 2px solid var(--color-primary-200);
+      outline-offset: 2px;
+    }
     
     .grid {
       display: grid;
@@ -1144,6 +1160,10 @@
         <li><a href="#" class="nav-link disabled" title="Coming soon">Stickers</a></li>
         <li><a href="#" class="nav-link disabled" title="Coming soon">Accessories</a></li>
       </ul> -->
+      <ul class="nav-links">
+        <li><a href="inspo.html" class="nav-link">Inspo</a></li>
+        <li><a href="https://calendar.app.google/jKuqSteddKHj1B5fA" class="nav-link nav-cta" target="_blank" rel="noopener noreferrer">Book Appointment</a></li>
+      </ul>
     </div>
   </nav>
 

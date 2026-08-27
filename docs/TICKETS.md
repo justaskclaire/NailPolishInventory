@@ -3,7 +3,7 @@
 ## 📊 Executive Summary
 
 ### 🎯 Current Status
-- **Completed:** 15/75 tickets (20%) | 33/189 points (17.5%)
+- **Completed:** 11/76 tickets (14%) | 23/191 points (12%)
 - **Current Phase:** Milestone 2 - Personalization Basics ✅ COMPLETE (January 3, 2026)
 - **Previous Milestone:** Milestone 1 - MVP Gallery ✅ COMPLETE (January 3, 2026)
 - **Velocity:** 33 points delivered in Sprint 1
@@ -646,7 +646,7 @@ NPI-022
 
 ## 📅 Milestone 4: Future Booking Foundation (Placeholder)
 
-**Progress:** 0/8 tickets | 0/14 points (0%)
+**Progress:** 0/9 tickets | 0/16 points (0%)
 
 💡 _Detailed specs pending - focusing on M1-M3 first_
 
@@ -660,6 +660,20 @@ NPI-022
 | NPI-057 | Build simple contact/inquiry form | 🗺️ UI | 3 | 🟡 | ➡️ |
 | NPI-058 | Add "Book Appointment" CTA button | 🗺️ UI | 2 | 🟡 | ➡️ |
 | NPI-059 | Create services/pricing static page | 📄 Content | 1 | 🟡 | ➡️ |
+| NPI-060 | Add pre-appointment inspo/color-pick reminder | 📅 Booking | 2 | 🟡 | ➡️ |
+
+#### NPI-060: Add pre-appointment inspo/color-pick reminder
+
+**Requested by:** Friend (client), via Claire, 2026-08-26
+
+**Problem:** Clients book via the Google Calendar appointment schedule, whose event description links to the Pinterest inspo board and the polish gallery site — but nothing prompts clients to actually go review inspo and pick colors *before* they show up.
+
+**Possible approaches (unresearched):**
+- Google Calendar's own event reminder/notification settings (e.g. an extra reminder on the booking event, or a custom email a day before)
+- A follow-up automation (e.g. Zapier/Apps Script) triggered off new calendar bookings
+- Text in the booking form itself asking clients to pre-select colors
+
+**Status:** Not started — logged as a TODO per client request, needs scoping.
 
 ---
 
@@ -710,10 +724,10 @@ _Full ticket list available - expand sections as needed_
 
 ## 📊 Project Summary
 
-**Total:** 75 tickets | 189 story points  
-**Completed:** 11 tickets (15%) | 23 points (12.2%)  
+**Total:** 76 tickets | 191 story points  
+**Completed:** 11 tickets (14%) | 23 points (12%)  
 **In Progress:** 0 tickets  
-**Not Started:** 64 tickets | 166 points  
+**Not Started:** 65 tickets | 168 points  
 
 ### By Milestone
 | Milestone | Tickets | Points | Done | Remaining |
@@ -721,7 +735,7 @@ _Full ticket list available - expand sections as needed_
 | 🚀 M1: MVP Gallery | 21 | 50 | 11 ✅ | 10 (27pts) |
 | 💎 M2: Personalization | 15 | 42 | 0 | 15 (42pts) |
 | ✨ M3: Enhanced Browsing | 15 | 46 | 0 | 15 (46pts) |
-| 📅 M4: Booking | 8 | 14 | 0 | 8 (14pts) |
+| 📅 M4: Booking | 9 | 16 | 0 | 9 (16pts) |
 | 🎨 Infrastructure | 16 | 37 | 0 | 16 (37pts) |
 
 ### By Priority

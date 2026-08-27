@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Studio Claire - Nail inspo gallery. Browse design ideas by color, season, occasion, and vibe before your appointment." />
+  <title>Inspo - Studio Claire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-white: #ffffff;
+      --color-gray-50: #fafafa;
+      --color-gray-100: #f5f5f5;
+      --color-gray-200: #e5e5e5;
+      --color-gray-300: #d4d4d4;
+      --color-gray-400: #a3a3a3;
+      --color-gray-500: #737373;
+      --color-gray-600: #525252;
+      --color-gray-700: #404040;
+      --color-gray-800: #262626;
+      --color-gray-900: #171717;
+
+      --color-primary-50: #fff1f2;
+      --color-primary-100: #ffe4e6;
+      --color-primary-600: #e11d48;
+      --color-primary-700: #be123c;
+
+      --color-surface: var(--color-white);
+      --color-text: var(--color-gray-900);
+      --color-text-secondary: var(--color-gray-600);
+      --color-text-muted: var(--color-gray-500);
+      --color-border: var(--color-gray-200);
+      --color-border-light: rgba(0, 0, 0, 0.05);
+
+      --space-1: 0.5rem;
+      --space-2: 0.75rem;
+      --space-3: 1rem;
+      --space-4: 1.5rem;
+      --space-5: 2rem;
+
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-family-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --font-size-xs: 0.75rem;
+      --font-size-sm: 0.875rem;
+      --font-size-base: 1rem;
+      --font-size-xl: 1.375rem;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-black: 800;
+      --letter-spacing-tight: -0.025em;
+      --letter-spacing-wide: 0.025em;
+
+      --radius-sm: 0.5rem;
+      --radius-md: 0.875rem;
+      --radius-lg: 1rem;
+
+      --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: var(--color-gray-50);
+      color: var(--color-text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      padding: var(--space-5) var(--space-4);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Navigation Header (matches index.html) */
+    .nav-header {
+      max-width: 1400px;
+      margin: 0 auto var(--space-5);
+      padding: var(--space-4);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .nav-brand {
+      font-family: var(--font-family-display);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-black);
+      color: var(--color-gray-900);
+      text-decoration: none;
+      letter-spacing: var(--letter-spacing-tight);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--space-3);
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: var(--color-primary-600);
+      background: var(--color-gray-100);
+    }
+
+    .nav-link.active {
+      color: var(--color-primary-600);
+      background: var(--color-primary-50);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .nav-link.nav-cta {
+      color: var(--color-surface);
+      background: var(--color-primary-600);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .nav-link.nav-cta:hover {
+      color: var(--color-surface);
+      background: var(--color-primary-700);
+    }
+
+    .header {
+      max-width: 1400px;
+      margin: 0 auto var(--space-5);
+      text-align: center;
+    }
+
+    h1 {
+      font-family: var(--font-family-display);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-black);
+      margin-bottom: var(--space-2);
+    }
+
+    .tagline {
+      font-size: var(--font-size-base);
+      color: var(--color-text-secondary);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .hint {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      margin-top: var(--space-1);
+    }
+
+    /* Filter bar (matches index.html) */
+    .filter-bar {
+      margin: 0 0 var(--space-5) 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      padding: var(--space-4);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .filter-controls {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: var(--space-3);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-border-light);
+    }
+
+    .inspo-count {
+      margin-right: auto;
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .btn-clear-filters {
+      padding: var(--space-1) var(--space-3);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      font-family: var(--font-family);
+      color: var(--color-text-secondary);
+      background: var(--color-gray-100);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-clear-filters:hover:not(:disabled) {
+      background: var(--color-gray-200);
+      border-color: var(--color-gray-300);
+      color: var(--color-text);
+    }
+
+    .btn-clear-filters:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .filter-group + .filter-group {
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--color-border-light);
+    }
+
+    .filter-label {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-wide);
+      margin-bottom: var(--space-1);
+    }
+
+    .filter-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .filter-options:empty::after {
+      content: 'None tagged yet';
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      font-style: italic;
+    }
+
+    .filter-option {
+      position: relative;
+    }
+
+    .filter-option input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .filter-option label {
+      display: inline-block;
+      padding: var(--space-1) var(--space-3);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-secondary);
+      background: var(--color-gray-100);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      user-select: none;
+    }
+
+    .filter-option label:hover {
+      background: var(--color-gray-200);
+      border-color: var(--color-gray-300);
+    }
+
+    .filter-option input[type="checkbox"]:checked + label {
+      border: 2px solid var(--color-gray-700);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .filter-option input[type="checkbox"]:focus + label {
+      outline: 2px solid var(--color-gray-400);
+      outline-offset: 2px;
+    }
+
+    /* Color-coded filter buttons (matches index.html palette) */
+    .filter-option.color-red label { background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border-color: #fca5a5; }
+    .filter-option.color-red input[type="checkbox"]:checked + label { background: linear-gradient(135deg, #fca5a5 0%, #f87171 100%); border-color: #dc2626; }
+    .filter-option.color-pink label { background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); border-color: #f9a8d4; }
+    .filter-option.color-pink input[type="checkbox"]:checked + label { background: linear-gradient(135deg, #f9a8d4 0%, #f472b6 100%); border-color: #db2777; }
+    .filter-option.color-orange label { background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%); border-color: #fdba74; }
+    .filter-option.color-orange input[type="checkbox"]:checked + label { background: linear-gradient(135deg, #fdba74 0%, #fb923c 100%); border-color: #ea580c; }
+    .filter-option.color-yellow label { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-color: #fcd34d; }
+    .filter-option.color-yellow input[type="checkbox"]:checked + label { background: linear-gradient(135deg, #fcd34d 0%, #fbbf24 100%); border-color: #d97706; }
+    .filter-option.color-green label { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-color: #6ee7b7; }
+    .filter-option.color-green input[type="checkbox"]:checked + label { background: linear-gradient(135deg, #6ee7b7 0%, #34d399 100%); border-color: #059669; }
+    .filter-option.color-blue label { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-color: #93c5fd; }
+    .filter-option.color-blue input[type="checkbox"]:checked + label { background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 100%); border-color: #2563eb; }
+    .filter-option.color-purple label { background: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%); border-color: #c084fc; }
+    .filter-option.color-purple input[type="checkbox"]:checked + label { background: linear-gradient(135deg, #c084fc 0%, #a855f7 100%); border-color: #7c3aed; }
+    .filter-option.color-brown label { background: linear-gradient(135deg, #d4a574 0%, #b8824d 100%); border-color: #996b3d; }
+    .filter-option.color-brown input[type="checkbox"]:checked + label { background: linear-gradient(135deg, #a67c52 0%, #8b6239 100%); border-color: #6b4423; }
+    .filter-option.color-neutral label { background: linear-gradient(135deg, #f5f5f4 0%, #e7e5e4 100%); border-color: #d6d3d1; }
+    .filter-option.color-neutral input[type="checkbox"]:checked + label { background: linear-gradient(135deg, #d6d3d1 0%, #a8a29e 100%); border-color: #78716c; }
+    .filter-option.color-white label { background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%); border-color: #e5e5e5; }
+    .filter-option.color-white input[type="checkbox"]:checked + label { background: linear-gradient(135deg, #fafafa 0%, #e5e5e5 100%); border-color: #a3a3a3; }
+    .filter-option.color-grey label { background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%); border-color: #d4d4d4; }
+    .filter-option.color-grey input[type="checkbox"]:checked + label { background: linear-gradient(135deg, #d4d4d4 0%, #a3a3a3 100%); border-color: #737373; }
+    .filter-option.color-gold label { background: linear-gradient(135deg, #fef9c3 0%, #fde68a 100%); border-color: #eab308; }
+    .filter-option.color-gold input[type="checkbox"]:checked + label { background: linear-gradient(135deg, #fde68a 0%, #eab308 100%); border-color: #a16207; }
+    .filter-option.color-black label { background: linear-gradient(135deg, #e5e5e5 0%, #d4d4d4 100%); border-color: #a3a3a3; color: var(--color-gray-800); }
+    .filter-option.color-black input[type="checkbox"]:checked + label { background: linear-gradient(135deg, #737373 0%, #525252 100%); border-color: #262626; color: var(--color-white); }
+
+    /* Masonry grid via CSS columns - inspo photos vary in aspect ratio */
+    .inspo-grid {
+      column-count: 2;
+      column-gap: var(--space-3);
+    }
+
+    @media (min-width: 560px) {
+      .inspo-grid { column-count: 3; }
+    }
+
+    @media (min-width: 860px) {
+      .inspo-grid { column-count: 4; }
+    }
+
+    @media (min-width: 1160px) {
+      .inspo-grid { column-count: 5; }
+    }
+
+    .inspo-item {
+      position: relative;
+      break-inside: avoid;
+      margin-bottom: var(--space-3);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--color-surface);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border-light);
+      cursor: zoom-in;
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .inspo-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .inspo-item img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .inspo-item.hidden {
+      display: none;
+    }
+
+    /* Hashtag overlay - light gradient scrim + small tags, bottom of each photo */
+    .inspo-tags {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: var(--space-3) var(--space-2) var(--space-1);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px var(--space-1);
+      pointer-events: none;
+    }
+
+    .inspo-tags span {
+      font-size: 0.7rem;
+      font-weight: var(--font-weight-medium);
+      color: var(--color-white);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: var(--space-6, 3rem) var(--space-4);
+      color: var(--color-text-muted);
+      font-size: var(--font-size-sm);
+      display: none;
+    }
+
+    .empty-state.visible {
+      display: block;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(23, 23, 23, 0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-5);
+      z-index: 1000;
+    }
+
+    .lightbox.visible {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: var(--space-4);
+      right: var(--space-4);
+      background: var(--color-surface);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: var(--font-size-xl);
+      line-height: 1;
+      cursor: pointer;
+      color: var(--color-text);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Header -->
+  <nav class="nav-header">
+    <div class="nav-content">
+      <div>
+        <a href="index.html" class="nav-brand">Studio Claire</a>
+        <p class="tagline" style="margin: var(--space-1) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-secondary);">Browse what I have. Pick what you love.</p>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Polishes</a></li>
+        <li><a href="inspo.html" class="nav-link active">Inspo</a></li>
+        <li><a href="https://calendar.app.google/jKuqSteddKHj1B5fA" class="nav-link nav-cta" target="_blank" rel="noopener noreferrer">Book Appointment</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header">
+    <h1>Nail Inspo</h1>
+    <p class="tagline">Design ideas to browse before your appointment</p>
+    <p class="hint">Tap a photo to see it larger. Filter by color, season, occasion, or vibe, then bring your favorites to your appointment or match them to a shade on the <a href="index.html">Polishes</a> page.</p>
+  </div>
+
+  <div class="container">
+    <div class="filter-bar">
+      <div class="filter-controls">
+        <span id="inspo-count" class="inspo-count"></span>
+        <button class="btn-clear-filters" id="clear-filters-btn" disabled>Clear All Filters</button>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">Color</div>
+        <div class="filter-options" id="color-filters"></div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">Season</div>
+        <div class="filter-options" id="season-filters"></div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">Occasion</div>
+        <div class="filter-options" id="occasion-filters"></div>
+      </div>
+
+      <div class="filter-group">
+        <div class="filter-label">Vibe</div>
+        <div class="filter-options" id="vibe-filters"></div>
+      </div>
+    </div>
+
+    <div class="inspo-grid" id="inspo-grid"></div>
+    <p class="empty-state" id="empty-state">No photos match those filters. Try clearing a few.</p>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // ========== OCCASION ICONS (purely decorative, falls back to plain text) ==========
+      const OCCASION_ICONS = {
+        'Christmas': '🎄',
+        "Valentine's Day": '💕',
+        'Halloween': '🎃',
+        'Easter': '🐣',
+        "New Year's": '✨',
+        '4th of July': '🎆',
+        'Birthday': '🎂',
+        'Everyday': ''
+      };
+
+      const SEASON_ICONS = {
+        'Spring': '🌸',
+        'Summer': '☀️',
+        'Fall': '🍂',
+        'Winter': '❄️'
+      };
+
+      // ========== CSV PARSING (same quoted-comma handling as index.html) ==========
+      function parseCSV(csvText) {
+        const lines = csvText.trim().split('\n');
+        const headers = lines[0].split(',').map(h => h.trim());
+
+        return lines.slice(1).map(line => {
+          const values = [];
+          let currentValue = '';
+          let insideQuotes = false;
+
+          for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char === '"') {
+              if (insideQuotes && line[i + 1] === '"') {
+                currentValue += '"';
+                i++;
+              } else {
+                insideQuotes = !insideQuotes;
+              }
+            } else if (char === ',' && !insideQuotes) {
+              values.push(currentValue.trim());
+              currentValue = '';
+            } else {
+              currentValue += char;
+            }
+          }
+          values.push(currentValue.trim());
+
+          const obj = {};
+          headers.forEach((header, index) => {
+            let value = values[index] || '';
+            if (value.startsWith('"') && value.endsWith('"')) {
+              value = value.slice(1, -1);
+            }
+            obj[header] = value;
+          });
+          return obj;
+        });
+      }
+
+      // Allows letters, digits (for "4th of July"), spaces, and apostrophes
+      // (used in "Valentine's Day" / "New Year's")
+      function isSafeFilterValue(str) {
+        return /^[a-zA-Z0-9’'\s]+$/.test(str);
+      }
+
+      function splitField(value) {
+        return (value || '').split(',').map(v => v.trim()).filter(Boolean);
+      }
+
+      // ========== STATE ==========
+      const selected = {
+        colors: new Set(),
+        seasons: new Set(),
+        occasions: new Set(),
+        vibes: new Set()
+      };
+
+      const gridEl = document.getElementById('inspo-grid');
+      const filterContainers = {
+        colors: document.getElementById('color-filters'),
+        seasons: document.getElementById('season-filters'),
+        occasions: document.getElementById('occasion-filters'),
+        vibes: document.getElementById('vibe-filters')
+      };
+      const clearBtn = document.getElementById('clear-filters-btn');
+      const countEl = document.getElementById('inspo-count');
+      const emptyStateEl = document.getElementById('empty-state');
+
+      function hashtagText(row) {
+        // Overlay shows Season + Occasion + Vibe tags (skip "Everyday" - not a useful hashtag, and skip Colors - not a "vibe" tag)
+        const tags = [
+          ...splitField(row.Seasons),
+          ...splitField(row.Occasions).filter(o => o !== 'Everyday'),
+          ...splitField(row.Vibes)
+        ];
+        return tags.map(t => '#' + t.replace(/[\s']+/g, '').toLowerCase());
+      }
+
+      function createItem(row) {
+        const item = document.createElement('div');
+        item.className = 'inspo-item';
+        // setAttribute is not HTML parsing, so it's already injection-safe here -
+        // escaping would corrupt apostrophes (e.g. "New Year's") since the escaped
+        // entity never gets decoded back on read.
+        item.setAttribute('data-colors', row.Colors || '');
+        item.setAttribute('data-seasons', row.Seasons || '');
+        item.setAttribute('data-occasions', row.Occasions || '');
+        item.setAttribute('data-vibes', row.Vibes || '');
+
+        const img = document.createElement('img');
+        img.src = `public/inspo/${row.Filename}`;
+        img.alt = [row.Seasons, row.Occasions, row.Vibes].filter(Boolean).join(', ') || 'Nail inspo';
+        img.loading = 'lazy';
+        item.appendChild(img);
+
+        const hashtags = hashtagText(row);
+        if (hashtags.length) {
+          const tagsEl = document.createElement('div');
+          tagsEl.className = 'inspo-tags';
+          hashtags.forEach(tag => {
+            const span = document.createElement('span');
+            span.textContent = tag;
+            tagsEl.appendChild(span);
+          });
+          item.appendChild(tagsEl);
+        }
+
+        return item;
+      }
+
+      function buildFilterGroup(key, container, values, iconMap, sortFn) {
+        const sorted = sortFn ? Array.from(values).sort(sortFn) : Array.from(values).sort();
+        sorted.forEach(value => {
+          const option = document.createElement('div');
+          option.className = 'filter-option';
+          if (key === 'colors') {
+            option.className += ` color-${value.toLowerCase().replace(/\s+/g, '-')}`;
+          }
+
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.id = `${key}-${value.replace(/[\s']+/g, '-').toLowerCase()}`;
+          checkbox.value = value;
+          checkbox.addEventListener('change', (e) => {
+            e.target.checked ? selected[key].add(value) : selected[key].delete(value);
+            applyFilters();
+          });
+
+          const label = document.createElement('label');
+          label.htmlFor = checkbox.id;
+          const icon = iconMap && iconMap[value];
+          label.textContent = icon ? `${icon} ${value}` : value;
+
+          option.appendChild(checkbox);
+          option.appendChild(label);
+          container.appendChild(option);
+        });
+      }
+
+      function populateFilters(data) {
+        const colors = new Set();
+        const seasons = new Set();
+        const occasions = new Set();
+        const vibes = new Set();
+
+        data.forEach(row => {
+          splitField(row.Colors).forEach(c => { if (isSafeFilterValue(c)) colors.add(c); });
+          splitField(row.Seasons).forEach(s => { if (isSafeFilterValue(s)) seasons.add(s); });
+          splitField(row.Occasions).forEach(o => { if (isSafeFilterValue(o)) occasions.add(o); });
+          splitField(row.Vibes).forEach(v => { if (isSafeFilterValue(v)) vibes.add(v); });
+        });
+
+        // Only categories with at least one tagged photo are rendered at all
+        buildFilterGroup('colors', filterContainers.colors, colors);
+
+        const seasonOrder = ['Spring', 'Summer', 'Fall', 'Winter'];
+        buildFilterGroup('seasons', filterContainers.seasons, seasons, SEASON_ICONS,
+          (a, b) => seasonOrder.indexOf(a) - seasonOrder.indexOf(b));
+
+        buildFilterGroup('occasions', filterContainers.occasions, occasions, OCCASION_ICONS,
+          (a, b) => {
+            if (a === 'Everyday') return -1;
+            if (b === 'Everyday') return 1;
+            return a.localeCompare(b);
+          });
+
+        buildFilterGroup('vibes', filterContainers.vibes, vibes);
+      }
+
+      function applyFilters() {
+        const items = document.querySelectorAll('.inspo-item');
+        let visibleCount = 0;
+
+        items.forEach(item => {
+          const itemColors = splitField(item.getAttribute('data-colors'));
+          const itemSeasons = splitField(item.getAttribute('data-seasons'));
+          const itemOccasions = splitField(item.getAttribute('data-occasions'));
+          const itemVibes = splitField(item.getAttribute('data-vibes'));
+
+          const colorMatch = selected.colors.size === 0 || itemColors.some(c => selected.colors.has(c));
+          const seasonMatch = selected.seasons.size === 0 || itemSeasons.some(s => selected.seasons.has(s));
+          const occasionMatch = selected.occasions.size === 0 || itemOccasions.some(o => selected.occasions.has(o));
+          const vibeMatch = selected.vibes.size === 0 || itemVibes.some(v => selected.vibes.has(v));
+
+          const visible = colorMatch && seasonMatch && occasionMatch && vibeMatch;
+          item.classList.toggle('hidden', !visible);
+          if (visible) visibleCount++;
+        });
+
+        countEl.textContent = `${visibleCount} photo${visibleCount === 1 ? '' : 's'}`;
+        emptyStateEl.classList.toggle('visible', visibleCount === 0);
+        const anySelected = Object.values(selected).some(set => set.size > 0);
+        clearBtn.disabled = !anySelected;
+      }
+
+      function clearAllFilters() {
+        Object.values(selected).forEach(set => set.clear());
+        document.querySelectorAll('.filter-options input').forEach(cb => { cb.checked = false; });
+        applyFilters();
+      }
+
+      clearBtn.addEventListener('click', clearAllFilters);
+
+      // ========== LIGHTBOX ==========
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxClose = document.getElementById('lightbox-close');
+
+      gridEl.addEventListener('click', function (event) {
+        const item = event.target.closest('.inspo-item');
+        if (!item) return;
+        const img = item.querySelector('img');
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('visible');
+      });
+
+      function closeLightbox() {
+        lightbox.classList.remove('visible');
+        lightboxImg.src = '';
+      }
+
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', function (event) {
+        if (event.target === lightbox) closeLightbox();
+      });
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') closeLightbox();
+      });
+
+      // ========== INIT ==========
+      async function init() {
+        try {
+          const response = await fetch('data/inspo.csv?v=' + Date.now());
+          if (!response.ok) throw new Error(`Failed to load inspo CSV: ${response.status} ${response.statusText}`);
+          const csvText = await response.text();
+
+          data.forEach(row => {
+            if (row.Filename) gridEl.appendChild(createItem(row));
+          });
+
+          populateFilters(data);
+          applyFilters();
+        } catch (err) {
+          gridEl.innerHTML = '<p class="empty-state visible">Could not load the inspo gallery. Please refresh.</p>';
+          console.error('Failed to load inspo data:', err);
+        }
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>
