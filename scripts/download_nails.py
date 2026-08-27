@@ -256,6 +256,8 @@ for i, url in enumerate(URLS, 1):
     sys.stdout.write(f"\r[{bar}] {i}/{total}  ")
     sys.stdout.flush()
 
+    if os.path.exists(dest) and os.path.getsize(dest) > 0:
+        continue
     try:
         req = urllib.request.Request(url, headers=HEADERS)
         with urllib.request.urlopen(req, timeout=20) as resp:
