@@ -735,7 +735,7 @@ _Full ticket list available - expand sections as needed_
 | 🚀 M1: MVP Gallery | 21 | 50 | 11 ✅ | 10 (27pts) |
 | 💎 M2: Personalization | 15 | 42 | 0 | 15 (42pts) |
 | ✨ M3: Enhanced Browsing | 15 | 46 | 0 | 15 (46pts) |
-| 📅 M4: Booking | 8 | 14 | 0 | 8 (14pts) |
+| 📅 M4: Booking | 9 | 16 | 0 | 9 (16pts) |
 | 🎨 Infrastructure | 16 | 37 | 0 | 16 (37pts) |
 
 ### By Priority
