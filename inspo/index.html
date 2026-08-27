@@ -567,7 +567,7 @@
         "New Year's": '✨',
         '4th of July': '🎆',
         'Birthday': '🎂',
-        'Everyday': ''
+        'Everyday': '💅'
       };
 
       const SEASON_ICONS = {
@@ -575,6 +575,23 @@
         'Summer': '☀️',
         'Fall': '🍂',
         'Winter': '❄️'
+      };
+
+      const VIBE_ICONS = {
+        'Minimalist': '⚪',
+        'Detailed': '🔬',
+        'Floral': '🌼',
+        'Geometric': '🔷',
+        'Glam': '✨',
+        'French Tip': '🤍',
+        'Ombre': '🌈',
+        'Polka Dot': '⚫',
+        'Stripes': '〰️',
+        'Marble': '🪨',
+        'Abstract': '🎨',
+        'Animal Print': '🐆',
+        'Whimsical': '🦄',
+        'Elegant': '💎'
       };
 
       // ========== CSV PARSING (same quoted-comma handling as index.html) ==========
@@ -744,7 +761,7 @@
             return a.localeCompare(b);
           });
 
-        buildFilterGroup('vibes', filterContainers.vibes, vibes);
+        buildFilterGroup('vibes', filterContainers.vibes, vibes, VIBE_ICONS);
       }
 
       function applyFilters() {
