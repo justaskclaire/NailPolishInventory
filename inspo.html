@@ -764,8 +764,8 @@
       async function init() {
         try {
           const response = await fetch('data/inspo.csv?v=' + Date.now());
+          if (!response.ok) throw new Error(`Failed to load inspo CSV: ${response.status} ${response.statusText}`);
           const csvText = await response.text();
-          const data = parseCSV(csvText);
 
           data.forEach(row => {
             if (row.Filename) gridEl.appendChild(createItem(row));
