@@ -15,6 +15,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Services/pricing page and contact/inquiry form (booking flow)
 - Pre-appointment reminder nudging clients to review the Inspo Gallery
 
+## [1.3.1] - 2026-08-27
+
+### Added
+- **My Favorites + My Next Appt on the Inspo Gallery** - matches the Polishes page exactly now: two icon buttons per photo (❤️/🤍 and 📅/🗓️), a "My Picks" filter group, and full-width "Send my picks to Claire" button with the same blue gradient, positioned inside that filter group instead of the filter-controls corner
+- Rainbow-ordered color filters (Red → Orange → Yellow → Green → Blue → Purple → Pink, then neutrals) on both pages, replacing alphabetical order
+
+### Changed
+- **"Send my picks to Claire" now reads only from My Next Appt, not Favorites** - the first version of the Inspo save feature used a single heart that drove both, which wasn't the intended behavior. Favorites is a personal bookmark/filter now; only Next Appt picks get sent. The Polishes page's combined message was updated to match (`nailinspo_nextappt` instead of `nailinspo_favorites`, wording changed to "Nail inspo for my next appointment")
+- Inspo page's favicon changed from a hand-drawn nail polish bottle to a 💅 emoji
+
+### Fixed
+- Inspo page had an entire extra header section (large title + tagline + hint paragraph) that the Polishes page never had, making the two pages look inconsistent - removed it and folded the description into the filter-controls hint row, matching the Polishes page's structure exactly
+
 ## [1.3.0] - 2026-08-26
 
 ### Added
@@ -141,6 +154,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Version | Date | Description |
 |---------|------|-------------|
+| 1.3.1 | 2026-08-27 | Inspo Gallery Favorites/Next Appt corrected to match Polishes exactly, header consistency fix, rainbow color order |
 | 1.3.0 | 2026-08-26 | Book Appointment booking flow + Nail Inspo Gallery (216 photos, Color/Season/Occasion/Vibe filters) |
 | 1.2.0 | 2026-03-29 | Inventory refresh to 135 polishes + Ruby workflow + nav links hidden |
 | 1.1.0 | 2026-01-03 | Data accuracy + Glitter filter + Local images + Cache-busting |
