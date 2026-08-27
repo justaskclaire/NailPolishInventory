@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Studio Claire - Browse my nail polish collection and pick what you love. Filter by color and finish." />
   <title>Studio Claire</title>
+  <link rel="icon" type="image/svg+xml" href="public/favicon.svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Studio Claire" />
+  <meta property="og:title" content="Studio Claire - Nail Polish Gallery" />
+  <meta property="og:description" content="Browse the nail polish collection and pick what you love. Filter by color and finish." />
+  <meta property="og:image" content="https://justaskclaire.github.io/NailPolishInventory/public/inspo/nail-079.jpg" />
+  <meta property="og:url" content="https://justaskclaire.github.io/NailPolishInventory/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
@@ -1205,7 +1215,7 @@
         </div>
         <div class="copy-picks-wrapper" id="copy-picks-wrapper">
           <button class="btn-copy-picks" id="copy-picks-btn" type="button">
-            📋 Send colors to Claire
+            📋 Send my picks to Claire
           </button>
         </div>
       </div>
@@ -2025,14 +2035,34 @@
      */
 
     /**
-     * Show or hide the "Send colors to Claire" button based on nextappt list
+     * Read the Inspo Gallery's saved-photo picks. Shared localStorage key with
+     * inspo/index.html (same origin) - each entry is {filename, tags} so this
+     * page can build a message without needing to fetch data/inspo.csv itself.
+     */
+    function getInspoFavorites() {
+      try {
+        const data = localStorage.getItem('nailinspo_favorites');
+        if (!data) return [];
+        const parsed = JSON.parse(data);
+        if (!Array.isArray(parsed)) return [];
+        return parsed.filter(item => item && typeof item.filename === 'string');
+      } catch (e) {
+        console.warn('Failed to load inspo favorites from localStorage:', e);
+        return [];
+      }
+    }
+
+    /**
+     * Show or hide the "Send my picks to Claire" button based on the nextappt
+     * list AND the Inspo Gallery's saved photos (either one is enough to show it).
      * Called on page load and after every nextappt toggle.
      */
     function updateCopyButton() {
       const wrapper = document.getElementById('copy-picks-wrapper');
       if (!wrapper) return;
-      const list = getStoredList('nextappt');
-      if (list.length > 0) {
+      const hasPolishes = getStoredList('nextappt').length > 0;
+      const hasInspo = getInspoFavorites().length > 0;
+      if (hasPolishes || hasInspo) {
         wrapper.classList.add('visible');
       } else {
         wrapper.classList.remove('visible');
@@ -2082,29 +2112,47 @@
     }
 
     /**
-     * Format the nextappt list and copy it to the clipboard.
+     * Format the nextappt list + any saved Inspo Gallery photos into one
+     * message and copy it to the clipboard.
      * Output format:
      *   My picks for my next appointment:
      *   #781 Air of Mint
      *   #427 Banana Crepe
+     *
+     *   Nail inspo I love:
+     *   https://.../inspo/#nail-042 (Christmas, Glam)
      */
     function copyPicksToClipboard() {
-      const list = getStoredList('nextappt');
-      if (list.length === 0) return;
+      const polishList = getStoredList('nextappt');
+      const inspoList = getInspoFavorites();
+      if (polishList.length === 0 && inspoList.length === 0) return;
 
-      const lines = list.map(id => {
-        const dashIndex = id.indexOf('-');
-        // Guard against unexpected/corrupt IDs without a valid '-' separator
-        if (dashIndex <= 0 || dashIndex === id.length - 1) {
-          // Fall back to the full string to avoid malformed "# " output
-          return id;
-        }
-        const number = id.substring(0, dashIndex);
-        const name = id.substring(dashIndex + 1);
-        return `#${number} ${name}`;
-      });
+      const sections = [];
 
-      const message = `My picks for my next appointment:\n${lines.join('\n')}`;
+      if (polishList.length > 0) {
+        const lines = polishList.map(id => {
+          const dashIndex = id.indexOf('-');
+          // Guard against unexpected/corrupt IDs without a valid '-' separator
+          if (dashIndex <= 0 || dashIndex === id.length - 1) {
+            // Fall back to the full string to avoid malformed "# " output
+            return id;
+          }
+          const number = id.substring(0, dashIndex);
+          const name = id.substring(dashIndex + 1);
+          return `#${number} ${name}`;
+        });
+        sections.push(`My picks for my next appointment:\n${lines.join('\n')}`);
+      }
+
+      if (inspoList.length > 0) {
+        const lines = inspoList.map(item => {
+          const url = `https://justaskclaire.github.io/NailPolishInventory/inspo/#${item.filename.replace('.jpg', '')}`;
+          return item.tags ? `${url} (${item.tags})` : url;
+        });
+        sections.push(`Nail inspo I love:\n${lines.join('\n')}`);
+      }
+
+      const message = sections.join('\n\n');
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(message).then(showCopyToast).catch(() => fallbackCopy(message));

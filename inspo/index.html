@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Studio Claire - Nail inspo gallery. Browse design ideas by color, season, occasion, and vibe before your appointment." />
   <title>Inspo - Studio Claire</title>
+  <link rel="icon" type="image/svg+xml" href="../public/favicon.svg" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Studio Claire" />
+  <meta property="og:title" content="Nail Inspo - Studio Claire" />
+  <meta property="og:description" content="Browse design ideas by color, season, occasion, and vibe before your appointment." />
+  <meta property="og:image" content="https://justaskclaire.github.io/NailPolishInventory/public/inspo/nail-079.jpg" />
+  <meta property="og:url" content="https://justaskclaire.github.io/NailPolishInventory/inspo/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
@@ -444,6 +454,130 @@
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
     }
 
+    /* Save/favorite heart button - top-right of each photo, matches the
+       Polishes page's icon-btn/favorite-btn pattern */
+    .favorite-btn {
+      position: absolute;
+      top: var(--space-2);
+      right: var(--space-2);
+      z-index: 10;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--color-border-light);
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      color: var(--color-gray-500, #737373);
+      transition: all var(--transition-fast);
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow-sm);
+      opacity: 0;
+    }
+
+    .inspo-item:hover .favorite-btn,
+    .favorite-btn.active {
+      opacity: 1;
+    }
+
+    .favorite-btn:hover {
+      transform: scale(1.15);
+      color: var(--color-primary-500);
+      border-color: var(--color-primary-100);
+      background: var(--color-primary-50);
+    }
+
+    .favorite-btn:focus-visible {
+      opacity: 1;
+      outline: 2px solid var(--color-primary-500);
+      outline-offset: 2px;
+    }
+
+    .favorite-btn.active {
+      color: var(--color-primary-600);
+      border-color: var(--color-primary-500);
+      background: var(--color-primary-100);
+    }
+
+    .favorite-btn.active:hover {
+      color: var(--color-primary-700);
+    }
+
+    /* Touch devices have no hover state, so the heart needs to always be
+       visible - larger touch target too. Must come after the base
+       .favorite-btn rule above, since equal-specificity CSS rules resolve
+       by source order, not by media-query presence. */
+    @media (max-width: 768px) {
+      .favorite-btn {
+        opacity: 0.9;
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+      }
+    }
+
+    /* Send picks to Claire - mirrors index.html's copy-picks pattern */
+    .copy-picks-wrapper {
+      display: none;
+    }
+
+    .copy-picks-wrapper.visible {
+      display: block;
+    }
+
+    .btn-copy-picks {
+      padding: var(--space-1) var(--space-3);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      font-family: var(--font-family);
+      color: var(--color-surface);
+      background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-700) 100%);
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-copy-picks:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+    }
+
+    .btn-copy-picks:active {
+      transform: translateY(0);
+    }
+
+    .copy-toast {
+      position: fixed;
+      bottom: var(--space-5);
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--color-gray-900);
+      color: var(--color-white);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-md);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      box-shadow: var(--shadow-xl);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity var(--transition-base), transform var(--transition-base);
+      pointer-events: none;
+      max-width: calc(100vw - 2rem);
+    }
+
+    .copy-toast.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
     .empty-state {
       text-align: center;
       padding: var(--space-6, 3rem) var(--space-4);
@@ -521,6 +655,9 @@
     <div class="filter-bar">
       <div class="filter-controls">
         <span id="inspo-count" class="inspo-count"></span>
+        <div class="copy-picks-wrapper" id="copy-picks-wrapper">
+          <button class="btn-copy-picks" id="copy-picks-btn" type="button">📋 Send my picks to Claire</button>
+        </div>
         <button class="btn-clear-filters" id="clear-filters-btn" disabled>Clear All Filters</button>
       </div>
 
@@ -553,6 +690,8 @@
     <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
     <img id="lightbox-img" src="" alt="" />
   </div>
+
+  <div class="copy-toast" id="copy-toast" role="status" aria-live="polite" aria-atomic="true">Copied! Paste it in a text to Claire 💅</div>
 
   <script>
     (function () {
@@ -663,19 +802,65 @@
       const countEl = document.getElementById('inspo-count');
       const emptyStateEl = document.getElementById('empty-state');
 
-      function hashtagText(row) {
-        // Overlay shows Season + Occasion + Vibe tags (skip "Everyday" - not a useful hashtag, and skip Colors - not a "vibe" tag)
-        const tags = [
+      function summaryTags(row) {
+        // Season + Occasion + Vibe tags (skip "Everyday" - not a useful tag, and skip Colors)
+        return [
           ...splitField(row.Seasons),
           ...splitField(row.Occasions).filter(o => o !== 'Everyday'),
           ...splitField(row.Vibes)
         ];
-        return tags.map(t => '#' + t.replace(/[\s']+/g, '').toLowerCase());
+      }
+
+      function hashtagText(row) {
+        return summaryTags(row).map(t => '#' + t.replace(/[\s']+/g, '').toLowerCase());
+      }
+
+      // ========== SAVED PICKS ("Save this look") ==========
+      // Shared localStorage key with index.html (same origin) - each entry is
+      // {filename, tags} so the Polishes page can build a "send to Claire"
+      // message without needing to fetch data/inspo.csv itself.
+      function getInspoFavorites() {
+        try {
+          const data = localStorage.getItem('nailinspo_favorites');
+          if (!data) return [];
+          const parsed = JSON.parse(data);
+          if (!Array.isArray(parsed)) return [];
+          return parsed.filter(item => item && typeof item.filename === 'string');
+        } catch (e) {
+          console.warn('Failed to load inspo favorites from localStorage:', e);
+          return [];
+        }
+      }
+
+      function saveInspoFavorites(list) {
+        try {
+          localStorage.setItem('nailinspo_favorites', JSON.stringify(list));
+        } catch (e) {
+          console.error('Failed to save inspo favorites to localStorage:', e);
+        }
+      }
+
+      function isInspoFavorited(filename) {
+        return getInspoFavorites().some(item => item.filename === filename);
+      }
+
+      function toggleInspoFavorite(filename, tags) {
+        const list = getInspoFavorites();
+        const index = list.findIndex(item => item.filename === filename);
+        if (index > -1) {
+          list.splice(index, 1);
+          saveInspoFavorites(list);
+          return false;
+        }
+        list.push({ filename, tags });
+        saveInspoFavorites(list);
+        return true;
       }
 
       function createItem(row) {
         const item = document.createElement('div');
         item.className = 'inspo-item';
+        item.id = row.Filename.replace(/\.jpg$/i, '');
         // setAttribute is not HTML parsing, so it's already injection-safe here -
         // escaping would corrupt apostrophes (e.g. "New Year's") since the escaped
         // entity never gets decoded back on read.
@@ -689,6 +874,25 @@
         img.alt = [row.Seasons, row.Occasions, row.Vibes].filter(Boolean).join(', ') || 'Nail inspo';
         img.loading = 'lazy';
         item.appendChild(img);
+
+        const tagsSummary = summaryTags(row).join(', ');
+
+        const favBtn = document.createElement('button');
+        favBtn.type = 'button';
+        favBtn.className = 'favorite-btn';
+        const alreadySaved = isInspoFavorited(row.Filename);
+        if (alreadySaved) favBtn.classList.add('active');
+        favBtn.textContent = alreadySaved ? '❤️' : '🤍';
+        favBtn.setAttribute('aria-label', alreadySaved ? 'Remove from saved looks' : 'Save this look');
+        favBtn.addEventListener('click', function (event) {
+          event.stopPropagation();
+          const nowSaved = toggleInspoFavorite(row.Filename, tagsSummary);
+          favBtn.classList.toggle('active', nowSaved);
+          favBtn.textContent = nowSaved ? '❤️' : '🤍';
+          favBtn.setAttribute('aria-label', nowSaved ? 'Remove from saved looks' : 'Save this look');
+          updateCopyButton();
+        });
+        item.appendChild(favBtn);
 
         const hashtags = hashtagText(row);
         if (hashtags.length) {
@@ -806,10 +1010,7 @@
       gridEl.addEventListener('click', function (event) {
         const item = event.target.closest('.inspo-item');
         if (!item) return;
-        const img = item.querySelector('img');
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-        lightbox.classList.add('visible');
+        openLightboxFor(item);
       });
 
       function closeLightbox() {
@@ -825,6 +1026,70 @@
         if (event.key === 'Escape') closeLightbox();
       });
 
+      function openLightboxFor(item) {
+        const img = item.querySelector('img');
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('visible');
+      }
+
+      // ========== SEND MY PICKS TO CLAIRE ==========
+      const copyPicksWrapper = document.getElementById('copy-picks-wrapper');
+      const copyPicksBtn = document.getElementById('copy-picks-btn');
+      const copyToast = document.getElementById('copy-toast');
+
+      function updateCopyButton() {
+        if (!copyPicksWrapper) return;
+        copyPicksWrapper.classList.toggle('visible', getInspoFavorites().length > 0);
+      }
+
+      let copyToastTimeoutId = null;
+      function showCopyToast() {
+        if (!copyToast) return;
+        if (copyToastTimeoutId !== null) clearTimeout(copyToastTimeoutId);
+        copyToast.classList.add('visible');
+        copyToastTimeoutId = setTimeout(() => {
+          copyToast.classList.remove('visible');
+          copyToastTimeoutId = null;
+        }, 2500);
+      }
+
+      function fallbackCopy(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        try {
+          document.execCommand('copy');
+          showCopyToast();
+        } catch (e) {
+          console.error('Copy failed:', e);
+        }
+        document.body.removeChild(textarea);
+      }
+
+      function copyPicksToClipboard() {
+        const list = getInspoFavorites();
+        if (list.length === 0) return;
+
+        const lines = list.map(item => {
+          const url = `https://justaskclaire.github.io/NailPolishInventory/inspo/#${item.filename.replace(/\.jpg$/i, '')}`;
+          return item.tags ? `${url} (${item.tags})` : url;
+        });
+        const message = `Nail inspo I love:\n${lines.join('\n')}`;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(message).then(showCopyToast).catch(() => fallbackCopy(message));
+        } else {
+          fallbackCopy(message);
+        }
+      }
+
+      if (copyPicksBtn) copyPicksBtn.addEventListener('click', copyPicksToClipboard);
+
       // ========== INIT ==========
       async function init() {
         try {
@@ -839,6 +1104,17 @@
 
           populateFilters(data);
           applyFilters();
+          updateCopyButton();
+
+          // Deep-link support: /inspo/#nail-042 scrolls to and opens that photo,
+          // so a link shared via "Send my picks to Claire" is actually useful.
+          if (location.hash) {
+            const target = document.getElementById(location.hash.slice(1));
+            if (target) {
+              target.scrollIntoView({ block: 'center' });
+              openLightboxFor(target);
+            }
+          }
         } catch (err) {
           gridEl.innerHTML = '<p class="empty-state visible">Could not load the inspo gallery. Please refresh.</p>';
           console.error('Failed to load inspo data:', err);

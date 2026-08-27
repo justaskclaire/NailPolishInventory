@@ -3,8 +3,8 @@
 ## 📊 Executive Summary
 
 ### 🎯 Current Status
-- **Completed:** 23/84 tickets (27%) | 48/208 points (23%) | **Skipped/Descoped:** 13 tickets (37pts)
-- **Current Phase:** 🖼️ Inspo Gallery shipped (Aug 26, 2026) - a full color/season/occasion/vibe-filterable photo gallery, plus the Book Appointment booking flow
+- **Completed:** 26/88 tickets (30%) | 53/218 points (24%) | **Skipped/Descoped:** 13 tickets (37pts)
+- **Current Phase:** 🖼️ Inspo Gallery shipped (Aug 26, 2026) - a full color/season/occasion/vibe-filterable photo gallery, "save this look" + unified Send-to-Claire, a branded 404, favicon/social preview tags, plus the Book Appointment booking flow
 - **Previous Milestone:** Milestone 2 - Personalization Basics ✅ COMPLETE (Jan 3, 2026, via a simplified localStorage approach - see note in that section)
 - **Velocity:** 33 points (Sprint 1) + 20 points (Aug 26, 2026 session: booking CTA + Inspo Gallery)
 
@@ -720,7 +720,7 @@ Added as a styled solid-rose CTA in the nav on both the Polishes and Inspo pages
 
 ## 🖼️ Inspo Gallery (Aug 26, 2026) - SHIPPED
 
-**Progress:** 8/8 tickets | 17/17 points (100%) ✅
+**Progress:** 11/12 tickets done | 22/27 points (81%)
 
 Not part of the original milestone plan — delivers the "Pinterest-powered inspiration browsing" vision from `docs/Milestone3Planning.md` via a local photo mirror instead of the live Pinterest API, sidestepping the still-pending Pinterest API trial approval entirely. Also functions as the practical half of NPI-060.
 
@@ -734,6 +734,10 @@ Not part of the original milestone plan — delivers the "Pinterest-powered insp
 | NPI-066 | Fix Inspo page mobile-responsive layout | 🗺️ Layout | 2 | 🟢 | 🔥 |
 | NPI-067 | Fix nav consistency between Polishes and Inspo pages | 🗺️ Navigation | 1 | 🟢 | ➡️ |
 | NPI-068 | Add emoji icons to Occasion/Vibe filter labels | 🎨 Design System | 1 | 🟢 | ⬇️ |
+| NPI-069 | Add branded 404 page | 🗺️ UI | 1 | 🟢 | ➡️ |
+| NPI-070 | Add favicon + Open Graph/social preview tags | 🎨 Design System | 1 | 🟢 | ➡️ |
+| NPI-071 | "Save this look" heart toggle on Inspo photos + unified Send-to-Claire | 👤 Favorites | 3 | 🟢 | ⬆️ |
+| NPI-072 | Auto-suggest matching polishes from a photo's colors ("dream world" feature) | 🎯 Recommendations | 5 | 🟡 | ⬇️ |
 
 <details>
 <summary><b>📋 View All Ticket Details</b> (click to expand)</summary>
@@ -849,6 +853,64 @@ Give every Occasion and Vibe filter option a small emoji, matching the existing 
 ✅ 💅 Everyday, plus a unique emoji for each of the 14 Vibe tags (🎨 Abstract, 🔬 Detailed, 💎 Elegant, 🌼 Floral, 🤍 French Tip, 🔷 Geometric, ✨ Glam, ⚪ Minimalist, 🌈 Ombre, ⚫ Polka Dot, 〰️ Stripes, 🦄 Whimsical, plus Marble/Animal Print icons defined and waiting for a photo to use them)
 </details>
 
+<details id="npi-069">
+<summary><b>NPI-069</b> | Add branded 404 page [1pt] 🟢 ➡️</summary>
+
+### 🏷️ Tags
+`ui` `error-handling` `polish`
+
+### 📋 Description
+Replace GitHub's generic 404 with something on-brand that helps people recover
+
+### ✅ Status Notes
+✅ `404.html` at repo root (GitHub Pages convention - served automatically for any unmatched path). Studio Claire branding, absolute URLs (a 404 can fire at any path depth, so relative links aren't reliable) back to Polishes, Inspo, and Book Appointment.
+</details>
+
+<details id="npi-070">
+<summary><b>NPI-070</b> | Add favicon + Open Graph/social preview tags [1pt] 🟢 ➡️</summary>
+
+### 🏷️ Tags
+`design-system` `seo` `polish`
+
+### 📋 Description
+The site had no favicon and no social-share preview metadata at all
+
+### ✅ Status Notes
+✅ Hand-drawn nail polish bottle SVG favicon (`public/favicon.svg`, shared by both pages)
+✅ `og:title`/`og:description`/`og:image`/`og:url` + `twitter:card` on both pages, using an existing Inspo photo (`nail-079.jpg`) as the shared preview image
+</details>
+
+<details id="npi-071">
+<summary><b>NPI-071</b> | "Save this look" heart toggle on Inspo photos + unified Send-to-Claire [3pt] 🟢 ⬆️</summary>
+
+### 🏷️ Tags
+`ui` `favorites` `interaction`
+
+### 📋 Description
+Let clients save Inspo photos they like and hand them off to Claire, same pattern as the Polishes page's favorites/next-appt flow - requested as "someone picks an inspo pic ... and can easily share it with me in some way"
+
+### ✅ Status Notes
+✅ ❤️/🤍 heart toggle on every Inspo photo, persisted in localStorage (`nailinspo_favorites`, storing `{filename, tags}` per photo)
+✅ "📋 Send my picks to Claire" button on the Inspo page, copies deep links (`/inspo/#nail-042`) plus each photo's Season/Occasion/Vibe tags to the clipboard
+✅ Visiting a deep link auto-scrolls to and opens that photo in the lightbox
+✅ **Unified across both pages** (same-origin localStorage): the existing Polishes page "Send my picks to Claire" button now also includes a "Nail inspo I love" section if any Inspo photos are saved, and shows itself if *either* list has items - one combined handoff regardless of which page you're on
+</details>
+
+<details id="npi-072">
+<summary><b>NPI-072</b> | Auto-suggest matching polishes from a photo's colors [5pt] 🟡 ⬇️</summary>
+
+### 🏷️ Tags
+`recommendations` `data` `dream-feature`
+
+### 📋 Description
+Claire's "true dream world" version of NPI-071: each Inspo photo shows which polishes from the actual inventory match its colors, so a client picking a look also gets a ready answer for "which polish is that?"
+
+### 💡 Why this is closer than it sounds
+Both datasets already use a compatible color vocabulary - `data/inspo.csv`'s Colors column and `data/polishes.csv`'s Color column both draw from the same category names (Red, Pink, Blue, etc., NPI-062's primary-color tagging). A first version could be pure client-side JS with no new tagging work: for a given Inspo photo, look up its Colors, filter `polishes.csv` for matches, show 2-3 as "Try: #123 Ruby Red" in the lightbox.
+
+**Status:** Not started - logged as a follow-up idea, not scoped for a single evening.
+</details>
+
 </details>
 
 ---
@@ -900,11 +962,11 @@ _Full ticket list available - expand sections as needed_
 
 ## 📊 Project Summary
 
-**Total:** 84 tickets | 208 story points  
-**Completed:** 23 tickets (27%) | 48 points (23%)  
-**Skipped/Descoped:** 13 tickets (15%) | 37 points (18%) - all in M2, superseded by the simpler localStorage approach that actually shipped  
+**Total:** 88 tickets | 218 story points  
+**Completed:** 26 tickets (30%) | 53 points (24%)  
+**Skipped/Descoped:** 13 tickets (15%) | 37 points (17%) - all in M2, superseded by the simpler localStorage approach that actually shipped  
 **In Progress:** 0 tickets  
-**Not Started:** 48 tickets | 123 points  
+**Not Started:** 49 tickets | 128 points  
 
 ### By Milestone
 | Milestone | Tickets | Points | Done | Skipped | Remaining |
@@ -914,14 +976,14 @@ _Full ticket list available - expand sections as needed_
 | ✨ M3: Enhanced Browsing | 15 | 46 | 0 | 0 | 15 (46pts) |
 | 📅 M4: Booking | 9 | 16 | 2 ✅ (3pts) | 0 | 7 (13pts) |
 | 🎨 Infrastructure | 16 | 37 | 0 | 0 | 16 (37pts) |
-| 🖼️ Inspo Gallery | 8 | 17 | 8 ✅ (17pts) | 0 | 0 |
+| 🖼️ Inspo Gallery | 12 | 27 | 11 ✅ (22pts) | 0 | 1 (5pts) |
 
 ### By Priority
 _(Individually-itemized tickets only - the 16 Infrastructure tickets are tracked as a category rollup, not itemized, so aren't counted here)_
 - 🔥 **Critical:** 14 tickets - 10 done, 3 skipped, 1 not started
-- ⬆️ **High:** 21 tickets - 6 done, 4 skipped, 2 blocked, 9 not started
-- ➡️ **Medium:** 21 tickets - 5 done, 4 skipped, 3 blocked, 9 not started
-- ⬇️ **Low:** 12 tickets - 2 done, 2 skipped, 8 not started
+- ⬆️ **High:** 22 tickets - 7 done, 4 skipped, 2 blocked, 9 not started
+- ➡️ **Medium:** 23 tickets - 7 done, 4 skipped, 3 blocked, 9 not started
+- ⬇️ **Low:** 13 tickets - 2 done, 2 skipped, 9 not started
 
 ### Quick Stats
 - Average ticket: 2.5 points
