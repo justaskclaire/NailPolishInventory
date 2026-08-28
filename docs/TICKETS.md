@@ -3,7 +3,7 @@
 ## 📊 Executive Summary
 
 ### 🎯 Current Status
-- **Completed:** 29/90 tickets (32%) | 56/221 points (25%) | **Skipped/Descoped:** 13 tickets (37pts)
+- **Completed:** 30/91 tickets (33%) | 59/224 points (26%) | **Skipped/Descoped:** 13 tickets (37pts)
 - **Current Phase:** 🖼️ Inspo Gallery shipped (Aug 26, 2026) - a full color/season/occasion/vibe-filterable photo gallery, "save this look" + unified Send-to-Claire, a branded 404, favicon/social preview tags, plus the Book Appointment booking flow
 - **Previous Milestone:** Milestone 2 - Personalization Basics ✅ COMPLETE (Jan 3, 2026, via a simplified localStorage approach - see note in that section)
 - **Velocity:** 33 points (Sprint 1) + 20 points (Aug 26, 2026 session: booking CTA + Inspo Gallery)
@@ -720,7 +720,7 @@ Added as a styled solid-rose CTA in the nav on both the Polishes and Inspo pages
 
 ## 🖼️ Inspo Gallery (Aug 26, 2026) - SHIPPED
 
-**Progress:** 13/14 tickets done | 25/30 points (83%)
+**Progress:** 14/15 tickets done | 28/33 points (85%)
 
 Not part of the original milestone plan — delivers the "Pinterest-powered inspiration browsing" vision from `docs/Milestone3Planning.md` via a local photo mirror instead of the live Pinterest API, sidestepping the still-pending Pinterest API trial approval entirely. Also functions as the practical half of NPI-060.
 
@@ -740,6 +740,7 @@ Not part of the original milestone plan — delivers the "Pinterest-powered insp
 | NPI-072 | Auto-suggest matching polishes from a photo's colors ("dream world" feature) | 🎯 Recommendations | 5 | 🟡 | ⬇️ |
 | NPI-073 | Fix Inspo page header to match Polishes page structure | 🗺️ Navigation | 1 | 🟢 | ➡️ |
 | NPI-074 | Sort color filters in rainbow order (both pages) | 🎨 Design System | 1 | 🟢 | ⬇️ |
+| NPI-075 | Instagram-style mobile grid + randomized photo order | 🗺️ Layout | 3 | 🟢 | ➡️ |
 
 <details>
 <summary><b>📋 View All Ticket Details</b> (click to expand)</summary>
@@ -943,6 +944,21 @@ Color filter buttons were sorted alphabetically; Claire asked for rainbow order 
 ✅ New order on both pages: Red, Orange, Yellow, Green, Blue, Purple, Pink, then neutrals (Brown, Gold, Neutral, White, Grey, Black - Inspo only, since Polishes has no Black-tagged polish yet)
 </details>
 
+<details id="npi-075">
+<summary><b>NPI-075</b> | Instagram-style mobile grid + randomized photo order [3pt] 🟢 ➡️</summary>
+
+### 🏷️ Tags
+`ui` `mobile` `layout`
+
+### 📋 Description
+Two asks: (a) show photos smaller on mobile, "think insta grid"; (b) randomize photo order so visitors don't always land on the same ones first
+
+### ✅ Status Notes
+✅ Mobile (<768px) switched from single-column masonry to a tight 3-column square grid (~112px cells, 3px gaps, `object-fit: cover` crop) - tablet/desktop masonry unchanged
+✅ 44px touch-target icons don't fit on a 112px thumbnail, so the per-photo favorite/next-appt icons and hashtag overlay are hidden on the mobile grid. Added matching action buttons + a tag summary directly in the lightbox instead - tap the photo, then act on it, same interaction model Instagram itself uses. Toggling from the lightbox stays in sync with the grid's icon state via a shared `setIconButtonState`/`syncGridIcons` helper
+✅ Photos render in a random order each page load (Fisher-Yates shuffle on the parsed CSV data before rendering) - filtering, counts, and deep links are all order-independent so nothing else was affected
+</details>
+
 </details>
 
 ---
@@ -994,8 +1010,8 @@ _Full ticket list available - expand sections as needed_
 
 ## 📊 Project Summary
 
-**Total:** 90 tickets | 221 story points  
-**Completed:** 29 tickets (32%) | 56 points (25%)  
+**Total:** 91 tickets | 224 story points  
+**Completed:** 30 tickets (33%) | 59 points (26%)  
 **Skipped/Descoped:** 13 tickets (14%) | 37 points (17%) - all in M2, superseded by the simpler localStorage approach that actually shipped  
 **In Progress:** 0 tickets  
 **Not Started:** 48 tickets | 128 points  
@@ -1008,13 +1024,13 @@ _Full ticket list available - expand sections as needed_
 | ✨ M3: Enhanced Browsing | 15 | 46 | 0 | 0 | 15 (46pts) |
 | 📅 M4: Booking | 9 | 16 | 2 ✅ (3pts) | 0 | 7 (13pts) |
 | 🎨 Infrastructure | 16 | 37 | 0 | 0 | 16 (37pts) |
-| 🖼️ Inspo Gallery | 14 | 30 | 13 ✅ (25pts) | 0 | 1 (5pts) |
+| 🖼️ Inspo Gallery | 15 | 33 | 14 ✅ (28pts) | 0 | 1 (5pts) |
 
 ### By Priority
 _(Individually-itemized tickets only - the 16 Infrastructure tickets are tracked as a category rollup, not itemized, so aren't counted here)_
 - 🔥 **Critical:** 14 tickets - 10 done, 3 skipped, 1 not started
 - ⬆️ **High:** 22 tickets - 7 done, 4 skipped, 2 blocked, 9 not started
-- ➡️ **Medium:** 24 tickets - 8 done, 4 skipped, 3 blocked, 9 not started
+- ➡️ **Medium:** 25 tickets - 9 done, 4 skipped, 3 blocked, 9 not started
 - ⬇️ **Low:** 14 tickets - 3 done, 2 skipped, 9 not started
 
 ### Quick Stats

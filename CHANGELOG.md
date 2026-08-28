@@ -15,6 +15,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Services/pricing page and contact/inquiry form (booking flow)
 - Pre-appointment reminder nudging clients to review the Inspo Gallery
 
+## [1.3.2] - 2026-08-27
+
+### Added
+- Inspo Gallery photos now render in a random order each page load, so visitors don't always see nail-001, nail-002... first
+
+### Changed
+- Mobile (<768px) Inspo layout switched from single-column masonry to a tight 3-column square grid ("insta grid" - ~112px cells, cropped to squares), matching how Instagram's own grid looks and behaves
+- Since 44px touch-target icons don't fit on a 112px thumbnail, per-photo favorite/next-appt icons and the hashtag overlay are hidden on the mobile grid - moved those actions (plus a tag summary) into the lightbox instead, so favoriting/marking next-appt on mobile now happens by tapping the photo first, same interaction model as Instagram's own post view. Toggling from the lightbox stays in sync with the grid's icon state
+
 ## [1.3.1] - 2026-08-27
 
 ### Added
@@ -154,6 +163,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 | Version | Date | Description |
 |---------|------|-------------|
+| 1.3.2 | 2026-08-27 | Instagram-style mobile grid for Inspo Gallery + randomized photo order |
 | 1.3.1 | 2026-08-27 | Inspo Gallery Favorites/Next Appt corrected to match Polishes exactly, header consistency fix, rainbow color order |
 | 1.3.0 | 2026-08-26 | Book Appointment booking flow + Nail Inspo Gallery (216 photos, Color/Season/Occasion/Vibe filters) |
 | 1.2.0 | 2026-03-29 | Inventory refresh to 135 polishes + Ruby workflow + nav links hidden |
