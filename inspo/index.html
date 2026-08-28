@@ -383,8 +383,12 @@
         font-size: var(--font-size-xs);
       }
 
+      /* Instagram-style tight square grid on mobile instead of masonry -
+         smaller thumbnails, more photos visible per screen */
       .inspo-grid {
-        column-count: 1;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3px;
       }
     }
 
@@ -533,8 +537,29 @@
         font-size: 20px;
       }
 
+      /* On the tight insta-grid there's no room for 44px touch targets on a
+         ~115px thumbnail - favoriting/next-appt happens in the lightbox
+         instead (same as Instagram: tap the post, then act on it). */
       .inspo-icons {
-        opacity: 0.9;
+        display: none;
+      }
+
+      /* Square-crop thumbnails, tight and borderless like an Instagram grid */
+      .inspo-item {
+        margin-bottom: 0;
+        border-radius: 0;
+        aspect-ratio: 1 / 1;
+      }
+
+      .inspo-item img {
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Hashtag overlay is unreadable at this size and not needed - tap
+         through to the lightbox to see tags there instead */
+      .inspo-tags {
+        display: none;
       }
     }
 
@@ -632,9 +657,18 @@
       display: flex;
     }
 
-    .lightbox img {
+    .lightbox-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       max-width: 100%;
       max-height: 100%;
+    }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 78vh;
+      display: block;
       border-radius: var(--radius-sm);
       box-shadow: var(--shadow-xl);
     }
@@ -652,6 +686,34 @@
       line-height: 1;
       cursor: pointer;
       color: var(--color-text);
+    }
+
+    /* Action bar under the enlarged photo - the only way to favorite/mark
+       next-appt on mobile, since the tiny insta-grid thumbnails hide those
+       icons (same pattern as Instagram: tap the post, then act on it) */
+    .lightbox-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+      margin-top: var(--space-3);
+      padding: var(--space-2) var(--space-4);
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      max-width: 100%;
+    }
+
+    .lightbox-actions .icon-btn {
+      flex-shrink: 0;
+    }
+
+    .lightbox-tags {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   </style>
 </head>
@@ -723,7 +785,14 @@
 
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
-    <img id="lightbox-img" src="" alt="" />
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="" />
+      <div class="lightbox-actions">
+        <button type="button" class="icon-btn favorite-btn" id="lightbox-favorite-btn"></button>
+        <button type="button" class="icon-btn nextappt-btn" id="lightbox-nextappt-btn"></button>
+        <span class="lightbox-tags" id="lightbox-tags"></span>
+      </div>
+    </div>
   </div>
 
   <div class="copy-toast" id="copy-toast" role="status" aria-live="polite" aria-atomic="true">Copied! Paste it in a text to Claire 💅</div>
@@ -822,6 +891,16 @@
         return (value || '').split(',').map(v => v.trim()).filter(Boolean);
       }
 
+      // Fisher-Yates shuffle - randomizes render order each page load so
+      // visitors don't always see nail-001, nail-002... first
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
       // ========== STATE ==========
       const selected = {
         colors: new Set(),
@@ -900,6 +979,29 @@
 
       const selectedPersonal = new Set();
 
+      // Shared between grid icon buttons and the lightbox action buttons, so
+      // toggling from either place stays visually in sync.
+      const ICON_LABELS = {
+        favorites: { active: '❤️', inactive: '🤍', activeLabel: 'Remove from favorites', inactiveLabel: 'Add to favorites' },
+        nextappt: { active: '📅', inactive: '🗓️', activeLabel: 'Unmark from next appointment', inactiveLabel: 'Mark for next appointment' }
+      };
+
+      function setIconButtonState(btn, key, active) {
+        const labels = ICON_LABELS[key];
+        btn.classList.toggle('active', active);
+        btn.textContent = active ? labels.active : labels.inactive;
+        btn.setAttribute('aria-label', active ? labels.activeLabel : labels.inactiveLabel);
+      }
+
+      function syncGridIcons(filename) {
+        const gridItem = document.getElementById(filename.replace(/\.jpg$/i, ''));
+        if (!gridItem) return;
+        const iconsDiv = gridItem.querySelector('.inspo-icons');
+        setIconButtonState(gridItem.querySelector('.favorite-btn'), 'favorites', isInInspoList('favorites', filename));
+        setIconButtonState(gridItem.querySelector('.nextappt-btn'), 'nextappt', isInInspoList('nextappt', filename));
+        iconsDiv.classList.toggle('has-active', !!iconsDiv.querySelector('.icon-btn.active'));
+      }
+
       function createItem(row) {
         const item = document.createElement('div');
         item.className = 'inspo-item';
@@ -929,23 +1031,15 @@
         const favBtn = document.createElement('button');
         favBtn.type = 'button';
         favBtn.className = 'icon-btn favorite-btn';
-        if (isInInspoList('favorites', row.Filename)) {
-          favBtn.classList.add('active');
-          iconsDiv.classList.add('has-active');
-          favBtn.textContent = '❤️';
-          favBtn.setAttribute('aria-label', 'Remove from favorites');
-        } else {
-          favBtn.textContent = '🤍';
-          favBtn.setAttribute('aria-label', 'Add to favorites');
-        }
+        const favActive = isInInspoList('favorites', row.Filename);
+        setIconButtonState(favBtn, 'favorites', favActive);
+        if (favActive) iconsDiv.classList.add('has-active');
         favBtn.addEventListener('click', function (event) {
           event.stopPropagation();
           const nowActive = toggleInspoList('favorites', row.Filename, tagsSummary);
-          favBtn.classList.toggle('active', nowActive);
-          if (!iconsDiv.querySelector('.icon-btn.active')) iconsDiv.classList.remove('has-active');
-          else iconsDiv.classList.add('has-active');
-          favBtn.textContent = nowActive ? '❤️' : '🤍';
-          favBtn.setAttribute('aria-label', nowActive ? 'Remove from favorites' : 'Add to favorites');
+          setIconButtonState(favBtn, 'favorites', nowActive);
+          iconsDiv.classList.toggle('has-active', !!iconsDiv.querySelector('.icon-btn.active'));
+          if (currentLightboxFilename === row.Filename) setIconButtonState(lightboxFavBtn, 'favorites', nowActive);
           if (selectedPersonal.size > 0) applyFilters();
         });
         iconsDiv.appendChild(favBtn);
@@ -955,23 +1049,15 @@
         const nextapptBtn = document.createElement('button');
         nextapptBtn.type = 'button';
         nextapptBtn.className = 'icon-btn nextappt-btn';
-        if (isInInspoList('nextappt', row.Filename)) {
-          nextapptBtn.classList.add('active');
-          iconsDiv.classList.add('has-active');
-          nextapptBtn.textContent = '📅';
-          nextapptBtn.setAttribute('aria-label', 'Unmark from next appointment');
-        } else {
-          nextapptBtn.textContent = '🗓️';
-          nextapptBtn.setAttribute('aria-label', 'Mark for next appointment');
-        }
+        const nextapptActive = isInInspoList('nextappt', row.Filename);
+        setIconButtonState(nextapptBtn, 'nextappt', nextapptActive);
+        if (nextapptActive) iconsDiv.classList.add('has-active');
         nextapptBtn.addEventListener('click', function (event) {
           event.stopPropagation();
           const nowActive = toggleInspoList('nextappt', row.Filename, tagsSummary);
-          nextapptBtn.classList.toggle('active', nowActive);
-          if (!iconsDiv.querySelector('.icon-btn.active')) iconsDiv.classList.remove('has-active');
-          else iconsDiv.classList.add('has-active');
-          nextapptBtn.textContent = nowActive ? '📅' : '🗓️';
-          nextapptBtn.setAttribute('aria-label', nowActive ? 'Unmark from next appointment' : 'Mark for next appointment');
+          setIconButtonState(nextapptBtn, 'nextappt', nowActive);
+          iconsDiv.classList.toggle('has-active', !!iconsDiv.querySelector('.icon-btn.active'));
+          if (currentLightboxFilename === row.Filename) setIconButtonState(lightboxNextapptBtn, 'nextappt', nowActive);
           updateCopyButton();
           if (selectedPersonal.size > 0) applyFilters();
         });
@@ -1116,9 +1202,16 @@
       clearBtn.addEventListener('click', clearAllFilters);
 
       // ========== LIGHTBOX ==========
+      // Also the only way to favorite/mark-next-appt on mobile, since the
+      // tight insta-grid thumbnails hide those icons for space - tap the
+      // photo, then act on it here (same as Instagram's post view).
       const lightbox = document.getElementById('lightbox');
       const lightboxImg = document.getElementById('lightbox-img');
       const lightboxClose = document.getElementById('lightbox-close');
+      const lightboxFavBtn = document.getElementById('lightbox-favorite-btn');
+      const lightboxNextapptBtn = document.getElementById('lightbox-nextappt-btn');
+      const lightboxTagsEl = document.getElementById('lightbox-tags');
+      let currentLightboxFilename = null;
 
       gridEl.addEventListener('click', function (event) {
         const item = event.target.closest('.inspo-item');
@@ -1129,6 +1222,7 @@
       function closeLightbox() {
         lightbox.classList.remove('visible');
         lightboxImg.src = '';
+        currentLightboxFilename = null;
       }
 
       lightboxClose.addEventListener('click', closeLightbox);
@@ -1143,8 +1237,41 @@
         const img = item.querySelector('img');
         lightboxImg.src = img.src;
         lightboxImg.alt = img.alt;
+
+        const filename = item.getAttribute('data-filename');
+        currentLightboxFilename = filename;
+
+        const tags = [
+          ...splitField(item.getAttribute('data-seasons')),
+          ...splitField(item.getAttribute('data-occasions')).filter(o => o !== 'Everyday'),
+          ...splitField(item.getAttribute('data-vibes'))
+        ].join(', ');
+        lightboxTagsEl.textContent = tags;
+
+        setIconButtonState(lightboxFavBtn, 'favorites', isInInspoList('favorites', filename));
+        setIconButtonState(lightboxNextapptBtn, 'nextappt', isInInspoList('nextappt', filename));
+
         lightbox.classList.add('visible');
       }
+
+      lightboxFavBtn.addEventListener('click', function (event) {
+        event.stopPropagation();
+        if (!currentLightboxFilename) return;
+        const nowActive = toggleInspoList('favorites', currentLightboxFilename, lightboxTagsEl.textContent);
+        setIconButtonState(lightboxFavBtn, 'favorites', nowActive);
+        syncGridIcons(currentLightboxFilename);
+        if (selectedPersonal.size > 0) applyFilters();
+      });
+
+      lightboxNextapptBtn.addEventListener('click', function (event) {
+        event.stopPropagation();
+        if (!currentLightboxFilename) return;
+        const nowActive = toggleInspoList('nextappt', currentLightboxFilename, lightboxTagsEl.textContent);
+        setIconButtonState(lightboxNextapptBtn, 'nextappt', nowActive);
+        syncGridIcons(currentLightboxFilename);
+        updateCopyButton();
+        if (selectedPersonal.size > 0) applyFilters();
+      });
 
       // ========== SEND MY PICKS TO CLAIRE ==========
       const copyPicksWrapper = document.getElementById('copy-picks-wrapper');
@@ -1209,7 +1336,7 @@
           const response = await fetch('../data/inspo.csv?v=' + Date.now());
           if (!response.ok) throw new Error(`Failed to load inspo CSV: ${response.status} ${response.statusText}`);
           const csvText = await response.text();
-          const data = parseCSV(csvText);
+          const data = shuffle(parseCSV(csvText));
 
           data.forEach(row => {
             if (row.Filename) gridEl.appendChild(createItem(row));
